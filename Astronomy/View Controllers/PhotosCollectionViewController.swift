@@ -103,40 +103,33 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     
     private func configureTitleView() {
         
-//        let font = UIFont.systemFont(ofSize: 30)
-//        let attrs = [NSAttributedStringKey.font: font]
+        let font = UIFont.systemFont(ofSize: 30)
+        let attrs = [NSAttributedStringKey.font: font]
 
-//        let prevTitle = NSAttributedString(string: "<", attributes: attrs)
-//        let prevButton = UIButton(type: .system)
-//        prevButton.accessibilityIdentifier = "PhotosCollectionViewController.PreviousSolButton"
-//        prevButton.setAttributedTitle(prevTitle, for: .normal)
-//        prevButton.addTarget(self, action: #selector(goToPreviousSol(_:)), for: .touchUpInside)
+        let prevTitle = NSAttributedString(string: "<", attributes: attrs)
+        let prevButton = UIButton(type: .system)
+        prevButton.accessibilityIdentifier = "PhotosCollectionViewController.PreviousSolButton"
+        prevButton.setAttributedTitle(prevTitle, for: .normal)
+        prevButton.addTarget(self, action: #selector(goToPreviousSol(_:)), for: .touchUpInside)
         
-        let prevItem = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(goToPreviousSol(_:)))
-        prevItem.accessibilityIdentifier = "PhotosCollectionViewController.PreviousSolButton"
+        let nextTitle = NSAttributedString(string: ">", attributes: attrs)
+        let nextButton = UIButton(type: .system)
+        nextButton.setAttributedTitle(nextTitle, for: .normal)
+        nextButton.addTarget(self, action: #selector(goToNextSol(_:)), for: .touchUpInside)
+        nextButton.accessibilityIdentifier = "PhotosCollectionViewController.NextSolButton"
         
-//        let nextTitle = NSAttributedString(string: ">", attributes: attrs)
-//        let nextButton = UIButton(type: .system)
-//        nextButton.setAttributedTitle(nextTitle, for: .normal)
-//        nextButton.addTarget(self, action: #selector(goToNextSol(_:)), for: .touchUpInside)
-//        nextButton.accessibilityIdentifier = "PhotosCollectionViewController.NextSolButton"
+        let stackView = UIStackView(arrangedSubviews: [prevButton, solLabel, nextButton])
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = UIStackView.spacingUseSystem
         
-        let nextItem = UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(goToNextSol(_:)))
-        nextItem.accessibilityIdentifier = "PhotosCollectionViewController.NextSolButton"
-        
-//        let stackView = UIStackView(arrangedSubviews: [prevButton, solLabel, nextButton])
-//        stackView.axis = .horizontal
-//        stackView.alignment = .fill
-//        stackView.distribution = .fill
-//        stackView.spacing = UIStackView.spacingUseSystem
-        
-        navigationItem.setLeftBarButton(prevItem, animated: false)
-        navigationItem.setRightBarButton(nextItem, animated: false)
+        navigationItem.titleView = stackView
     }
     
     private func updateViews() {
         guard isViewLoaded else { return }
-        title = "Sol \(solDescription?.sol ?? 0)"
+        solLabel.text = "Sol \(solDescription?.sol ?? 0)"
     }
     
     private func loadImage(forCell cell: ImageCollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -146,20 +139,15 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
             cell.imageView.image = cachedImage
             return
         }
-    
+        
         // Start an operation to fetch image data
         let fetchOp = FetchPhotoOperation(photoReference: photoReference)
-        let filterOp = FilterImageOperation(fetchOperation: fetchOp)
-        filterOp.completionBlock = {
-            NSLog("Filter op finished")
-        }
         let cacheOp = BlockOperation {
-            if let image = filterOp.image {
+            if let image = fetchOp.image {
                 self.cache.cache(value: image, for: photoReference.id)
             }
         }
         let completionOp = BlockOperation {
-            NSLog("Completed")
             defer { self.operations.removeValue(forKey: photoReference.id) }
             
             if let currentIndexPath = self.collectionView?.indexPath(for: cell),
@@ -167,18 +155,16 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
                 return // Cell has been reused
             }
             
-            if let image = filterOp.image {
+            if let image = fetchOp.image {
                 cell.imageView.image = image
             }
         }
         
-        filterOp.addDependency(fetchOp)
-        cacheOp.addDependency(filterOp)
-        completionOp.addDependency(filterOp)
+        cacheOp.addDependency(fetchOp)
+        completionOp.addDependency(fetchOp)
         
         photoFetchQueue.addOperation(fetchOp)
         photoFetchQueue.addOperation(cacheOp)
-        imageFilteringQueue.addOperation(filterOp)
         OperationQueue.main.addOperation(completionOp)
         
         operations[photoReference.id] = fetchOp
@@ -189,12 +175,11 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     private let client = MarsRoverClient()
     private let cache = Cache<Int, UIImage>()
     private let photoFetchQueue = OperationQueue()
-    private let imageFilteringQueue = OperationQueue()
     private var operations = [Int : Operation]()
     
     private var roverInfo: MarsRover? {
         didSet {
-            solDescription = roverInfo?.solDescriptions[1]
+            solDescription = roverInfo?.solDescriptions[0]
         }
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Lambda School. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class FetchPhotoOperation: ConcurrentOperation {
     
@@ -15,7 +15,7 @@ class FetchPhotoOperation: ConcurrentOperation {
         self.session = session
         super.init()
     }
- 
+    
     override func start() {
         state = .isExecuting
         let url = photoReference.imageURL.usingHTTPS!
@@ -28,7 +28,9 @@ class FetchPhotoOperation: ConcurrentOperation {
                 return
             }
             
-            self.imageData = data
+            if let data = data {
+                self.image = UIImage(data: data)
+            }
         }
         task.resume()
         dataTask = task
@@ -44,8 +46,8 @@ class FetchPhotoOperation: ConcurrentOperation {
     let photoReference: MarsPhotoReference
     
     private let session: URLSession
-
-    private(set) var imageData: Data?
+    
+    private(set) var image: UIImage?
     
     private var dataTask: URLSessionDataTask?
 }

@@ -29,7 +29,7 @@ class MarsRoverClient {
                      onSol sol: Int,
                      using session: URLSession = URLSession.shared,
                      completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
-
+        
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
         fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
