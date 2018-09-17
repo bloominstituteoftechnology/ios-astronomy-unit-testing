@@ -44,6 +44,9 @@ class MarsRoverClientTests: XCTestCase {
         
         marsRoverClient.fetchMarsRover(named: "Sol 1") { (marsRoverData, error) in
             XCTAssertNotNil(mock.url)
+            XCTAssertNotNil(mock.data)
+            XCTAssertEqual(mock.data?.count, 1528)
+            
             expectation.fulfill()
         }
         
