@@ -44,5 +44,35 @@ class MockLoader:NetworkDataLoader
 
 class AstronomyTests: XCTestCase
 {
+	func testMarsRover()
+	{
+		let marsRoverClient = MarsRoverClient(loader: MockLoader(data:validRoverJSON, error:nil))
+		let expectation = self.expectation(description: "Wait for fetch to finish")
+		marsRoverClient.fetchMarsRover(named: validRoverName) {rover, error in
+			XCTAssertNil(error)
+			XCTAssertNotNil(rover)
+			expectation.fulfill()
+		}
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 
+	func testFetchPhotos()
+	{
+		let marsRoverClient = MarsRoverClient(loader: MockLoader(data:validRoverJSON, error:nil))
+		let expectation = self.expectation(description: "Wait for fetch to finish")
+		marsRoverClient.fetchMarsRover(named: validRoverName) {rover, error in
+			XCTAssertNil(error)
+			XCTAssertNotNil(rover)
+
+			marsRoverClient.loader = MockLoader(data:validSol1JSON, error:nil)
+			marsRoverClient.fetchPhotos(from: rover!, onSol: 1) {
+				photoReferences, error in
+				XCTAssertNil(error)
+				XCTAssertNotNil(photoReferences)
+				XCTAssertEqual(photoReferences!.count, rover!.solDescriptions[1].totalPhotos)
+				expectation.fulfill()
+			}
+		}
+		waitForExpectations(timeout: 1, handler: nil)
+	}
 }
