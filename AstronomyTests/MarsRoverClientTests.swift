@@ -37,7 +37,7 @@ class MockDataLoader: NetworkDataLoader {
 
 class MarsRoverClientTests: XCTestCase {
     func testFetchMarsRover() {
-        let mock = MockDataLoader(data: , error: <#T##Error?#>)
+        let mock = MockDataLoader(data: validRoverJSON, error: nil)
     }
     
     func testFetchPhotos() {

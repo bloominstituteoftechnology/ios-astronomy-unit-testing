@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		13EDEBCA21503E3E000A14E4 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EDEBC921503E3E000A14E4 /* MarsRoverClientTests.swift */; };
 		13EDEBD221503E66000A14E4 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EDEBD121503E66000A14E4 /* NetworkDataLoader.swift */; };
+		13EDEBD42150475C000A14E4 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EDEBD32150475C000A14E4 /* TestJSON.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -42,6 +43,7 @@
 		13EDEBC921503E3E000A14E4 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
 		13EDEBCB21503E3E000A14E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13EDEBD121503E66000A14E4 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		13EDEBD32150475C000A14E4 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		13EDEBC821503E3E000A14E4 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
+				13EDEBD32150475C000A14E4 /* TestJSON.swift */,
 				13EDEBC921503E3E000A14E4 /* MarsRoverClientTests.swift */,
 				13EDEBCB21503E3E000A14E4 /* Info.plist */,
 			);
@@ -290,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13EDEBCA21503E3E000A14E4 /* MarsRoverClientTests.swift in Sources */,
+				13EDEBD42150475C000A14E4 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
