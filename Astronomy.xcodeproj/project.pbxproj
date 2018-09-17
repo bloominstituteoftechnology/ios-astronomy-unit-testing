@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3911FADB21503FBD00164099 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3911FADA21503FBD00164099 /* AstronomyTests.swift */; };
 		3911FAE32150401200164099 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3911FAE22150401200164099 /* NetworkDataLoader.swift */; };
+		3911FAE6215043AB00164099 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3911FAE5215043AB00164099 /* MarsRoverClientTests.swift */; };
+		3911FAE8215047F200164099 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3911FAE7215047F200164099 /* TestJSON.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -39,9 +40,10 @@
 
 /* Begin PBXFileReference section */
 		3911FAD821503FBD00164099 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3911FADA21503FBD00164099 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		3911FADC21503FBD00164099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3911FAE22150401200164099 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		3911FAE5215043AB00164099 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
+		3911FAE7215047F200164099 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,8 +85,9 @@
 		3911FAD921503FBD00164099 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
-				3911FADA21503FBD00164099 /* AstronomyTests.swift */,
 				3911FADC21503FBD00164099 /* Info.plist */,
+				3911FAE7215047F200164099 /* TestJSON.swift */,
+				3911FAE5215043AB00164099 /* MarsRoverClientTests.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				TargetAttributes = {
 					3911FAD721503FBD00164099 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 						TestTargetID = 9DBD20042140D1300047905E;
 					};
 					9DBD20042140D1300047905E = {
@@ -297,7 +301,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3911FADB21503FBD00164099 /* AstronomyTests.swift in Sources */,
+				3911FAE6215043AB00164099 /* MarsRoverClientTests.swift in Sources */,
+				3911FAE8215047F200164099 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 39ZVY2XGME;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
@@ -358,6 +364,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.linhbouniol.AstronomyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astronomy.app/Astronomy";
@@ -368,6 +375,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 39ZVY2XGME;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
