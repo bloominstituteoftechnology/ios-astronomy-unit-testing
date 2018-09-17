@@ -36,17 +36,21 @@ class MockDataLoader: NetworkDataLoader {
 }
 
 class MarsRoverClientTests: XCTestCase {
+    var rover: MarsRover?
+    
     func testFetchMarsRover() {
         let mock = MockDataLoader(data: validRoverJSON, error: nil)
         let marsRoverClient = MarsRoverClient(dataLoader: mock)
         
         let expectation = self.expectation(description: "Loads Mars Rover data")
         
-        marsRoverClient.fetchMarsRover(named: "Sol 1") { (marsRoverData, error) in
+        marsRoverClient.fetchMarsRover(named: "curiosity") { (marsRover, error) in
             XCTAssertNotNil(mock.url)
             XCTAssertNotNil(mock.data)
-            XCTAssertEqual(mock.data?.count, 1528)
+            XCTAssertEqual(marsRover?.name, "Curiosity")
+            XCTAssertEqual(marsRover?.maxSol, 10)
             
+            self.rover = marsRover
             expectation.fulfill()
         }
         
@@ -54,6 +58,27 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     func testFetchPhotos() {
+        let mockForRover = MockDataLoader(data: validRoverJSON, error: nil)
+        let marsRoverClientForRover = MarsRoverClient(dataLoader: mockForRover)
         
+        let mockForPhotos = MockDataLoader(data: validSol1JSON, error: nil)
+        let marsRoverClientForPhotos = MarsRoverClient(dataLoader: mockForPhotos)
+        
+        let photoExpectation = self.expectation(description: "Fetch photos successfully for rover")
+        
+        marsRoverClientForRover.fetchMarsRover(named: "curiosity") { (marsRover, error) in
+            if let marsRover = marsRover {
+                marsRoverClientForPhotos.fetchPhotos(from: marsRover, onSol: 1, completion: { (marsPhotos, error) in
+                    XCTAssertNotNil(marsPhotos)
+                    XCTAssertEqual(marsPhotos?.count, 16)
+                    guard let firstPhoto = marsPhotos?.first else { return }
+                    XCTAssertEqual(firstPhoto.imageURL.absoluteString, "http://mars.jpl.nasa.gov/msl-raw-images/msss/00001/mcam/0001ML0000001000I1_DXXX.jpg")
+                    
+                    photoExpectation.fulfill()
+                })
+            }
+        }
+        
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
 }
