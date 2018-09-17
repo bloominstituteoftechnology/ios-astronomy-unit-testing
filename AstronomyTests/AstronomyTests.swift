@@ -27,18 +27,22 @@ class MockLoader:NetworkDataLoader
 	func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void)
 	{
 		self.lastURL = url
-		completion(data, error)
+		DispatchQueue(label: "wb.Mock.bg", attributes: .concurrent).async {
+			completion(self.data, self.error)
+		}
 	}
 
 	func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void)
 	{
 		self.lastRequest = request
-		completion(data, error)
+		DispatchQueue(label: "wb.Mock.bg", attributes: .concurrent).async {
+			completion(self.data, self.error)
+		}
 	}
 }
 
 
 class AstronomyTests: XCTestCase
 {
-	
+
 }
