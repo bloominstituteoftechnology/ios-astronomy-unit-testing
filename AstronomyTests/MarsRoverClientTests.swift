@@ -39,31 +39,43 @@ class MockLoader: NetworkDataLoader {
 class MarsRoverClientTests: XCTestCase {
     
     func testFetchMarsRover() {
+        let mock = MockLoader(data: validRoverJSON, error: nil)
+        let marsRoverClient = MarsRoverClient(dataLoader: mock)
+        let expectation = self.expectation(description: "Fetch Mars Rover")
         
+        marsRoverClient.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            XCTAssertNotNil(mock.url)
+            XCTAssertNotNil(rover)
+            XCTAssertEqual("Curiosity", rover?.name)
+            XCTAssertEqual(4156, rover?.numberOfPhotos)
+//            XCTAssertEqual("2011-11-26", rover?.launchDate)
+//            XCTAssertEqual("2012-08-06", rover?.landingDate)
+            
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testFetchPhotos() {
+        let mock = MockLoader(data: validSol1JSON, error: nil)
+        let marsRoverClient = MarsRoverClient(dataLoader: mock)
+        let expectation = self.expectation(description: "Fetch Photos")
         
-    }
-    
-}
+        let solDescriptions = [SolDescription]()
+        let rover = MarsRover(name: "Curiosity", launchDate: Date(), landingDate: Date(), status: .active, maxSol: 100, maxDate: Date(), numberOfPhotos: 999999, solDescriptions: solDescriptions)
+        var photoRefs: [MarsPhotoReference]?
 
-func urlComponents(_ components1: URLComponents, equalTo components2: URLComponents) -> Bool {
-    var scratch1 = components1
-    var scratch2 = components2
-    
-    scratch1.queryItems = []
-    scratch2.queryItems = []
-    if scratch1 != scratch2 {
-        return false
-    }
-    
-    //Compare Query items
-    if let queryItems1 = components1.queryItems,
-        let queryItems2 = components2.queryItems {
-        if Set(queryItems1) != Set(queryItems2) {
-            return false
+        marsRoverClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotoRefs, error) in
+            photoRefs = marsPhotoRefs
+            XCTAssertNotNil(mock.url)
+            let firstObject = photoRefs!.first
+            XCTAssertEqual(firstObject!.id, 4477)
+            XCTAssertEqual(firstObject!.sol, 1)
+            XCTAssertEqual(firstObject!.camera.id, 22)
+            
+            expectation.fulfill()
         }
+        waitForExpectations(timeout: 5, handler: nil)
     }
-    return true
+    
 }
