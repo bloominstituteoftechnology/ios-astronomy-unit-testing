@@ -6,7 +6,7 @@
 //  Copyright © 2018 Lambda School. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 let validRoverJSON = """
 {
@@ -908,3 +908,5 @@ let validSol1JSON = """
   ]
 }
 """.data(using: .utf8)
+
+let validImageData = UIImagePNGRepresentation(#imageLiteral(resourceName: "MarsPlaceholder"))

@@ -10,9 +10,23 @@ import UIKit
 
 class FetchPhotoOperation: ConcurrentOperation {
     
-    init(photoReference: MarsPhotoReference, session: URLSession = URLSession.shared) {
+    // MARK: Properties
+    
+    let photoReference: MarsPhotoReference
+    
+//    private let session: URLSession
+    private let networkLoader: NetworkDataLoader
+    
+    private(set) var image: UIImage?
+    
+//    private var dataTask: URLSessionDataTask?
+    private var dataTask: NetworkDataTask?
+    
+    // change everyewhere that says "session" to networkLoader
+    
+    init(photoReference: MarsPhotoReference, networkLoader: NetworkDataLoader = URLSession.shared) {
         self.photoReference = photoReference
-        self.session = session
+        self.networkLoader = networkLoader
         super.init()
     }
     
@@ -20,7 +34,8 @@ class FetchPhotoOperation: ConcurrentOperation {
         state = .isExecuting
         let url = photoReference.imageURL.usingHTTPS!
         
-        let task = session.dataTask(with: url) { (data, response, error) in
+//        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = networkLoader.loadData(from: url) { (data, error) in
             defer { self.state = .isFinished }
             if self.isCancelled { return }
             if let error = error {
@@ -32,22 +47,14 @@ class FetchPhotoOperation: ConcurrentOperation {
                 self.image = UIImage(data: data)
             }
         }
-        task.resume()
+//        task.resume()
         dataTask = task
     }
     
     override func cancel() {
-        dataTask?.cancel()
+//        dataTask?.cancel()
+        dataTask?.cancelTask()
+        
         super.cancel()
     }
-    
-    // MARK: Properties
-    
-    let photoReference: MarsPhotoReference
-    
-    private let session: URLSession
-    
-    private(set) var image: UIImage?
-    
-    private var dataTask: URLSessionDataTask?
 }

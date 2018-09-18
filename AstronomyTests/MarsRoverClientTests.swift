@@ -9,6 +9,15 @@
 import XCTest
 @testable import Astronomy
 
+class MockDataTask: NetworkDataTask {
+    
+    var isCancelled = false
+    
+    func cancelTask() {
+        isCancelled = true
+    }
+}
+
 class MockLoader: NetworkDataLoader {
     
     let data: Data?
@@ -22,20 +31,34 @@ class MockLoader: NetworkDataLoader {
     private(set) var request: URLRequest? = nil
     private(set) var url: URL? = nil
     
-    func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+    func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> NetworkDataTask {
         self.request = request
         
-        DispatchQueue.global().async {
-            completion(self.data, self.error)
-        }
-    }
-    
-    func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
-        self.url = url
+        let mockDataTask = MockDataTask()
         
         DispatchQueue.global().async {
-            completion(self.data, self.error)
+            if mockDataTask.isCancelled {
+                completion(nil, self.error) // if is cancelled, there is no data
+            } else {
+                completion(self.data, self.error)
+            }
         }
+        return mockDataTask
+    }
+    
+    func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) -> NetworkDataTask {
+        self.url = url
+        
+        let mockDataTask = MockDataTask()
+        
+        DispatchQueue.global().async {
+            if mockDataTask.isCancelled {
+                completion(nil, self.error) // if is cancelled, there is no data
+            } else {
+                completion(self.data, self.error)
+            }
+        }
+        return mockDataTask
     }
 }
 
@@ -107,6 +130,73 @@ class MarsRoverClientTests: XCTestCase {
             XCTAssertNotNil(photos)
             
             expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5.0, handler: nil)
+    }
+    
+    func testFetchPhotoOperation() {
+        
+        let mock = MockLoader(data: validSol1JSON, error: nil)
+        let marsRoverClient = MarsRoverClient(networkLoader: mock)
+        
+        let mockPhotoLoader = MockLoader(data: validImageData, error: nil)
+        
+        let expectation = self.expectation(description: "Fetch Photo")
+        
+        marsRoverClient.fetchPhotos(from: marsRoverSample, onSol: 1) { (photos, error) in
+            
+            let photoReference = photos?.first
+            
+            
+            // real test starts here
+            let photoFetchQueue = OperationQueue()
+            let fetchOp = FetchPhotoOperation(photoReference: photoReference!, networkLoader: mockPhotoLoader)
+            
+            let completionOperation = BlockOperation {
+                XCTAssertNotNil(fetchOp.image)
+                
+                expectation.fulfill()
+            }
+            
+            completionOperation.addDependency(fetchOp)
+            
+            photoFetchQueue.addOperation(fetchOp)
+            OperationQueue.main.addOperation(completionOperation)
+            
+        }
+        
+        waitForExpectations(timeout: 5.0, handler: nil)
+    }
+    
+    func testFetchPhotoOperationCancel() {
+        
+        let mock = MockLoader(data: validSol1JSON, error: nil)
+        let marsRoverClient = MarsRoverClient(networkLoader: mock)
+        
+        let mockPhotoLoader = MockLoader(data: validImageData, error: nil)
+        
+        let expectation = self.expectation(description: "Fetch Photo")
+        
+        marsRoverClient.fetchPhotos(from: marsRoverSample, onSol: 1) { (photos, error) in
+            
+            let photoReference = photos?.first
+            
+            let photoFetchQueue = OperationQueue()
+            let fetchOperation = FetchPhotoOperation(photoReference: photoReference!, networkLoader: mockPhotoLoader)
+            
+            let completionOperation = BlockOperation {
+                XCTAssertNil(fetchOperation.image)
+                
+                expectation.fulfill()
+            }
+            
+            completionOperation.addDependency(fetchOperation)
+            
+            photoFetchQueue.addOperation(fetchOperation)
+            fetchOperation.cancel()
+            
+            OperationQueue.main.addOperation(completionOperation)
         }
         
         waitForExpectations(timeout: 5.0, handler: nil)
