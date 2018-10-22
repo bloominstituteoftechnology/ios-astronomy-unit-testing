@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7B92C318217E630F00108836 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92C317217E630F00108836 /* NetworkDataLoader.swift */; };
+		7B92C31A217E67A700108836 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92C319217E67A700108836 /* MarsRoverClientTests.swift */; };
+		7B92C31C217E67F600108836 /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92C31B217E67F600108836 /* MockLoader.swift */; };
+		7B92C31E217E6B8D00108836 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92C31D217E6B8C00108836 /* TestJSON.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -40,6 +43,9 @@
 		7B92C30D217E621000108836 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B92C311217E621000108836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B92C317217E630F00108836 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		7B92C319217E67A700108836 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
+		7B92C31B217E67F600108836 /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
+		7B92C31D217E6B8C00108836 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +88,9 @@
 			isa = PBXGroup;
 			children = (
 				7B92C311217E621000108836 /* Info.plist */,
+				7B92C31D217E6B8C00108836 /* TestJSON.swift */,
+				7B92C319217E67A700108836 /* MarsRoverClientTests.swift */,
+				7B92C31B217E67F600108836 /* MockLoader.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -235,6 +244,7 @@
 				TargetAttributes = {
 					7B92C30C217E621000108836 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 						TestTargetID = 9DBD20042140D1300047905E;
 					};
 					9DBD20042140D1300047905E = {
@@ -286,6 +296,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B92C31C217E67F600108836 /* MockLoader.swift in Sources */,
+				7B92C31A217E67A700108836 /* MarsRoverClientTests.swift in Sources */,
+				7B92C31E217E6B8D00108836 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -348,6 +362,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Daniela.AstronomyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astronomy.app/Astronomy";
@@ -358,6 +373,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

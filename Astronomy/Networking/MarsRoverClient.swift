@@ -24,6 +24,7 @@ class MarsRoverClient {
                 completion(nil, error)
                 return
             }
+            self.rover = rover
             completion(rover, nil)
         }
     }
@@ -38,6 +39,7 @@ class MarsRoverClient {
                 completion(nil, error)
                 return
             }
+            self.photos = photos
             completion(photos, nil)
         }
     }
@@ -91,4 +93,6 @@ class MarsRoverClient {
     }
     
     let networkLoader: NetworkDataLoader
+    var rover: MarsRover? = nil
+    var photos: [MarsPhotoReference] = []
 }
