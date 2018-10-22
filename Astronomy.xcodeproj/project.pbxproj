@@ -24,6 +24,7 @@
 		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
 		A183322F217E71070087D57C /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183322E217E71070087D57C /* AstronomyTests.swift */; };
+		A1833237217E714C0087D57C /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1833236217E714C0087D57C /* NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		A183322C217E71070087D57C /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A183322E217E71070087D57C /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		A1833230217E71070087D57C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1833236217E714C0087D57C /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				9DBD20222140D30F0047905E /* MarsRover.swift */,
 				9DBD20202140D30F0047905E /* SolDescription.swift */,
 				9DBD202E2140D7720047905E /* Camera.swift */,
+				A1833236217E714C0087D57C /* NetworkDataLoader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				A1833237217E714C0087D57C /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
