@@ -10,6 +10,8 @@
 		34D36F69217E5CBB000C6DCA /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D36F68217E5CBB000C6DCA /* MarsRoverClientTests.swift */; };
 		34D36F6B217E5D4E000C6DCA /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D36F6A217E5D4E000C6DCA /* NetworkDataLoader.swift */; };
 		34D36F6D217E603E000C6DCA /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D36F6C217E603E000C6DCA /* MockLoader.swift */; };
+		34D36F6F217E6334000C6DCA /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D36F6E217E6334000C6DCA /* TestJSON.swift */; };
+		34D36F71217E7EF3000C6DCA /* CacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D36F70217E7EF3000C6DCA /* CacheTests.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -45,6 +47,8 @@
 		34D36F68217E5CBB000C6DCA /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
 		34D36F6A217E5D4E000C6DCA /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		34D36F6C217E603E000C6DCA /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
+		34D36F6E217E6334000C6DCA /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
+		34D36F70217E7EF3000C6DCA /* CacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheTests.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				34D36F68217E5CBB000C6DCA /* MarsRoverClientTests.swift */,
+				34D36F70217E7EF3000C6DCA /* CacheTests.swift */,
+				34D36F6E217E6334000C6DCA /* TestJSON.swift */,
 				34D36F6C217E603E000C6DCA /* MockLoader.swift */,
 				34D36F62217E5C8A000C6DCA /* Info.plist */,
 			);
@@ -297,6 +303,8 @@
 			files = (
 				34D36F6D217E603E000C6DCA /* MockLoader.swift in Sources */,
 				34D36F69217E5CBB000C6DCA /* MarsRoverClientTests.swift in Sources */,
+				34D36F71217E7EF3000C6DCA /* CacheTests.swift in Sources */,
+				34D36F6F217E6334000C6DCA /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
