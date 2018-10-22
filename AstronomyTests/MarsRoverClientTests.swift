@@ -17,6 +17,7 @@ class MarsRoverClientTests: XCTestCase {
         let expectation = self.expectation(description: "Perform Fetching Mars Rover")
         marsRoverClient.fetchMarsRover(named: "Curiosity") { (rover, error) in
             XCTAssertNotNil(rover)
+            XCTAssert(rover?.name == "Curiosity")
             XCTAssert(rover?.numberOfPhotos == 4156)
             expectation.fulfill()
         }
@@ -25,7 +26,34 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     func testFetchPhotos() {
+        let solLoader = MockLoader(data: validSol1JSON, error: nil)
+        let roverLoader = MockLoader(data: validRoverJSON, error: nil)
+        let marsRoverClientwithSol = MarsRoverClient(networkLoader: solLoader)
+        let marsRoverClientwithRover = MarsRoverClient(networkLoader: roverLoader)
+        var marsRover: MarsRover?
         
+        let roverExpection = self.expectation(description: "Perform Fetching Mars Rover")
+        
+        marsRoverClientwithRover.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            marsRover = rover
+            roverExpection.fulfill()
+        }
+        
+        waitForExpectations(timeout: 3, handler: nil)
+        guard let unwrappedMarsRover = marsRover else {
+            print("Mars Rover wasn't set")
+            return
+        }
+        let solExpectation = self.expectation(description: "Perform Fetching Sol")
+        marsRoverClientwithSol.fetchPhotos(from: unwrappedMarsRover, onSol: 1) { (photoreferences, error) in
+            guard let photoreferences = photoreferences else { return }
+            XCTAssertTrue(photoreferences.first?.id == 4477)
+            XCTAssertTrue(photoreferences.last?.id == 49201)
+            XCTAssertTrue(photoreferences.count == 16)
+            solExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 3, handler: nil)
     }
     
     
