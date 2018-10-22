@@ -179,7 +179,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     
     private var roverInfo: MarsRover? {
         didSet {
-            solDescription = roverInfo?.solDescriptions[0]
+            solDescription = roverInfo?.solDescriptions[2]
         }
     }
     
