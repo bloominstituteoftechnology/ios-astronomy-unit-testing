@@ -39,10 +39,14 @@ class MarsRoverClientTests: XCTestCase {
             defer{ expectation.fulfill() }
             XCTAssertNotNil(photos)
             XCTAssertNil(error)
-            
             XCTAssertEqual(photos?.count, 16)
             
+            let photoAtZero = photos![0]
+            XCTAssertNotNil(photoAtZero.imageURL)
+            XCTAssertEqual(photoAtZero.sol, 1)
+            
         }
+        waitForExpectations(timeout: 10, handler: nil)
     }
 
 }
