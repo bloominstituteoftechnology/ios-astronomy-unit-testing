@@ -27,25 +27,15 @@ class MarsRoverClientTests: XCTestCase {
     
     func testFetchPhotos() {
         let solLoader = MockLoader(data: validSol1JSON, error: nil)
-        let roverLoader = MockLoader(data: validRoverJSON, error: nil)
         let marsRoverClientwithSol = MarsRoverClient(networkLoader: solLoader)
-        let marsRoverClientwithRover = MarsRoverClient(networkLoader: roverLoader)
-        var marsRover: MarsRover?
-        
-        let roverExpection = self.expectation(description: "Perform Fetching Mars Rover")
-        
-        marsRoverClientwithRover.fetchMarsRover(named: "Curiosity") { (rover, error) in
-            marsRover = rover
-            roverExpection.fulfill()
-        }
-        
-        waitForExpectations(timeout: 3, handler: nil)
-        guard let unwrappedMarsRover = marsRover else {
-            print("Mars Rover wasn't set")
+        let dictionary = try? MarsPhotoReference.jsonDecoder.decode([String: MarsRover].self, from: validRoverJSON)
+        guard let marsRover = dictionary?["photoManifest"] else {
+            XCTFail()
             return
         }
+    
         let solExpectation = self.expectation(description: "Perform Fetching Sol")
-        marsRoverClientwithSol.fetchPhotos(from: unwrappedMarsRover, onSol: 1) { (photoreferences, error) in
+        marsRoverClientwithSol.fetchPhotos(from: marsRover, onSol: 1) { (photoreferences, error) in
             guard let photoreferences = photoreferences else { return }
             XCTAssertTrue(photoreferences.first?.id == 4477)
             XCTAssertTrue(photoreferences.last?.id == 49201)
