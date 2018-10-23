@@ -9,6 +9,8 @@
 import Foundation
 @testable import Astronomy
 
+// This is our mock URLSession
+
 class MockLoader: NetworkDataLoader {
     
     let data: Data?
@@ -25,14 +27,14 @@ class MockLoader: NetworkDataLoader {
     
     func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
         self.request = request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.async {
             completion(self.data, self.error)
         }
     }
     
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
         self.url = url
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.async {
             completion(self.data, self.error)
         }
     }

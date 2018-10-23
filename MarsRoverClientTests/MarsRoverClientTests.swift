@@ -10,25 +10,18 @@ import XCTest
 @testable import Astronomy
 
 class MarsRoverClientTests: XCTestCase {
-    
-    var app = XCUIApplication()
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        app = XCUIApplication()
-        app.launch()
-    }
 
     func testFetchMarsRover() {
         let theException = self.expectation(description: "Fetching MarsRover")
+        
         let mockLoader = MockLoader(data: validRoverJSON, error: nil)
         let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
         
         marsRoverClient.fetchMarsRover(named: "Curiosity") { (rover, error) in
             if let rover = rover {
                 XCTAssertTrue(rover.name == "Curiosity")
+                theException.fulfill()
             }
-            theException.fulfill()
         }
         
         waitForExpectations(timeout: 1, handler: nil)
@@ -52,6 +45,6 @@ class MarsRoverClientTests: XCTestCase {
                 })
             }
         }
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
     }
 }

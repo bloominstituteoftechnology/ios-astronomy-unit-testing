@@ -50,7 +50,7 @@ class MarsRoverClient {
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.loadData(from: url) { (data, error) in
+        networkLoader.loadData(from: url) { (data, error) in
             if let error = error {
                 completion(nil, error)
                 return
