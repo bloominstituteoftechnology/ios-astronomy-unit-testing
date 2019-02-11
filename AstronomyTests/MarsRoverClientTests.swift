@@ -38,6 +38,10 @@ class MockLoader: NetworkDataLoader {
 
 class MarsRoverClientTests: XCTestCase {
     
+    enum TestForError: Error {
+        case testError
+    }
+    
     func testFetchMarsRover() {
         let mock = MockLoader(data: validRoverJSON, error: nil)
         let marsRoverClient = MarsRoverClient(dataLoader: mock)
@@ -53,6 +57,21 @@ class MarsRoverClientTests: XCTestCase {
             
             expectation.fulfill()
         }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testFetchMarsRoverFail() {
+        let mock = MockLoader(data: nil, error: TestForError.testError)
+        let marsRoverClient = MarsRoverClient(dataLoader: mock)
+        let expectation = self.expectation(description: "Fetch Mars Rover")
+        
+        marsRoverClient.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            XCTAssertNotNil(error)
+            XCTAssertNil(rover)
+            
+            expectation.fulfill()
+        }
+        
         waitForExpectations(timeout: 5, handler: nil)
     }
     
