@@ -22,8 +22,6 @@ extension URLSession: NetworkDataLoader {
     }
     
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
-        dataTask(with: url) { data, _, error in
-            completion(data, error)
-            }.resume()
+        loadData(from: URLRequest(url: url), completion: completion)
     }
 }
