@@ -10,6 +10,26 @@ import Foundation
 
 class MarsRoverClient {
     
+    /**
+     What shall we test?
+     
+     - Does decoding work when given good data
+     - Does decoding fail when given bad data
+     - Does it build the correct URL?
+     - Does it build the correct URLRequest?
+     - Are the results valid?
+     - Is the completion handler called if the networking fails?
+     - Is the completion handler called if the data is bad?
+     - Is the completion handler called if the data is good?
+     
+     **/
+    
+    let dataLoader:  NetworkDataLoader
+    
+    init(dataLoader: NetworkDataLoader = URLSession.shared) {
+        self.dataLoader = dataLoader
+    }
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -18,9 +38,12 @@ class MarsRoverClient {
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
 
             guard let rover = dictionary?["photoManifest"] else {
+                self.searchError = error
                 completion(nil, error)
                 return
             }
+            self.marsRover = rover
+            self.goodDataCompletion += 1
             completion(rover, nil)
         }
     }
@@ -36,6 +59,7 @@ class MarsRoverClient {
                 completion(nil, error)
                 return
             }
+            self.goodDataCompletion += 1
             completion(photos, nil)
         }
     }
@@ -45,13 +69,16 @@ class MarsRoverClient {
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+        dataLoader.loadData(from: url){ (data, error) in
             if let error = error {
+                self.badNetworkCompletion += 1
+                self.searchError = error
                 completion(nil, error)
                 return
             }
             
             guard let data = data else {
+                self.badDataCompletion += 1
                 completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
                 return
             }
@@ -59,11 +86,14 @@ class MarsRoverClient {
             do {
                 let jsonDecoder = MarsPhotoReference.jsonDecoder
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
+                self.couldDecodeCompletion += 1
                 completion(decodedObject, nil)
             } catch {
+                self.couldNotDecodeCompletion += 1
+                self.searchError = error
                 completion(nil, error)
             }
-        }.resume()
+        }
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
@@ -88,4 +118,14 @@ class MarsRoverClient {
                                     URLQueryItem(name: "api_key", value: apiKey)]
         return urlComponents.url!
     }
+    
+    var marsPhotoReferences: [MarsPhotoReference]?
+    var marsRover: MarsRover?
+    var searchError: Error?
+    var goodDataCompletion = 0
+    var badDataCompletion = 0
+    var badNetworkCompletion = 0
+    var couldDecodeCompletion = 0
+    var couldNotDecodeCompletion = 0
+
 }
