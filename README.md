@@ -35,7 +35,7 @@ Add a unit test target to your project, following the steps learned in [Unit Tes
 7. Update all `MarsRoverClient` methods to use the `networkLoader` property instead of obtaining `URLSession.shared` directly. If you're using the starter code, only one method, `fetch<T>()` needs to be changed.
 8. Build and run the app and verify that it still works as it did before.
 
-## Part 2 - Write Tests
+## Part 2 -Write Tests
 
 Write tests for the app. The instructions here are focused on tests for `MarsRoverClient`, because it requires the application of the new concepts learned in this lesson (dependency injection, mocking, expectations), but you can and should test as much of your code as you're able.
 
