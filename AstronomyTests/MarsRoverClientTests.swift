@@ -57,6 +57,7 @@ class MarsRoverClientTests: XCTestCase {
             
             expectation.fulfill()
         }
+        
         waitForExpectations(timeout: 5, handler: nil)
     }
     
@@ -94,6 +95,27 @@ class MarsRoverClientTests: XCTestCase {
             
             expectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testFetchPhotosFail() {
+        let mock = MockLoader(data: nil, error: TestForError.testError)
+        let marsRoverClient = MarsRoverClient(dataLoader: mock)
+        let expectation = self.expectation(description: "Fetch Photos")
+        
+        let solDescriptions = [SolDescription]()
+        let rover = MarsRover(name: "Curiosity", launchDate: Date(), landingDate: Date(), status: .active, maxSol: 100, maxDate: Date(), numberOfPhotos: 999999, solDescriptions: solDescriptions)
+        var photoRefs: [MarsPhotoReference]?
+        
+        marsRoverClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotoRefs, error) in
+            photoRefs = marsPhotoRefs
+            XCTAssertNotNil(error)
+            XCTAssertNil(photoRefs)
+            
+            expectation.fulfill()
+        }
+        
         waitForExpectations(timeout: 5, handler: nil)
     }
     
