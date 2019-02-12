@@ -113,7 +113,7 @@ class MarsRoverClientTests: XCTestCase {
     func testPhotosFetchOfGoodData() {
         
         let mockLoader = MockDataLoader()
-        mockLoader.data = validRoverJSON
+        mockLoader.data = validSol1JSON
         
         // Load the MarsRover before loading the photos from that MarsRover
         let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
@@ -150,7 +150,7 @@ class MarsRoverClientTests: XCTestCase {
     
     func testPhotosFetchDecodingFailsForBadData() {
         let mockLoader = MockDataLoader()
-        mockLoader.data = invalidRoverJSON
+        mockLoader.data = invalidSol1JSON
         
         // Load the MarsRover before loading the photos from that MarsRover
         let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
@@ -169,7 +169,7 @@ class MarsRoverClientTests: XCTestCase {
         
         let ePhotos = expectation(description: "Wait for results")
         
-        guard let result = result else { }
+        guard let result = result else { return }
         
         mrc.fetchPhotos(from: result, onSol: 1) { (data, error) in
             self.photoFetchResults = data!

@@ -53,6 +53,7 @@ class MarsRoverClient {
     }
     
     // MARK: - Private
+    // It's okay to remove the session parameter now
     func fetch<T: Codable>(from url: URL, using session: URLSession, completion: @escaping (T?, Error?) -> Void) {
     
 //    private func fetch<T: Codable>(from url: URL,
@@ -80,7 +81,7 @@ class MarsRoverClient {
                 completion(nil, error)
             }
         }//.resume()
-        completion(nil, nil)
+        //completion(nil, nil)
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
