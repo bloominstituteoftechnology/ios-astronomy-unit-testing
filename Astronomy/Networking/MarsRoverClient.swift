@@ -90,5 +90,8 @@ class MarsRoverClient {
     }
     
     let networkLoader: NetworkDataLoader
-    let rover: MarsRover? = nil
+    var rover: MarsRover? = nil
+    var photos: [MarsPhotoReference]? = nil
+    var roverError: Error? = nil
+    var photosError: Error? = nil
 }

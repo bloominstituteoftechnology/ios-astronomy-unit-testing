@@ -133,6 +133,12 @@ let invalidRoverJSON = """
 
 """.data(using: .utf8)!
 
+let emptyRoverJSON = """
+{
+    "photo_manifest": {}
+}
+""".data(using: .utf8)!
+
 let validSol1JSON = """
 {
   "photos": [
@@ -1807,6 +1813,11 @@ let invalidSol1JSON = """
         ]
       }
     }
-  ]
 
+
+""".data(using: .utf8)
+
+let emptySol1JSON = """
+{
+}
 """.data(using: .utf8)
