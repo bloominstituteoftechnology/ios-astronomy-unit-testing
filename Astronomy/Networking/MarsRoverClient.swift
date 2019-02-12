@@ -1,14 +1,26 @@
-//
-//  MarsRoverClient.swift
-//  Astronomy
-//
-//  Created by Andrew R Madsen on 9/5/18.
-//  Copyright © 2018 Lambda School. All rights reserved.
-//
+/*
+    Things to test
+        - Does decoding work when given good data
+        - Does decoding fail when given bad data
+        - Does it build the correct URLRequest (with the API key)
+        - Are results correctly saved into the property?
+        - Is the completion handler called if the networking fails?
+        - Is the completion handler called if the data is bad?
+        - Is the completion handler called if the data is good?
+ */
 
 import Foundation
 
 class MarsRoverClient {
+    
+    let networkLoader: NetworkDataLoader
+    
+    // Allow MarsRoverClient to continue functioning in existing code, but test code can provide/inject a different network loader
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        
+        self.networkLoader = networkLoader
+        
+    }
     
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
@@ -16,7 +28,7 @@ class MarsRoverClient {
         
         let url = self.url(forInfoForRover: name)
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
-
+            
             guard let rover = dictionary?["photoManifest"] else {
                 completion(nil, error)
                 return
@@ -41,11 +53,16 @@ class MarsRoverClient {
     }
     
     // MARK: - Private
+    // It's okay to remove the session parameter now
+    func fetch<T: Codable>(from url: URL, using session: URLSession, completion: @escaping (T?, Error?) -> Void) {
     
-    private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
-                           completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+//    private func fetch<T: Codable>(from url: URL,
+//                           using session: URLSession = URLSession.shared,
+//                           completion: @escaping (T?, Error?) -> Void) {
+        
+        networkLoader.loadData(from: url) { (data, error) in
+            
+        //session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 completion(nil, error)
                 return
@@ -63,7 +80,8 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
+        }//.resume()
+        //completion(nil, nil)
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
