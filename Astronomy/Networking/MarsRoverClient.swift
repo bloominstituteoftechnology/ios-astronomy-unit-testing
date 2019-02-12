@@ -7,7 +7,6 @@
         - Is the completion handler called if the networking fails?
         - Is the completion handler called if the data is bad?
         - Is the completion handler called if the data is good?
- 
  */
 
 import Foundation
@@ -29,7 +28,7 @@ class MarsRoverClient {
         
         let url = self.url(forInfoForRover: name)
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
-
+            
             guard let rover = dictionary?["photoManifest"] else {
                 completion(nil, error)
                 return
