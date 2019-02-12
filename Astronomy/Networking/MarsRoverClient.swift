@@ -29,9 +29,10 @@ class MarsRoverClient {
                 return
             }
             completion(rover, nil)
+            self.fetchedRover = rover
         }
     }
-    
+    var fetchedRover: MarsRover?
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
                      using session: URLSession = URLSession.shared,
@@ -44,9 +45,11 @@ class MarsRoverClient {
                 return
             }
             completion(photos, nil)
+            print(photos)
+            self.fetchedPhotos = photos
         }
     }
-    
+    var fetchedPhotos: [MarsPhotoReference]?
     // MARK: - Private
     
     private func fetch<T: Codable>(from url: URL,
@@ -69,8 +72,10 @@ class MarsRoverClient {
                 let jsonDecoder = MarsPhotoReference.jsonDecoder
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
                 completion(decodedObject, nil)
+               
             } catch {
                 completion(nil, error)
+                self.searchError = error
             }
         }
     }
@@ -97,4 +102,6 @@ class MarsRoverClient {
                                     URLQueryItem(name: "api_key", value: apiKey)]
         return urlComponents.url!
     }
+    
+    var searchError: Error?
 }
