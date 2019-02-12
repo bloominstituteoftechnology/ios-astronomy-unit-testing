@@ -88,26 +88,6 @@ class MarsRoverClientTests: XCTestCase {
         XCTAssertTrue(result == nil)
     }
     
-    func testMarsRoverFetchCorrectlyConstructedURLRequest() {
-        
-    }
-    
-    func testMarsRoverFetchResultsSavedIntoProperty() {
-        
-    }
-    
-    func testMarsRoverFetchCompletionForFailedNetworking() {
-        
-    }
-    
-    func testMarsRoverFetchCompletionForBadData() {
-        
-    }
-    
-    func testMarsRoverFetchCompletionForGoodData() {
-        
-    }
-    
     // fetchPhotos()
     
     func testPhotosFetchOfGoodData() {
@@ -119,29 +99,17 @@ class MarsRoverClientTests: XCTestCase {
         let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
         
         let e = expectation(description: "Wait for results")
-        
-        marsRoverClient.fetchMarsRover(named: "Curiosity") { (data, error) in
+    
+        let jsonDecoder = MarsPhotoReference.jsonDecoder
+        let rover = (try! jsonDecoder.decode([String: MarsRover].self, from: validRoverJSON))["photoManifest"]!
 
+        marsRoverClient.fetchPhotos(from: rover, onSol: 1) { (data, error) in
             guard let data = data else { fatalError("No data has been returned") }
-            self.result = data
+            self.photoFetchResults = data
             e.fulfill()
         }
-        
         wait(for: [e], timeout: 2)
         
-        let mrc = MarsRoverClient(networkLoader: mockLoader)
-        
-        let ePhotos = expectation(description: "Wait for results")
-        
-        guard let result = result else { fatalError("No result") }
-        
-        mrc.fetchPhotos(from: result, onSol: 1) { (data, error) in
-            self.photoFetchResults = data!
-            ePhotos.fulfill()
-        }
-        wait(for: [e], timeout: 2)
-        
-        XCTAssertEqual(photoFetchResults[0].camera.fullName, "NAVCAM")
         XCTAssertEqual(photoFetchResults[0].sol, 1)
         XCTAssertEqual(photoFetchResults[0].camera.roverId, 5)
         XCTAssertTrue(photoFetchResults.count > 0)
@@ -157,48 +125,15 @@ class MarsRoverClientTests: XCTestCase {
         
         let e = expectation(description: "Wait for results")
         
-        marsRoverClient.fetchMarsRover(named: "Curiosity") { (data, error) in
-            
-            self.result = data
+        let jsonDecoder = MarsPhotoReference.jsonDecoder
+        let rover = (try! jsonDecoder.decode([String: MarsRover].self, from: validRoverJSON))["photoManifest"]!
+        
+        marsRoverClient.fetchPhotos(from: rover, onSol: 1) { (data, error) in
+
+            XCTAssertTrue(data == nil)
             e.fulfill()
         }
-        
         wait(for: [e], timeout: 2)
-        
-        let mrc = MarsRoverClient(networkLoader: mockLoader)
-        
-        let ePhotos = expectation(description: "Wait for results")
-        
-        guard let result = result else { return }
-        
-        mrc.fetchPhotos(from: result, onSol: 1) { (data, error) in
-            self.photoFetchResults = data!
-            ePhotos.fulfill()
-        }
-        wait(for: [e], timeout: 2)
-        
-        XCTAssertTrue(photoFetchResults.count == 0)
     }
     
-    func testPhotosFetchCorrectlyConstructedURLRequest() {
-        
-    }
-    
-    func testPhotosFetchResultsSavedIntoProperty() {
-        
-    }
-    
-    func testPhotosFetchCompletionForFailedNetworking() {
-        
-    }
-    
-    func testPhotosFetchCompletionForBadData() {
-        
-    }
-    
-    func testPhotosFetchCompletionForGoodData() {
-        
-    }
-
-
 }
