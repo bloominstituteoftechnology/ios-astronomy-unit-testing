@@ -200,18 +200,35 @@ class MarsRoverClientTests: XCTestCase {
 
     func testBuildCorrectURLForRover() {
         // TODO: Implement
+        let mock = MockLoader()
+        
+        let mrc = MarsRoverClient(networkLoader: mock)
+        
+        let e = expectation(description: "Wait for Results")
+        
+        let url = mrc.getURLforRover(forInfoForRover: "curiosity")
+        e.fulfill()
+
+        wait(for: [e], timeout: 2)
+        
+        XCTAssertEqual(url.absoluteString, "https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity?api_key=qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7")
     }
     
     func testBuildCorrectURLForPhotos() {
         // TODO: Implement
-    }
+        let mock = MockLoader()
+        
+        let mrc = MarsRoverClient(networkLoader: mock)
+        
+        let e = expectation(description: "Wait for Results")
+        
+        let url = mrc.getURLforPhoto(forPhotosfromRover: "curiosity", on: 1)
+        e.fulfill()
+        
+        wait(for: [e], timeout: 2)
     
-    func testBuildCorrectURLRequestForRover() {
-        // TODO: Implement
-    }
-    
-    func testBuildCorrectURLRequestForPhotos() {
-        // TODO: Implement
+        XCTAssertEqual(url.absoluteString, "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1&api_key=qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7")
+        
     }
     
     func testCompletionForFailedNetworkingForRover() {

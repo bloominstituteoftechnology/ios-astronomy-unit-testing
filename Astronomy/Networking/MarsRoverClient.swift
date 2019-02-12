@@ -14,6 +14,14 @@ class MarsRoverClient {
         self.networkLoader = networkLoader
     }
     
+    func getURLforRover(forInfoForRover roverName: String) -> URL {
+        return url(forInfoForRover: roverName)
+    }
+    
+    func getURLforPhoto(forPhotosfromRover roverName: String, on sol: Int) -> URL {
+        return url(forPhotosfromRover: roverName, on: sol)
+    }
+    
     func fetchMarsRover(named name: String,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
         
