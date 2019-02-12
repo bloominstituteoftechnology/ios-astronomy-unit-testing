@@ -253,20 +253,80 @@ class MarsRoverClientTests: XCTestCase {
     
     
     func testCompletionForBadDataForRover() {
+        let mock = MockLoader(data: badDataRoverJSON, error: nil)
         
+        let mrc = MarsRoverClient(networkLoader: mock)
+        
+        let e = expectation(description: "Wait for Results")
+        mrc.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            mrc.rover = rover
+            XCTAssertNil(mrc.rover)
+            XCTAssertNotNil(mrc.roverError)
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 2)
         
     }
     
     func testCompletionForBadDataForPhotos() {
+        let mock = MockLoader(data: badDataSol1JSON, error: nil)
+        
+        // create test rover
+        let solDescriptions = [SolDescription]()
+        let rover = MarsRover(name: "Curiosity", launchDate: Date(), landingDate: Date(), status: .active, maxSol: 999, maxDate: Date(), numberOfPhotos: 10000000, solDescriptions: solDescriptions)
+        
+        let mrc = MarsRoverClient(networkLoader: mock)
+        
+        let e = self.expectation(description: "Wait for Results")
+        mrc.fetchPhotos(from: rover, onSol: 1) { (photos, error) in
+            mrc.photos = photos
+            XCTAssertNil(mrc.photos)
+            XCTAssertNotNil(mrc.photosError)
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 2)
         
     }
     
     func testCompletionForGoodDataForRover() {
+        let mock = MockLoader(data: validRoverJSON, error: nil)
         
+        let mrc = MarsRoverClient(networkLoader: mock)
+        
+        let e = expectation(description: "Wait for Results")
+        mrc.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            mrc.rover = rover
+            XCTAssertNotNil(mrc.rover)
+            XCTAssertNotNil(mrc.rover?.name == "Curiosity")
+            XCTAssertNil(mrc.roverError)
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 2)
     }
     
     func testCompletionForGoodDataForPhotos() {
         
+        let mock = MockLoader(data: validSol1JSON, error: nil)
+        
+        // create test rover
+        let solDescriptions = [SolDescription]()
+        let rover = MarsRover(name: "Curiosity", launchDate: Date(), landingDate: Date(), status: .active, maxSol: 999, maxDate: Date(), numberOfPhotos: 10000000, solDescriptions: solDescriptions)
+        
+        let mrc = MarsRoverClient(networkLoader: mock)
+        
+        let e = self.expectation(description: "Wait for Results")
+        mrc.fetchPhotos(from: rover, onSol: 1) { (photos, error) in
+            mrc.photos = photos
+            XCTAssertNotNil(mrc.photos)
+            XCTAssertNotNil(mrc.photos?.count == 16)
+            XCTAssertNil(mrc.photosError)
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 2)
     }
 
 }
