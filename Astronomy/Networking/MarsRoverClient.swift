@@ -21,6 +21,7 @@ class MarsRoverClient {
         fetch(from: url) { (dictionary: [String : MarsRover]?, error: Error?) in
 
             guard let rover = dictionary?["photoManifest"] else {
+                self.roverError = error
                 completion(nil, error)
                 return
             }
@@ -35,6 +36,7 @@ class MarsRoverClient {
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
         fetch(from: url) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
+                self.photosError = error
                 completion(nil, error)
                 return
             }

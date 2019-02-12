@@ -42,6 +42,9 @@ class MockLoader: NetworkDataLoader {
 
 class MarsRoverClientTests: XCTestCase {
 
+    enum TestForError: Error {
+        case testError
+    }
     /**
      - Does FetchMarsRover decoding work when given good data
      - Does FetchPhotos decoding work when given good data
@@ -86,8 +89,6 @@ class MarsRoverClientTests: XCTestCase {
         }
         
         wait(for: [e], timeout: 2)
-        
-        
        
     }
     
@@ -153,9 +154,6 @@ class MarsRoverClientTests: XCTestCase {
         
         self.wait(for: [e], timeout: 2)
         
-        
-        
-        
     }
     
     func testForNoResultsRover() {
@@ -217,15 +215,45 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     func testCompletionForFailedNetworkingForRover() {
+        let mock = MockLoader(data: nil, error: TestForError.testError)
         
+        let mrc = MarsRoverClient(networkLoader: mock)
+        
+        let e = expectation(description: "Wait for Results")
+        mrc.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            mrc.rover = rover
+            XCTAssertNil(mrc.rover)
+            XCTAssertNotNil(mrc.roverError)
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 2)
     }
     
     func testCompletionForFailedNetworkingForPhotos() {
         
+        let mock = MockLoader(data: nil, error: TestForError.testError)
+        
+        // create test rover
+        let solDescriptions = [SolDescription]()
+        let rover = MarsRover(name: "Curiosity", launchDate: Date(), landingDate: Date(), status: .active, maxSol: 999, maxDate: Date(), numberOfPhotos: 10000000, solDescriptions: solDescriptions)
+        
+        let mrc = MarsRoverClient(networkLoader: mock)
+        
+        let e = self.expectation(description: "Wait for Results")
+        mrc.fetchPhotos(from: rover, onSol: 1) { (photos, error) in
+            mrc.photos = photos
+            XCTAssertNil(mrc.photos)
+            XCTAssertNotNil(mrc.photosError)
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 2)
     }
     
     
     func testCompletionForBadDataForRover() {
+        
         
     }
     
