@@ -45,7 +45,6 @@ class MarsRoverClient {
                 return
             }
             completion(photos, nil)
-            print(photos)
             self.fetchedPhotos = photos
         }
     }
