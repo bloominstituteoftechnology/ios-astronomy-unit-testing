@@ -9,14 +9,28 @@
 import Foundation
 
 class MarsRoverClient {
+    // MARK: - Properties
+    private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
+    private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
     
+    let dataLoader: NetworkDataLoader
+    /*
+     Add an initializer to MarsRoverClient that takes a NetworkDataLoader object. Give the
+     initializer's argument a default value of URLSession.shared . This way, MarsRoverClient
+     will continue to function as always in existing code, but test code can provide (inject)
+     a different network loader.
+     */
+    init(dataLoader: NetworkDataLoader = URLSession.shared) {
+        self.dataLoader = dataLoader
+    }
+    
+    
+    // MARK: - Fetching Functions
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
-        
         let url = self.url(forInfoForRover: name)
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
-
             guard let rover = dictionary?["photoManifest"] else {
                 completion(nil, error)
                 return
@@ -29,7 +43,6 @@ class MarsRoverClient {
                      onSol sol: Int,
                      using session: URLSession = URLSession.shared,
                      completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
-        
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
         fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
@@ -41,21 +54,22 @@ class MarsRoverClient {
     }
     
     // MARK: - Private
-    
+    /*Update all MarsRoverClient methods to use the networkLoader property instead of obtaining
+     URLSession.shared directly. If you're using the starter code, only one method, fetch<T>()
+     needs to be changed. "YEAAHHH I only have to change one!"
+     */
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+        dataLoader.loadData(from: url) { (data, error) in
             if let error = error {
                 completion(nil, error)
                 return
             }
-            
             guard let data = data else {
                 completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
                 return
             }
-            
             do {
                 let jsonDecoder = MarsPhotoReference.jsonDecoder
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
@@ -63,11 +77,8 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
+        }
     }
-    
-    private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
-    private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
 
     private func url(forInfoForRover roverName: String) -> URL {
         var url = baseURL

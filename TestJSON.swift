@@ -908,3 +908,8 @@ let validSol1JSON = """
   ]
 }
 """.data(using: .utf8)
+
+
+let invalidRoverJSON = """
+Nope. Nope. Nope...
+""".data(using: .utf8)!
