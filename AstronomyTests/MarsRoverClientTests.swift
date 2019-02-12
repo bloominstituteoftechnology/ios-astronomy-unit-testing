@@ -199,19 +199,19 @@ class MarsRoverClientTests: XCTestCase {
     }
 
     func testBuildCorrectURLForRover() {
-        
+        // TODO: Implement
     }
     
     func testBuildCorrectURLForPhotos() {
-        
+        // TODO: Implement
     }
     
     func testBuildCorrectURLRequestForRover() {
-        
+        // TODO: Implement
     }
     
     func testBuildCorrectURLRequestForPhotos() {
-        
+        // TODO: Implement
     }
     
     func testCompletionForFailedNetworkingForRover() {
