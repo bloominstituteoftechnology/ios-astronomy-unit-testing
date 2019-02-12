@@ -52,8 +52,21 @@ class MarsRoverClientTests: XCTestCase {
             XCTAssertNotNil(rover)
             XCTAssertEqual("Curiosity", rover?.name)
             XCTAssertEqual(4156, rover?.numberOfPhotos)
-//            XCTAssertEqual("2011-11-26", rover?.launchDate)
-//            XCTAssertEqual("2012-08-06", rover?.landingDate)
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+            
+            let launchDate = rover.map({ (rover) -> String in
+                return dateFormatter.string(from: rover.launchDate)
+            })
+            let landingDate = rover.map({ (rover) -> String in
+                return dateFormatter.string(from: rover.landingDate)
+            })
+            
+            XCTAssertEqual("2011-11-26", launchDate)
+            XCTAssertEqual("2012-08-06", landingDate)
             
             expectation.fulfill()
         }
