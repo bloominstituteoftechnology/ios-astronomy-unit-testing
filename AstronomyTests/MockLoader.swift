@@ -13,13 +13,12 @@ import Foundation
 struct MockLoader: NetworkDataLoader {
     
     let data: Data?
-    let response: URLResponse?
     let error: Error?
     
     
-    func loadData(using request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func loadData(using request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            completion(self.data, self.response, self.error)
+            completion(self.data, self.error)
         }
     }
     
