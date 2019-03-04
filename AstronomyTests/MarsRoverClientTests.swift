@@ -9,6 +9,8 @@
 import XCTest
 
 class MarsRoverClientTests: XCTestCase {
+    
+    let mockLoader = MockLoader(data: <#Data?#>, error: <#Error?#>)
 
     //You should at least test fetchMarsRover() and fetchPhotos()
 

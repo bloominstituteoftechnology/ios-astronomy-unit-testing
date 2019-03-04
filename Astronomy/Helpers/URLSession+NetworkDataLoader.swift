@@ -9,12 +9,10 @@
 import Foundation
 
 extension URLSession: NetworkDataLoader {
-    
-    func loadData(using request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        
-        dataTask(with: request) { (data, response, error) in
-            completion(data, response, error)
-            }.resume()
+    func loadData(using request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+        dataTask(with: request) { (data, _, error) in
+            completion(data, error)
+        }.resume()
     }
     
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
@@ -22,4 +20,5 @@ extension URLSession: NetworkDataLoader {
             completion(data, error)
         }.resume()
     }
+    
 }
