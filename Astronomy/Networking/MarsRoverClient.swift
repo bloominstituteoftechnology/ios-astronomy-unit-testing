@@ -10,6 +10,10 @@ import Foundation
 
 class MarsRoverClient {
     
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -88,4 +92,8 @@ class MarsRoverClient {
                                     URLQueryItem(name: "api_key", value: apiKey)]
         return urlComponents.url!
     }
+    
+    // MARK: - Properties
+    
+    let networkLoader: NetworkDataLoader
 }
