@@ -7,27 +7,37 @@
 //
 
 import XCTest
+@testable import Astronomy
+
+class MockLoader: NetworkDataLoader {
+    
+    var request: URLRequest?
+    var data: Data?
+    var error: Error?
+
+    func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+        self.request = request
+        DispatchQueue.main.async {
+            completion(self.data, self.error)
+        }
+    }
+    
+    func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
+        DispatchQueue.main.async {
+            completion(self.data, self.error)
+        }
+    }
+    
+}
 
 class MarsRoverClientTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testFetchMarsRover() {
+        
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testFetchPhotos() {
+        
     }
 
 }
