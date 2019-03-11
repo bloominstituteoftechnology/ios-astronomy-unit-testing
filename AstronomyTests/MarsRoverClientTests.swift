@@ -49,6 +49,22 @@ class MarsRoverClientTests: XCTestCase {
     }
 
     func testFetchPhotos() {
+        let mock = MockLoader()
+        mock.data = validSol1JSON
+        
+        let client = MarsRoverClient(networkLoader: mock)
+        
+        let e = expectation(description: "Wait for results")
+        let jsonDecoder = MarsPhotoReference.jsonDecoder
+        let rover = (try! jsonDecoder.decode([String: MarsRover].self, from: validRoverJSON))["photoManifest"]!
+        
+        client.fetchPhotos(from: rover, onSol: 1) { (data, error) in
+            let photoData = data
+            XCTAssertNotNil(photoData)
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 2)
         
     }
 
