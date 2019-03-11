@@ -10,6 +10,8 @@ import UIKit
 
 class FetchPhotoOperation: ConcurrentOperation {
     
+    
+    
     init(photoReference: MarsPhotoReference, session: URLSession = URLSession.shared) {
         self.photoReference = photoReference
         self.session = session
