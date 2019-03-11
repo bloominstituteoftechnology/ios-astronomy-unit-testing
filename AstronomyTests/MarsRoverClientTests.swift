@@ -33,7 +33,19 @@ class MockLoader: NetworkDataLoader {
 class MarsRoverClientTests: XCTestCase {
 
     func testFetchMarsRover() {
+        let mock = MockLoader()
+        mock.data = validRoverJSON
         
+        let client = MarsRoverClient(networkLoader: mock)
+        
+        let e = expectation(description: "Wait for results")
+        
+        client.fetchMarsRover(named: "Curiosity") { (data, error) in
+            XCTAssertNotNil(data)
+            e.fulfill()
+        }
+        
+        wait(for: [e], timeout: 2)
     }
 
     func testFetchPhotos() {

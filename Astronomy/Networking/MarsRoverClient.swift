@@ -96,4 +96,5 @@ class MarsRoverClient {
     // MARK: - Properties
     
     let networkLoader: NetworkDataLoader
+    var marsRovers: [MarsRover] = [] // I added this
 }
