@@ -10,6 +10,13 @@ import Foundation
 
 class MarsRoverClient {
     
+    private var networkLoader: NetworkDataLoader
+    
+    // Initializer Dependency Injection - allows us to pass in a dependency (variable) to control a behavior in the function
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -18,6 +25,7 @@ class MarsRoverClient {
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
 
             guard let rover = dictionary?["photoManifest"] else {
+                self.error = error
                 completion(nil, error)
                 return
             }
@@ -33,6 +41,7 @@ class MarsRoverClient {
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
         fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
+                self.error = error
                 completion(nil, error)
                 return
             }
@@ -43,9 +52,9 @@ class MarsRoverClient {
     // MARK: - Private
     
     private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
+                           using session: NetworkDataLoader = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+        session.loadData(with: url) { (data, error) in
             if let error = error {
                 completion(nil, error)
                 return
@@ -61,13 +70,15 @@ class MarsRoverClient {
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
                 completion(decodedObject, nil)
             } catch {
+                self.error = error
                 completion(nil, error)
             }
-        }.resume()
+        }//.resume()
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
     private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
+    var error: Error? = nil
 
     private func url(forInfoForRover roverName: String) -> URL {
         var url = baseURL
