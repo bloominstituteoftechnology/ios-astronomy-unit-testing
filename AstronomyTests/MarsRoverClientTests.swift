@@ -18,8 +18,33 @@ import XCTest
  
  */
 
+struct MockDataLoader: NetworkDataLoader {
+    var data: Data?
+    var response: URLResponse?
+    var error: Error?
+    
+    func loadData(with request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        
+        print("loadData")
+        DispatchQueue.main.async {
+            completion(self.data, self.response, self.error)
+        }
+    }
+    
+    func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
+        DispatchQueue.main.async {
+            completion(self.data, self.error)
+        }
+    }
+}
+
 class MarsRoverClientTests: XCTestCase {
     
+    func testFetchMarsRover() {
+        
+    }
     
-    
+    func testFetchPhotos() {
+        
+    }
 }
