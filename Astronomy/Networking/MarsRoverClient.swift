@@ -10,6 +10,15 @@ import Foundation
 
 class MarsRoverClient {
     
+    /*
+     What do I want to test?
+     - Whether we are getting good data
+     - Whether we are getting bad data
+     - Whether we are getting a photo
+     - Whether we are not getting a photo
+ 
+    */
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
