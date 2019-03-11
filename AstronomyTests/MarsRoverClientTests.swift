@@ -1,5 +1,5 @@
 //
-//  AstronomyTests.swift
+//  MarsRoverClientTests.swift
 //  AstronomyTests
 //
 //  Created by Paul Yi on 3/11/19.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class AstronomyTests: XCTestCase {
+class MarsRoverClientTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
