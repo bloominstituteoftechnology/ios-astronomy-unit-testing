@@ -67,6 +67,30 @@ class MarsRoverClientTests: XCTestCase {
 		}
 	}
 
+	func testFetchMarsRoverError() {
+		let mockLoader = MockDataLoader(data: nil, error: nil)
+		let waitForLoading = expectation(description: "Wait for async load")
+
+		let client = MarsRoverClient(networkLoader: mockLoader)
+		client.fetchMarsRover(named: "curiosity") { (rover, error) in
+			guard let error = error else {
+				XCTFail("expected error")
+				return
+			}
+			guard case MarsRoverClient.MarsClientErrors.invalidData(original: _) = error else {
+				XCTFail("Expected invalid JSON error. Got: \(error)")
+				return
+			}
+
+			waitForLoading.fulfill()
+		}
+		waitForExpectations(timeout: 10) { (error) in
+			if let error = error {
+				XCTFail("Error waiting for expectations: \(error)")
+			}
+		}
+	}
+
 	func testFetchPhotosSuccess() {
 		let mockLoader = MockDataLoader(data: validSol1JSON, error: nil)
 		let waitForLoading = expectation(description: "Wait for async load")
@@ -112,7 +136,31 @@ class MarsRoverClientTests: XCTestCase {
 				XCTFail("Error waiting for expectations: \(error)")
 			}
 		}
-
 	}
 
+
+	func testFetchPhotosError() {
+		let mockLoader = MockDataLoader(data: nil, error: nil)
+		let waitForLoading = expectation(description: "Wait for async load")
+		let (rover, _) = validData()
+
+		let client = MarsRoverClient(networkLoader: mockLoader)
+		client.fetchPhotos(from: rover!, onSol: 1) { (photoReferences, error) in
+			guard let error = error else {
+				XCTFail("expected error")
+				return
+			}
+			guard case MarsRoverClient.MarsClientErrors.invalidData(original: _) = error else {
+				XCTFail("Expected invalid JSON error. Got: \(error)")
+				return
+			}
+
+			waitForLoading.fulfill()
+		}
+		waitForExpectations(timeout: 10) { (error) in
+			if let error = error {
+				XCTFail("Error waiting for expectations: \(error)")
+			}
+		}
+	}
 }
