@@ -70,25 +70,6 @@ class MarsRoverClient {
             }
             
         }
-//        session.dataTask(with: url) { (data, response, error) in
-//            if let error = error {
-//                completion(nil, error)
-//                return
-//            }
-//
-//            guard let data = data else {
-//                completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
-//                return
-//            }
-//
-//            do {
-//                let jsonDecoder = MarsPhotoReference.jsonDecoder
-//                let decodedObject = try jsonDecoder.decode(T.self, from: data)
-//                completion(decodedObject, nil)
-//            } catch {
-//                completion(nil, error)
-//            }
-//        }.resume()
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!

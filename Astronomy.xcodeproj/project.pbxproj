@@ -23,8 +23,9 @@
 		9DBD20382140E46E0047905E /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20362140E46E0047905E /* ConcurrentOperation.swift */; };
 		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
-		EC696FC922B824390076F112 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC696FC822B824390076F112 /* AstronomyTests.swift */; };
+		EC696FC922B824390076F112 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC696FC822B824390076F112 /* MarsRoverClientTests.swift */; };
 		EC696FD122B824CB0076F112 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC696FD022B824CB0076F112 /* NetworkDataLoader.swift */; };
+		EC696FD322B836470076F112 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC696FD222B836470076F112 /* TestJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,9 +58,10 @@
 		9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPhotoOperation.swift; sourceTree = "<group>"; };
 		9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		EC696FC622B824390076F112 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC696FC822B824390076F112 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
+		EC696FC822B824390076F112 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
 		EC696FCA22B824390076F112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC696FD022B824CB0076F112 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		EC696FD222B836470076F112 /* TestJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20312140DE100047905E /* URL+Secure.swift */,
+				EC696FD222B836470076F112 /* TestJSON.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -182,7 +185,7 @@
 		EC696FC722B824390076F112 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
-				EC696FC822B824390076F112 /* AstronomyTests.swift */,
+				EC696FC822B824390076F112 /* MarsRoverClientTests.swift */,
 				EC696FCA22B824390076F112 /* Info.plist */,
 			);
 			path = AstronomyTests;
@@ -300,6 +303,7 @@
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
 				9DBD202A2140D35B0047905E /* MarsRoverClient.swift in Sources */,
 				9DBD20232140D30F0047905E /* SolDescription.swift in Sources */,
+				EC696FD322B836470076F112 /* TestJSON.swift in Sources */,
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
 				9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,
@@ -310,7 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC696FC922B824390076F112 /* AstronomyTests.swift in Sources */,
+				EC696FC922B824390076F112 /* MarsRoverClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
