@@ -189,7 +189,10 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
                 let sol = solDescription?.sol {
                 photoReferences = []
                 client.fetchPhotos(from: rover, onSol: sol) { (photoRefs, error) in
-                    if let e = error { NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(e)"); return }
+                    if let e = error {
+						NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(e)")
+						return
+					}
                     self.photoReferences = photoRefs ?? []
                     DispatchQueue.main.async { self.updateViews() }
                 }
