@@ -28,7 +28,6 @@ class MarsRoverClientTests: XCTestCase {
 		let waitForLoading = expectation(description: "Wait for async load")
 
 		let client = MarsRoverClient(networkLoader: mockLoader)
-
 		client.fetchMarsRover(named: "curiosity") { (rover, error) in
 			if let error = error {
 				XCTFail("Error fetching info for curiosity: \(error)")
@@ -44,13 +43,36 @@ class MarsRoverClientTests: XCTestCase {
 		}
 	}
 
+	func testFetchMarsRoverBadData() {
+		let mockLoader = MockDataLoader(data: validRoverJSON[0...100], error: nil)
+		let waitForLoading = expectation(description: "Wait for async load")
+
+		let client = MarsRoverClient(networkLoader: mockLoader)
+		client.fetchMarsRover(named: "curiosity") { (rover, error) in
+			guard let error = error else {
+				XCTFail("expected error")
+				return
+			}
+			guard case MarsRoverClient.MarsClientErrors.invalidJSON(original: _) = error else {
+				XCTFail("Expected invalid JSON error. Got: \(error)")
+				return
+			}
+
+			waitForLoading.fulfill()
+		}
+		waitForExpectations(timeout: 10) { (error) in
+			if let error = error {
+				XCTFail("Error waiting for expectations: \(error)")
+			}
+		}
+	}
+
 	func testFetchPhotosSuccess() {
 		let mockLoader = MockDataLoader(data: validSol1JSON, error: nil)
 		let waitForLoading = expectation(description: "Wait for async load")
 		let (rover, validPhotoRefs) = validData()
 
 		let client = MarsRoverClient(networkLoader: mockLoader)
-
 		client.fetchPhotos(from: rover!, onSol: 1) { (photoReferences, error) in
 			if let error = error {
 				XCTFail("There was an error fetching photos: \(error)")
@@ -65,6 +87,32 @@ class MarsRoverClientTests: XCTestCase {
 				XCTFail("Error waiting for expectations: \(error)")
 			}
 		}
+	}
+
+	func testFetchPhotosBadData() {
+		let mockLoader = MockDataLoader(data: validSol1JSON[0...100], error: nil)
+		let waitForLoading = expectation(description: "Wait for async load")
+		let (rover, _) = validData()
+
+		let client = MarsRoverClient(networkLoader: mockLoader)
+		client.fetchPhotos(from: rover!, onSol: 1) { (photoReferences, error) in
+			guard let error = error else {
+				XCTFail("expected error")
+				return
+			}
+			guard case MarsRoverClient.MarsClientErrors.invalidJSON(original: _) = error else {
+				XCTFail("Expected invalid JSON error. Got: \(error)")
+				return
+			}
+
+			waitForLoading.fulfill()
+		}
+		waitForExpectations(timeout: 10) { (error) in
+			if let error = error {
+				XCTFail("Error waiting for expectations: \(error)")
+			}
+		}
+
 	}
 
 }

@@ -45,6 +45,11 @@ class MarsRoverClient {
     }
     
     // MARK: - Private
+
+	enum MarsClientErrors: Error {
+		case invalidJSON(original: Error)
+		case invalidData(original: Error)
+	}
     
     private func fetch<T: Codable>(from url: URL,
                            completion: @escaping (T?, Error?) -> Void) {
@@ -55,7 +60,7 @@ class MarsRoverClient {
 			}
 
 			guard let data = data else {
-				completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
+				completion(nil, MarsClientErrors.invalidData(original: NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil)))
 				return
 			}
 
@@ -64,7 +69,7 @@ class MarsRoverClient {
 				let decodedObject = try jsonDecoder.decode(T.self, from: data)
 				completion(decodedObject, nil)
 			} catch {
-				completion(nil, error)
+				completion(nil, MarsClientErrors.invalidJSON(original: error))
 			}
 		}
 	}
