@@ -56,7 +56,7 @@ class MarsRoverClient {
             }
 
             guard let data = data else {
-                completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
+                completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.Error", code: -1, userInfo: nil))
                 return
             }
 

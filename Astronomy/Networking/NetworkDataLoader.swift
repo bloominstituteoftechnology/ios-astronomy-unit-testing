@@ -25,7 +25,7 @@ extension URLSession: NetworkDataLoader {
                 return
             }
             guard let data = data else {
-                completion(nil, NSError(domain: "Corrupt Data", code: -1))
+                completion(nil, NSError(domain: "Error laoding data", code: -1))
                 return
             }
             completion(data, error)
@@ -41,7 +41,7 @@ extension URLSession: NetworkDataLoader {
                 return
             }
             guard let data = data else {
-                completion(nil, NSError(domain: "Corrupt Data", code: -1))
+                completion(nil, NSError(domain: "Error loading data", code: -1))
                 return
             }
             completion(data, error)
