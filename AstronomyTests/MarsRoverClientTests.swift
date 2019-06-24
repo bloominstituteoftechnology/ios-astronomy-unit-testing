@@ -26,10 +26,11 @@ class MarsRoverClientTests: XCTestCase {
     func testFetchPhotos() {
         let mockLoader = MockLoader(data: validSol1JSON, response: nil, error: nil)
         let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
-        let expectation = self.expectation(description: "A valid set of photos exists")
+        let expectation = self.expectation(description: "A set of valid photos exists")
+        let marsRover = (try! MarsPhotoReference.jsonDecoder.decode([String: MarsRover].self, from: validRoverJSON))["photo_manifest"]!
         
-        marsRoverClient.fetchPhotos(from: validRoverJSON, onSol: 0) { (photos, error) in
-            XCTAssert(photos =! nil)
+        marsRoverClient.fetchPhotos(from: marsRover, onSol: 1) { (photos, error) in
+            XCTAssert(photos != nil)
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5)
