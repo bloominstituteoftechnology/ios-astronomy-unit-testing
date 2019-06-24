@@ -26,6 +26,7 @@
 		E87E2E9122C1648900A39B55 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E2E9022C1648900A39B55 /* NetworkDataLoader.swift */; };
 		E87E2E9322C166A800A39B55 /* URLSession+NetworkdDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E2E9222C166A800A39B55 /* URLSession+NetworkdDataLoader.swift */; };
 		E87E2E9522C16C9300A39B55 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E2E9422C16C9300A39B55 /* MarsRoverClientTests.swift */; };
+		E87E2EA922C18BDC00A39B55 /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E2EA822C18BDC00A39B55 /* MockLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		E87E2E9022C1648900A39B55 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		E87E2E9222C166A800A39B55 /* URLSession+NetworkdDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Network\U0010dDataLoader.swift"; sourceTree = "<group>"; };
 		E87E2E9422C16C9300A39B55 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
+		E87E2EA822C18BDC00A39B55 /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			children = (
 				E87E2E8A22C1639100A39B55 /* Info.plist */,
 				E87E2E9422C16C9300A39B55 /* MarsRoverClientTests.swift */,
+				E87E2EA822C18BDC00A39B55 /* MockLoader.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87E2EA922C18BDC00A39B55 /* MockLoader.swift in Sources */,
 				E87E2E9522C16C9300A39B55 /* MarsRoverClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

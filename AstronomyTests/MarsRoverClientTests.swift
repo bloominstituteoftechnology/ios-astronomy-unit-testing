@@ -7,6 +7,8 @@
 //
 
 import XCTest
+@testable import Astronomy
+
 
 class MarsRoverClientTests: XCTestCase {
 	
