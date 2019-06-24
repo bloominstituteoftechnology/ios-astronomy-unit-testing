@@ -10,6 +10,7 @@ import Foundation
 
 class MarsRoverClient {
     
+     // MARK: - Unit Test: testMarsRoverFetchDataSession created
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -25,6 +26,7 @@ class MarsRoverClient {
         }
     }
     
+    // MARK: - Unit Test: testPhotoFetchDataSession created
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
                      using session: URLSession = URLSession.shared,
@@ -41,7 +43,7 @@ class MarsRoverClient {
     }
     
     // MARK: - Private
-    
+    // MARK: - Unit Test: testFetchDataSession created
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
