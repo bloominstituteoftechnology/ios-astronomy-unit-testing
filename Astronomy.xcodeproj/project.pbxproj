@@ -23,8 +23,8 @@
 		9DBD20382140E46E0047905E /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20362140E46E0047905E /* ConcurrentOperation.swift */; };
 		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
-		EF6FAD4222C16D40000AAD50 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6FAD4122C16D40000AAD50 /* AstronomyTests.swift */; };
 		EF6FAD4A22C16D77000AAD50 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6FAD4922C16D77000AAD50 /* NetworkDataLoader.swift */; };
+		EF6FAD4C22C176AC000AAD50 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6FAD4B22C176AC000AAD50 /* MarsRoverClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,9 +57,9 @@
 		9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPhotoOperation.swift; sourceTree = "<group>"; };
 		9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		EF6FAD3F22C16D40000AAD50 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF6FAD4122C16D40000AAD50 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		EF6FAD4322C16D40000AAD50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6FAD4922C16D77000AAD50 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		EF6FAD4B22C176AC000AAD50 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +182,7 @@
 		EF6FAD4022C16D40000AAD50 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
-				EF6FAD4122C16D40000AAD50 /* AstronomyTests.swift */,
+				EF6FAD4B22C176AC000AAD50 /* MarsRoverClientTests.swift */,
 				EF6FAD4322C16D40000AAD50 /* Info.plist */,
 			);
 			path = AstronomyTests;
@@ -241,6 +241,7 @@
 					};
 					EF6FAD3E22C16D40000AAD50 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 9DBD20042140D1300047905E;
 					};
 				};
@@ -310,7 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF6FAD4222C16D40000AAD50 /* AstronomyTests.swift in Sources */,
+				EF6FAD4C22C176AC000AAD50 /* MarsRoverClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +491,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7V775U4648;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
@@ -503,6 +505,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.haydenhastings.AstronomyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astronomy.app/Astronomy";
@@ -513,6 +516,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7V775U4648;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
