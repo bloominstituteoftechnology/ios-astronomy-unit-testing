@@ -12,7 +12,7 @@ import XCTest
 class MarsRoverClientTests: XCTestCase {
     
     func testFetchMarsRover() {
-        let mockLoader = MockLoader(data: validSol1JSON, response: nil, error: nil)
+        let mockLoader = MockLoader(data: validRoverJSON, response: nil, error: nil)
         let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
         let expectation = self.expectation(description: "A valid rover exists")
         
@@ -24,7 +24,7 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     func testFetchPhotos() {
-        let mockLoader = MockLoader(data: validRoverJSON, response: nil, error: nil)
+        let mockLoader = MockLoader(data: validSol1JSON, response: nil, error: nil)
         let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
         let expectation = self.expectation(description: "A valid set of photos exists")
         
