@@ -29,6 +29,22 @@ class MarsRoverClientTests: XCTestCase {
     
     func testFetchPhoto() {
         
+        let mockLoader = MockLoader()
+        mockLoader.data = validSol1JSON
+        
+        let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
+        let expectation = self.expectation(description: "Photo's should not be empty.")
+        
+        let jsonDecoder = MarsPhotoReference.jsonDecoder
+        let myRover = (try! jsonDecoder.decode([String: MarsRover].self, from: validRoverJSON))["photo_manifest"]!
+        
+        marsRoverClient.fetchPhotos(from: myRover, onSol: 1) { (data, error) in
+            let photoData = data
+            XCTAssertNotNil(photoData)
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5)
     }
     
     let validRoverJSON = """
