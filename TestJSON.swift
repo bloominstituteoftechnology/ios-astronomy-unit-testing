@@ -8,6 +8,7 @@
 
 import Foundation
 
+struct TestJSON {
 let validRoverJSON = """
 {
     "photo_manifest": {
@@ -908,3 +909,4 @@ let validSol1JSON = """
   ]
 }
 """.data(using: .utf8)
+}
