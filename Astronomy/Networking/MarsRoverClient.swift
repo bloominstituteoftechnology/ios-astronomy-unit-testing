@@ -9,6 +9,13 @@
 import Foundation
 
 class MarsRoverClient {
+    //Directions states to add a constant to hold the networkDataLoader
+    let networkDataLoader: NetworkDataLoader
+    
+    //Dir - This way, MarsRoverClient will continue to function as always in existing code, but test code can provide (inject) a different networkLoader.
+    init(networkDataLoader: NetworkDataLoader = URLSession.shared){
+        self.networkDataLoader = networkDataLoader
+    }
     
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
@@ -41,11 +48,15 @@ class MarsRoverClient {
     }
     
     // MARK: - Private
-    
+    //Dir: Update all MarsRoverClient methods to use the networkLoader property instead of obtaining URLSession.shared directly. If you're using the starter code ( this is ), only one method, fetch<T> needs to be changed.
+    //This is because the other methods uses this method to make the network calls. see lines: 41, and 25. So it makes sense to change this because this owns the network call which we are trying to test.
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+//        session.dataTask(with: url) { (data, response, error) in
+        networkDataLoader.loadData(from: url) { (data, error) in
+            
+     
             if let error = error {
                 completion(nil, error)
                 return
@@ -63,7 +74,7 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
+        } //.resume() - we dont need this because our networkDataLoader has the .resume() which means we are using that to make the network call.
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
