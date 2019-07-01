@@ -18,9 +18,10 @@ class MarsRoverClientTests: XCTestCase {
         
         marsRoverClient.fetchMarsRover(named: "curiosity") { (data, error) in
             XCTAssertNotNil(data)
+            XCTAssert(marsRoverClient.marsRover?.name == "Curiosity")
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 4)
+        waitForExpectations(timeout: 3)
     }
     
     func testFetchMarsRoverWithError() {
@@ -36,17 +37,23 @@ class MarsRoverClientTests: XCTestCase {
         }
         waitForExpectations(timeout: 4)
     }
-    
-    func testFetchPhotosWithData() {
-        
-        
-        
-    }
-    
+
+//    func testFetchPhotosWithData() {
+//
+//        let expectation = self.expectation(description: "Photos should not be empty")
+//        let mockLoader = MockLoader(data: validSol1JSON, error: nil)
+//        let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
+//
+//        marsRoverClient.fetchPhotos(from: value(forKey: "Curiosity") as! MarsRover, onSol: 1) { (photos, error) in
+//
+//        }
+//
+//    }
+
     func testFetchPhotosWithError() {
-        
-        
-        
+
+
+
     }
 
 }
