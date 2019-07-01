@@ -12,6 +12,10 @@ class MarsRoverClient {
     //Directions states to add a constant to hold the networkDataLoader
     let networkDataLoader: NetworkDataLoader
     
+    //going to create a placeHolder for the marsRover and photos so that we can test
+    var marsRoverTesting: MarsRover?
+    var marsPhotoReferenceTesting: [MarsPhotoReference]?
+    
     //Dir - This way, MarsRoverClient will continue to function as always in existing code, but test code can provide (inject) a different networkLoader.
     init(networkDataLoader: NetworkDataLoader = URLSession.shared){
         self.networkDataLoader = networkDataLoader
@@ -24,10 +28,12 @@ class MarsRoverClient {
         let url = self.url(forInfoForRover: name)
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
 
-            guard let rover = dictionary?["photoManifest"] else {
+            guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
                 return
             }
+            //I added this so we can have values to test. assign our property a value so we can test to see if its nil or not
+            self.marsRoverTesting = rover
             completion(rover, nil)
         }
     }
@@ -43,6 +49,8 @@ class MarsRoverClient {
                 completion(nil, error)
                 return
             }
+            //i added this so we can have values to test
+            self.marsPhotoReferenceTesting = photos
             completion(photos, nil)
         }
     }
