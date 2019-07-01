@@ -11,6 +11,7 @@ import Foundation
 class MarsRoverClient {
     
     let networkLoader: NetworkDataLoader
+    var marsRover: MarsRover?
     
     init(networkLoader: NetworkDataLoader = URLSession.shared) {
         self.networkLoader = networkLoader
@@ -27,6 +28,7 @@ class MarsRoverClient {
                 completion(nil, error)
                 return
             }
+            self.marsRover = rover
             completion(rover, nil)
         }
     }

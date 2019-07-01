@@ -20,12 +20,21 @@ class MarsRoverClientTests: XCTestCase {
             XCTAssertNotNil(data)
             expectation.fulfill()
         }
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 4)
     }
     
     func testFetchMarsRoverWithError() {
+        let expectation = self.expectation(description: "Rover data should be empty and return an error")
+        let error = NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil)
+        let mockLoader = MockLoader(data: nil, error: error)
+        let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
         
-        
+        marsRoverClient.fetchMarsRover(named: "pikachu") { (data, error) in
+            XCTAssertNil(marsRoverClient.marsRover)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 4)
     }
     
     func testFetchPhotosWithData() {
