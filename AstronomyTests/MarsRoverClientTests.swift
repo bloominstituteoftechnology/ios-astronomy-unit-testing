@@ -10,7 +10,7 @@ import XCTest
 @testable import Astronomy
 
 class MarsRoverClientTests: XCTestCase {
-    
+    var myMarsRover: MarsRover?
     
     //In your tests create a MockLoader instance with appropriate data or an error, and pass it into the intializer for MarsRoverClient. - If you need to test JSON, you can find it in the TestJSON.swift
     func testFetchMarsRoverValidJson(){
@@ -29,6 +29,8 @@ class MarsRoverClientTests: XCTestCase {
             //Grab that property and test to see if one of its attributes matches what it's supposed to match based on the mock json.
             XCTAssert(marsRoverClient.marsRoverTesting?.name == "Curiosity")
             
+            guard let rover = data else { print("Error on this line: \(#line)"); return }
+            self.myMarsRover = rover
             expectaion.fulfill()
         }
         
@@ -38,9 +40,35 @@ class MarsRoverClientTests: XCTestCase {
         waitForExpectations(timeout: 3)
         
     }
-   
-    func testFetchPhotos(){
-        
-    }
 
+    
+    func testMarsRoverAndFetchPhotosFunction(){
+        var myRover: MarsRover?
+        let mockDataLoader = MockLoader(data: validRoverJSON, error: nil)
+        
+        //step 1. initialize the dataLoader from the class where we want to make the network call from
+        let marsRoverClient = MarsRoverClient(networkDataLoader: mockDataLoader)
+        
+        //step: 2. because we are testing an asynchronous call, we have to use expectations
+        let expectaion = self.expectation(description: "We did not get a MarsRover model back")
+        
+        marsRoverClient.fetchMarsRover(named: "Curiosity") { (data, error) in
+            //Create a property in MarsRoverClient to hold the MarsRover that was sent back from the network call.
+            //Grab that property and test to see if one of its attributes matches what it's supposed to match based on the mock json.
+            XCTAssert(marsRoverClient.marsRoverTesting?.name == "Curiosity")
+            
+            guard let rover = data else { print("Error on this line: \(#line)"); return }
+            myRover = rover
+            let photoMockDataLoader = MockLoader(data: validSol1JSON, error: nil)
+            
+            let marsRoverClientForPhoto = MarsRoverClient(networkDataLoader: photoMockDataLoader)
+           
+            marsRoverClientForPhoto.fetchPhotos(from: data!, onSol: 1, completion: { (datas, error) in
+                guard let count = datas?.count else {print("This error is right here: \(#line)"); return }
+                XCTAssert(count > 0)
+            })
+            expectaion.fulfill()
+        }
+        waitForExpectations(timeout: 3)
+    }
 }
