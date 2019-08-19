@@ -11,6 +11,7 @@ import XCTest
 
 class MarsRoverClientTests: XCTestCase {
 
+    // Using this instead of network data loader
     func jsonData() -> (rover: MarsRover?, photoReferences: [MarsPhotoReference]?) {
         let decoder = MarsPhotoReference.jsonDecoder
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -21,6 +22,7 @@ class MarsRoverClientTests: XCTestCase {
         return (rover, photoReferences)
     }
     
+    // test if data can be fetched properly
     func testValidJSONFormat() {
         let mockData = MockDataLoader(data: validRoverJSON, error: nil)
         let marsRoverClient = MarsRoverClient(networkLoader: mockData)
@@ -34,6 +36,8 @@ class MarsRoverClientTests: XCTestCase {
         waitForExpectations(timeout: 3)
     }
     
+    
+    // fetch photo data test
     func testFetchPhotoData() {
         let expectations = expectation(description: "FetchPhotoData")
         let mockData = MockDataLoader(data: validSol1JSON, error: nil)
@@ -50,6 +54,7 @@ class MarsRoverClientTests: XCTestCase {
         waitForExpectations(timeout: 3)
     }
     
+    
     func testFetchMarsRover() {
         let mockData = MockDataLoader(data: validRoverJSON, error: nil)
         let marsRoverClient = MarsRoverClient(networkLoader: mockData)
@@ -63,6 +68,7 @@ class MarsRoverClientTests: XCTestCase {
         waitForExpectations(timeout: 3)
     }
     
+    // Test for error on fetch for mars rover
     func testFetchMarsRoverError() {
         let mockLoader = MockDataLoader(data: validRoverJSON[0...50], error: nil)
         let waitExpectation = expectation(description: "Waiting for load")
@@ -82,6 +88,7 @@ class MarsRoverClientTests: XCTestCase {
         }
     }
     
+    // test error for fetch photos
     func testFetchPhotosError() {
         let mockLoader = MockDataLoader(data: nil, error: nil)
         let waitExpectation = expectation(description: "Waiting for load")

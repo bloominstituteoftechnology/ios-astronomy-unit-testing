@@ -20,6 +20,7 @@ class MockDataLoader: NetworkDataLoader {
         self.error = error
     }
     
+    // Takes in URL and loads data
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
         self.request = URLRequest(url: url)
         DispatchQueue.global().async {
@@ -27,6 +28,7 @@ class MockDataLoader: NetworkDataLoader {
         }
     }
     
+    // Takes in URL Request and loads data
     func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
         self.request = request
         DispatchQueue.global().async {
