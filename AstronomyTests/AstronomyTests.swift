@@ -11,7 +11,22 @@ import XCTest
 
 class AstronomyTests: XCTestCase {
 
+    var rover: MarsRover?
+    var photos: [MarsPhotoReference]?
     
-    
+    func testForSomeResults() {
+        let mock = MockDataLoader()
+        //let mock = MockDataLoader(data: validRoverJSON, error: nil)
+        mock.data = validRoverJSON
+        let controller = MarsRoverClient(networkLoader: mock)
+        let e = expectation(description: "Wait for results")
+        controller.fetchMarsRover(named: "curiosity") { (data, error) in
+            e.fulfill()
+            self.rover = data
+        }
+        wait(for: [e], timeout: 3)
+        XCTAssertTrue(self.rover!.name == "Curiosity")
+        XCTAssertTrue(self.rover!.numberOfPhotos > 1)
+    }
 
 }

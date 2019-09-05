@@ -26,6 +26,8 @@
 		EF96DBE92320950E000092D7 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96DBE82320950E000092D7 /* AstronomyTests.swift */; };
 		EF96DBF2232095D4000092D7 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96DBF1232095D4000092D7 /* NetworkDataLoader.swift */; };
 		EF96DBF4232097D2000092D7 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96DBF3232097D2000092D7 /* URLSession+NetworkDataLoader.swift */; };
+		EF96DBF623209DD6000092D7 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96DBF523209DD6000092D7 /* MockDataLoader.swift */; };
+		EF96DBF82320A059000092D7 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96DBF72320A059000092D7 /* TestJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		EF96DBEA2320950E000092D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF96DBF1232095D4000092D7 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		EF96DBF3232097D2000092D7 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		EF96DBF523209DD6000092D7 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		EF96DBF72320A059000092D7 /* TestJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +190,8 @@
 			children = (
 				EF96DBE82320950E000092D7 /* AstronomyTests.swift */,
 				EF96DBEA2320950E000092D7 /* Info.plist */,
+				EF96DBF523209DD6000092D7 /* MockDataLoader.swift */,
+				EF96DBF72320A059000092D7 /* TestJSON.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -322,7 +328,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF96DBF623209DD6000092D7 /* MockDataLoader.swift in Sources */,
 				EF96DBE92320950E000092D7 /* AstronomyTests.swift in Sources */,
+				EF96DBF82320A059000092D7 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
