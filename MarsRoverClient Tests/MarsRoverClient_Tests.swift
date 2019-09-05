@@ -11,35 +11,56 @@ import XCTest
 
 class MarsRoverClient_Tests: XCTestCase {
 
-    // Does it build the correct URL?
-    // Does it build the correct URL Request?
-    // Is the completion handler called if the networking fails?
+    var rover: MarsRover?
+    var photos: [MarsPhotoReference]?
     
-    // Does decoding actually work?
-    // Are the results saved properly?
-    func testNetworkForSomeResults() {
-//        let controller = MarsRoverClient()
-//        
-//        let expection = expectation(description: "Wait for results")
-//        
-//        controller.fetchMarsRover(named: "") { (data, error) in
-//            expection.fulfill()
-//        }
-//        
-////        controller.performSearch(for: "Garage Band", resultType: .software) {
-////            expection.fulfill()
-////        }
-////
-////        wait(for: [expection], timeout: 2)
-////
-////        XCTAssertTrue(controller.searchResults.count > 0, "Expecting at least one result for GarageBand")
+    func testFetchMarsRover() {
+        let mock = MockLoader()
+        mock.data = validRoverJSON
+        
+        let controller = MarsRoverClient(networkLoader: mock)
+        let resultsExpection = expectation(description: "Wait for results")
+        
+        controller.fetchMarsRover(named: "curiosity") { (data, error) in
+            resultsExpection.fulfill()
+            self.rover = data
+        }
+        
+        wait(for: [resultsExpection], timeout: 2)
+        
+        XCTAssertTrue(self.rover!.name == "Curiosity", "Expecting rover named Curiosity")
+        XCTAssertTrue(self.rover!.numberOfPhotos > 1, "Expecting total photos greater than 1")
     }
     
-    // Is the completion handler called if the data is good?
-    
-    // Is the completion handler called if the data is bad?
-    // Does decoding fail when given bad data?
-    
-    // Is the completion handler called if the data has no results?
-
+    func testFetchPhotos() {
+        let mock = MockLoader()
+        mock.data = validRoverJSON
+        
+        let roverController = MarsRoverClient(networkLoader: mock)
+        let roverExpection = expectation(description: "Wait for results")
+        
+        roverController.fetchMarsRover(named: "curiosity") { (data, error) in
+            roverExpection.fulfill()
+            self.rover = data
+        }
+        
+        wait(for: [roverExpection], timeout: 2)
+        
+        XCTAssertTrue(self.rover!.name == "Curiosity", "Expecting rover named Curiosity")
+        XCTAssertTrue(self.rover!.numberOfPhotos > 1, "Expecting total photos greater than 1")
+        
+        mock.data = validSol1JSON
+        
+        let photosController = MarsRoverClient(networkLoader: mock)
+        let photosExpection = expectation(description: "Wait for results")
+        
+        photosController.fetchPhotos(from: self.rover!, onSol: 1) { (data, error) in
+            photosExpection.fulfill()
+            self.photos = data
+        }
+        
+        wait(for: [photosExpection], timeout: 2)
+        
+        XCTAssertTrue(self.photos!.count > 0, "Expecting multiple photos")
+    }
 }

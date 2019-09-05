@@ -10,8 +10,8 @@ import Foundation
 
 class MarsRoverClient {
     
-    init(dataLoader: NetworkDataLoader = URLSession.shared) {
-        self.networkLoader = dataLoader
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
     }
     
     func fetchMarsRover(named name: String,
