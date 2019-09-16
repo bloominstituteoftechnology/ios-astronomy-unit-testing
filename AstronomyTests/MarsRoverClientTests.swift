@@ -11,7 +11,6 @@ import XCTest
 @testable import Astronomy
 
 class MarsRoverClientTests: XCTestCase {
-
 	
 	func testMarsRoverClient() {
 		let marsRoverClient = MarsRoverClient()
@@ -26,6 +25,22 @@ class MarsRoverClientTests: XCTestCase {
 	}
 
 
+	func testFetchResultsForGoodRoverData() {
+		let mock = MockDataLoader()
+		mock.data = validRoverJSON
+		let marsRoverClient = MarsRoverClient(networkLoader: mock)
+		let completionExpectation = expectation(description: "Async completion")
+		var newRover: MarsRover?
 
+		marsRoverClient.fetchMarsRover(named: "curiosity") { (rover, error) in
+			completionExpectation.fulfill()
+			if let roverUnwrapped = rover {
+				newRover = roverUnwrapped
+			}
+		}
 
+		waitForExpectations(timeout: 5)
+		XCTAssertEqual(10, newRover?.maxSol)
+		XCTAssertEqual(4156, newRover?.numberOfPhotos)
+	}
 }
