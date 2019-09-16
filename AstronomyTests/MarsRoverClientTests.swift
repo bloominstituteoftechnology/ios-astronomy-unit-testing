@@ -32,15 +32,45 @@ class MarsRoverClientTests: XCTestCase {
 		let completionExpectation = expectation(description: "Async completion")
 		var newRover: MarsRover?
 
-		marsRoverClient.fetchMarsRover(named: "curiosity") { (rover, error) in
+		marsRoverClient.fetchMarsRover(named: "curiosity") { (resultRover, error) in
+			newRover = resultRover
 			completionExpectation.fulfill()
-			if let roverUnwrapped = rover {
-				newRover = roverUnwrapped
-			}
 		}
 
 		waitForExpectations(timeout: 5)
 		XCTAssertEqual(10, newRover?.maxSol)
 		XCTAssertEqual(4156, newRover?.numberOfPhotos)
+	}
+	
+
+	func testFetchResultsForGoodSolData() {
+		let mock = MockDataLoader()
+		mock.data = validRoverJSON
+		let marsRoverClient = MarsRoverClient(networkLoader: mock)
+		let roverCompletionExpectation = expectation(description: "Rover async Completion")
+		let referenceCompletionExpectation = expectation(description: "Reference async completion")
+		var newRover: MarsRover?
+
+
+		marsRoverClient.fetchMarsRover(named: "curiosity") { (resultRover, error) in
+			newRover = resultRover
+			roverCompletionExpectation.fulfill()
+		}
+		wait(for: [roverCompletionExpectation], timeout: 5)
+
+		guard let rover = newRover else { return }
+		mock.data = validSol1JSON
+		var photoReference: MarsPhotoReference?
+
+		marsRoverClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotoReferences, error) in
+			referenceCompletionExpectation.fulfill()
+			guard let reference = marsPhotoReferences?.first else { return }
+			photoReference = reference
+		}
+
+		wait(for: [referenceCompletionExpectation], timeout: 5)
+		XCTAssertEqual(4477, photoReference?.id)
+		XCTAssertEqual("MAST", photoReference?.camera.name)
+		XCTAssertEqual("Mast Camera", photoReference?.camera.fullName)
 	}
 }
