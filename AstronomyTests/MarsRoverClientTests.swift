@@ -7,3 +7,15 @@
 //
 
 import Foundation
+import XCTest
+@testable import Astronomy
+
+class MarsRoverClientTests: XCTestCase {
+    func testFetchPhotos() {
+        
+    }
+    
+    func testFetchMarsRover() {
+        let marsRoverClient = MarsRoverClient(loader: <#T##NetworkDataLoader#>)
+    }
+}
