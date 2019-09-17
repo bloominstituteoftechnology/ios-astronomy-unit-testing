@@ -28,19 +28,24 @@ class AstronomyUnitTesting: XCTestCase {
     
     func testFetchPhotos() {
         let mock = MockDataLoader()
-        mock.data = validSol1JSON
+        mock.data = validRoverJSON
         let controller = MarsRoverClient(networkDataLoader: mock)
         let fetchRoverExpectation = expectation(description: "roverExpectation")
         controller.fetchMarsRover(named: "Curiosity") { _, _ in
             fetchRoverExpectation.fulfill()
         }
-        wait(for: [fetchRoverExpectation], timeout: 5)
-        let completionExpectation = expectation(description: "Async Completion")
+        
+        wait(for: [fetchRoverExpectation], timeout: 40)
         guard let rover = controller.rover else {return}
+        XCTAssertEqual("Curiosity", rover.name)
+        
+        mock.data = validSol1JSON
+        let completionExpectation = expectation(description: "Async Completion")
         controller.fetchPhotos(from: rover, onSol: 1) { (photos, _) in
             completionExpectation.fulfill()
         }
-        wait(for: [completionExpectation], timeout: 5)
+        wait(for: [completionExpectation], timeout: 40)
         XCTAssertTrue(controller.photos.count > 0)
     }
 }
+

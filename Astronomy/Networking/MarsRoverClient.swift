@@ -34,8 +34,10 @@ class MarsRoverClient {
 
             guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
+                NSLog("Error fetching rover: \(String(describing: error))")
                 return
             }
+            self.rover = rover
             completion(rover, nil)
         }
     }
@@ -48,8 +50,10 @@ class MarsRoverClient {
         fetch(from: url) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
                 completion(nil, error)
+                NSLog("Error fetching photo: \(error)")
                 return
             }
+            self.photos = photos
             completion(photos, nil)
         }
     }
@@ -62,11 +66,13 @@ class MarsRoverClient {
             
             if let error = error {
                 completion(nil, error)
+                NSLog("Error loading data: \(error)")
                 return
             }
             
             guard let data = data else {
                 completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
+                NSLog("Error with data: \(String(describing: error))")
                 return
             }
             
