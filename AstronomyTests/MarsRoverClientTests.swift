@@ -73,4 +73,48 @@ class MarsRoverClientTests: XCTestCase {
 		XCTAssertEqual("MAST", photoReference?.camera.name)
 		XCTAssertEqual("Mast Camera", photoReference?.camera.fullName)
 	}
+
+	func testBadKeyForFetchMarsRoverFunction() {
+		let mock = MockDataLoader()
+		mock.data = invalidRoverJSON
+		let marsRoverClient = MarsRoverClient(networkLoader: mock)
+		let roverCompletionExpectation = expectation(description: "Rover async Completion")
+
+		marsRoverClient.fetchMarsRover(named: "curiosity") { (rover, error) in
+			XCTAssertEqual(nil, rover?.maxSol, "Invalid key for dictionary")
+			roverCompletionExpectation.fulfill()
+		}
+		waitForExpectations(timeout: 5, handler: nil)
+	}
+
+	func testBadKeyForFetchPhotosFunction() {
+		let mock = MockDataLoader()
+		mock.data = validRoverJSON
+		let marsRoverClient = MarsRoverClient(networkLoader: mock)
+		let roverCompletionExpectation = expectation(description: "Rover async Completion")
+		let referenceCompletionExpectation = expectation(description: "Reference async completion")
+		var newRover: MarsRover?
+
+
+		marsRoverClient.fetchMarsRover(named: "curiosity") { (resultRover, error) in
+			newRover = resultRover
+			roverCompletionExpectation.fulfill()
+		}
+
+		wait(for: [roverCompletionExpectation], timeout: 5)
+
+		guard let rover = newRover else { return }
+		mock.data = invalidSol1JSON
+		var photoReference: MarsPhotoReference?
+//		var resultError: Error?
+
+		marsRoverClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotoReferences, error) in
+			referenceCompletionExpectation.fulfill()
+//			guard let reference = marsPhotoReferences?.first else { return }
+			photoReference = marsPhotoReferences?.first
+			XCTAssertEqual(photoReference, marsPhotoReferences?.first, "Fetching photos from data failed")
+		}
+
+		wait(for: [referenceCompletionExpectation], timeout: 5)
+	}
 }
