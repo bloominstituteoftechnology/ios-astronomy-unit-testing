@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: Error, Equatable {
 	case badURL
 	case noToken
 	case noData
 	case notDecoding
 	case notEncoding
-	case other(Error)
+	case other
 }
 
 class MarsRoverClient {
@@ -80,8 +80,8 @@ class MarsRoverClient {
     private func fetch<T: Codable>(from url: URL,
 						   completion: @escaping (T?, NetworkError?) -> Void) {
 		networkLoader.loadData(from: url) { (data, error) in
-            if let error = error {
-                completion(nil, .other(error))
+			if error != nil {
+                completion(nil, .other)
                 return
             }
             
