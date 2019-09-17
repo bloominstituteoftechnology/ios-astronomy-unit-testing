@@ -21,7 +21,10 @@ class MarsRoverClient {
 	
 	private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
 	private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
-	private let networkLoader: NetworkDataLoader
+	private var networkLoader: NetworkDataLoader
+	private var isUITesting: Bool {
+		return CommandLine.arguments.contains("UITesting")
+	}
 	
 	init(networkLoader loader: NetworkDataLoader = URLSession.shared) {
 		networkLoader = loader
@@ -79,6 +82,12 @@ class MarsRoverClient {
     
     private func fetch<T: Codable>(from url: URL,
 						   completion: @escaping (T?, NetworkError?) -> Void) {
+		if isUITesting {
+			let mockLoader = MockDataLoader()
+			mockLoader.data = validRoverJSON
+			networkLoader = mockLoader
+		}
+		
 		networkLoader.loadData(from: url) { (data, error) in
 			if error != nil {
                 completion(nil, .other)
