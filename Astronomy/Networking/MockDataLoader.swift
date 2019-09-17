@@ -7,7 +7,6 @@
 //
 
 import Foundation
-@testable import Astronomy
 
 class MockDataLoader: NetworkDataLoader {
 	var data: Data?

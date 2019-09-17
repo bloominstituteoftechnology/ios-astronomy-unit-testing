@@ -35,6 +35,7 @@
 		B51A452323303B0900309A19 /* MarsPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20212140D30F0047905E /* MarsPhoto.swift */; };
 		B51A452423303B1900309A19 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD202E2140D7720047905E /* Camera.swift */; };
 		B51A4525233057C200309A19 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A451A2330353E00309A19 /* MockDataLoader.swift */; };
+		B5E47AA223315F150073C31E /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51A451A2330353E00309A19 /* MockDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E47AA223315F150073C31E /* MockDataLoader.swift in Sources */,
 				B51A452423303B1900309A19 /* Camera.swift in Sources */,
 				B51A452323303B0900309A19 /* MarsPhoto.swift in Sources */,
 				B51A452223303AFC00309A19 /* SolDescription.swift in Sources */,
