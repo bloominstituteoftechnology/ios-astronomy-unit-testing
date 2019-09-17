@@ -1,9 +1,9 @@
 //
-//  TestJSON.swift
+//  MockData.swift
 //  AstronomyTests
 //
-//  Created by Andrew R Madsen on 9/17/18.
-//  Copyright © 2018 Lambda School. All rights reserved.
+//  Created by Luqmaan Khan on 9/16/19.
+//  Copyright © 2019 Lambda School. All rights reserved.
 //
 
 import Foundation
