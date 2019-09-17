@@ -47,5 +47,44 @@ class AstronomyUnitTesting: XCTestCase {
         wait(for: [completionExpectation], timeout: 40)
         XCTAssertTrue(controller.photos.count > 0)
     }
+    
+    func testFetchPhotoOperation() {
+        let mock = MockDataLoader()
+        let controller = MarsRoverClient(networkDataLoader: mock)
+        mock.data = validRoverJSON
+        let fetchRoverExpectation = expectation(description: "roverExpectation")
+        controller.fetchMarsRover(named: "Curiosity") { _, _ in
+            fetchRoverExpectation.fulfill()
+        }
+        
+        wait(for: [fetchRoverExpectation], timeout: 40)
+        guard let rover = controller.rover else {return}
+        XCTAssertEqual("Curiosity", rover.name)
+        
+        mock.data = validSol1JSON
+        let completionExpectation = expectation(description: "Async Completion")
+        var photoRef:MarsPhotoReference?
+        controller.fetchPhotos(from: rover, onSol: 1) { (photos, _) in
+            completionExpectation.fulfill()
+            guard let receivedPhotos = photos else {return}
+            photoRef = receivedPhotos[0]
+        }
+        wait(for: [completionExpectation], timeout: 40)
+        XCTAssertTrue(controller.photos.count > 0)
+        
+        guard let photo = photoRef else {return}
+        let fetchOperationExpectation = expectation(description: "FetchExpectation")
+        let fetchPhotoOperation = FetchPhotoOperation(photoReference: photo)
+        let photoFetchQueue = OperationQueue()
+        photoFetchQueue.addOperation {
+            fetchOperationExpectation.fulfill()
+            fetchPhotoOperation.start()
+        }
+        wait(for: [fetchOperationExpectation], timeout: 10)
+        XCTAssertFalse(fetchPhotoOperation.isCancelled)
+       
+        
+    }
+    
 }
 
