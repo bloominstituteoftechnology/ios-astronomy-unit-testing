@@ -13,17 +13,39 @@
 		9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD201A2140D19D0047905E /* ImageCollectionViewCell.swift */; };
 		9DBD201F2140D1AE0047905E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD201E2140D1AE0047905E /* Main.storyboard */; };
 		9DBD20232140D30F0047905E /* SolDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20202140D30F0047905E /* SolDescription.swift */; };
-		9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20212140D30F0047905E /* MarsPhoto.swift */; };
+		9DBD20242140D30F0047905E /* MarsPhotoReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20212140D30F0047905E /* MarsPhotoReference.swift */; };
 		9DBD20252140D30F0047905E /* MarsRover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20222140D30F0047905E /* MarsRover.swift */; };
 		9DBD202A2140D35B0047905E /* MarsRoverClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20292140D35A0047905E /* MarsRoverClient.swift */; };
-		9DBD202D2140D38C0047905E /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD202C2140D38C0047905E /* Cache.swift */; };
 		9DBD202F2140D7720047905E /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD202E2140D7720047905E /* Camera.swift */; };
 		9DBD20322140DE100047905E /* URL+Secure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20312140DE100047905E /* URL+Secure.swift */; };
 		9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20332140DF1D0047905E /* PhotosCollectionViewController.swift */; };
 		9DBD20382140E46E0047905E /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20362140E46E0047905E /* ConcurrentOperation.swift */; };
-		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
-		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
+		EF1E28102321B41600AA9903 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E280F2321B41600AA9903 /* Cache.swift */; };
+		EF1E28122321F06900AA9903 /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E28112321F06900AA9903 /* FetchPhotoOperation.swift */; };
+		EF502EB123308BB1008B3523 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF502EB023308BB1008B3523 /* NetworkDataLoader.swift */; };
+		EF502EB323308BB8008B3523 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF502EB223308BB8008B3523 /* URLSession+NetworkDataLoader.swift */; };
+		EF502EC323308CED008B3523 /* AstronomyUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF502EC223308CED008B3523 /* AstronomyUnitTesting.swift */; };
+		EF502EC523308F77008B3523 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF502EC423308F77008B3523 /* MockDataLoader.swift */; };
+		EF502EC7233090A4008B3523 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF502EC6233090A4008B3523 /* MockData.swift */; };
+		EF502EC823313847008B3523 /* MarsPhotoReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20212140D30F0047905E /* MarsPhotoReference.swift */; };
+		EF502EC923313847008B3523 /* MarsRover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20222140D30F0047905E /* MarsRover.swift */; };
+		EF502ECA23313847008B3523 /* SolDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20202140D30F0047905E /* SolDescription.swift */; };
+		EF502ECB23313847008B3523 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD202E2140D7720047905E /* Camera.swift */; };
+		EF502ECC23313847008B3523 /* MarsRoverClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20292140D35A0047905E /* MarsRoverClient.swift */; };
+		EF502ECD23313847008B3523 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF502EB023308BB1008B3523 /* NetworkDataLoader.swift */; };
+		EF502ECE23313847008B3523 /* URL+Secure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20312140DE100047905E /* URL+Secure.swift */; };
+		EF502ECF233138AC008B3523 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF502EB223308BB8008B3523 /* URLSession+NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF502EBD23308CCD008B3523 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DBD1FFD2140D1300047905E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DBD20042140D1300047905E;
+			remoteInfo = Astronomy;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,20 +56,33 @@
 		9DBD201A2140D19D0047905E /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DBD201E2140D1AE0047905E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9DBD20202140D30F0047905E /* SolDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolDescription.swift; sourceTree = "<group>"; };
-		9DBD20212140D30F0047905E /* MarsPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsPhoto.swift; sourceTree = "<group>"; };
+		9DBD20212140D30F0047905E /* MarsPhotoReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsPhotoReference.swift; sourceTree = "<group>"; };
 		9DBD20222140D30F0047905E /* MarsRover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsRover.swift; sourceTree = "<group>"; };
 		9DBD20292140D35A0047905E /* MarsRoverClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarsRoverClient.swift; sourceTree = "<group>"; };
-		9DBD202C2140D38C0047905E /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		9DBD202E2140D7720047905E /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		9DBD20312140DE100047905E /* URL+Secure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Secure.swift"; sourceTree = "<group>"; };
 		9DBD20332140DF1D0047905E /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		9DBD20362140E46E0047905E /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
-		9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPhotoOperation.swift; sourceTree = "<group>"; };
-		9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		EF1E280F2321B41600AA9903 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = ../../Cache.swift; sourceTree = "<group>"; };
+		EF1E28112321F06900AA9903 /* FetchPhotoOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPhotoOperation.swift; sourceTree = "<group>"; };
+		EF502EB023308BB1008B3523 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		EF502EB223308BB8008B3523 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		EF502EB823308CCD008B3523 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF502EBC23308CCD008B3523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF502EC223308CED008B3523 /* AstronomyUnitTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyUnitTesting.swift; sourceTree = "<group>"; };
+		EF502EC423308F77008B3523 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		EF502EC6233090A4008B3523 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9DBD20022140D1300047905E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF502EB523308CCD008B3523 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20072140D1300047905E /* Astronomy */,
+				EF502EB923308CCD008B3523 /* AstronomyTests */,
 				9DBD20062140D1300047905E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20052140D1300047905E /* Astronomy.app */,
+				EF502EB823308CCD008B3523 /* AstronomyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,7 +120,10 @@
 				9DBD202B2140D3600047905E /* Networking */,
 				9DBD20352140E45D0047905E /* Operations */,
 				9DBD20302140DDCF0047905E /* Utilities */,
-				9DFE494D2145D3800009922B /* Resources */,
+				9DBD200F2140D1300047905E /* Assets.xcassets */,
+				9DBD201E2140D1AE0047905E /* Main.storyboard */,
+				9DBD20112140D1300047905E /* LaunchScreen.storyboard */,
+				9DBD20142140D1300047905E /* Info.plist */,
 			);
 			path = Astronomy;
 			sourceTree = "<group>";
@@ -92,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20332140DF1D0047905E /* PhotosCollectionViewController.swift */,
-				9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */,
+				EF1E28112321F06900AA9903 /* FetchPhotoOperation.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -100,8 +140,7 @@
 		9DBD20272140D31B0047905E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9DBD20212140D30F0047905E /* MarsPhoto.swift */,
-				9DBD202C2140D38C0047905E /* Cache.swift */,
+				9DBD20212140D30F0047905E /* MarsPhotoReference.swift */,
 				9DBD20222140D30F0047905E /* MarsRover.swift */,
 				9DBD20202140D30F0047905E /* SolDescription.swift */,
 				9DBD202E2140D7720047905E /* Camera.swift */,
@@ -121,6 +160,9 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20292140D35A0047905E /* MarsRoverClient.swift */,
+				EF502EB023308BB1008B3523 /* NetworkDataLoader.swift */,
+				EF502EB223308BB8008B3523 /* URLSession+NetworkDataLoader.swift */,
+				EF1E280F2321B41600AA9903 /* Cache.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -137,20 +179,19 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20362140E46E0047905E /* ConcurrentOperation.swift */,
-				9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
 		};
-		9DFE494D2145D3800009922B /* Resources */ = {
+		EF502EB923308CCD008B3523 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
-				9DBD200F2140D1300047905E /* Assets.xcassets */,
-				9DBD201E2140D1AE0047905E /* Main.storyboard */,
-				9DBD20112140D1300047905E /* LaunchScreen.storyboard */,
-				9DBD20142140D1300047905E /* Info.plist */,
+				EF502EBC23308CCD008B3523 /* Info.plist */,
+				EF502EC6233090A4008B3523 /* MockData.swift */,
+				EF502EC423308F77008B3523 /* MockDataLoader.swift */,
+				EF502EC223308CED008B3523 /* AstronomyUnitTesting.swift */,
 			);
-			path = Resources;
+			path = AstronomyTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,18 +214,40 @@
 			productReference = 9DBD20052140D1300047905E /* Astronomy.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EF502EB723308CCD008B3523 /* AstronomyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF502EBF23308CCD008B3523 /* Build configuration list for PBXNativeTarget "AstronomyTests" */;
+			buildPhases = (
+				EF502EB423308CCD008B3523 /* Sources */,
+				EF502EB523308CCD008B3523 /* Frameworks */,
+				EF502EB623308CCD008B3523 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF502EBE23308CCD008B3523 /* PBXTargetDependency */,
+			);
+			name = AstronomyTests;
+			productName = AstronomyTests;
+			productReference = EF502EB823308CCD008B3523 /* AstronomyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9DBD1FFD2140D1300047905E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Lambda School";
 				TargetAttributes = {
 					9DBD20042140D1300047905E = {
 						CreatedOnToolsVersion = 9.4.1;
+					};
+					EF502EB723308CCD008B3523 = {
+						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -202,6 +265,7 @@
 			projectRoot = "";
 			targets = (
 				9DBD20042140D1300047905E /* Astronomy */,
+				EF502EB723308CCD008B3523 /* AstronomyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -217,6 +281,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF502EB623308CCD008B3523 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -227,20 +298,47 @@
 				9DBD20382140E46E0047905E /* ConcurrentOperation.swift in Sources */,
 				9DBD20322140DE100047905E /* URL+Secure.swift in Sources */,
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
-				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
-				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
-				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
+				EF502EB123308BB1008B3523 /* NetworkDataLoader.swift in Sources */,
+				EF1E28102321B41600AA9903 /* Cache.swift in Sources */,
+				EF1E28122321F06900AA9903 /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
 				9DBD202A2140D35B0047905E /* MarsRoverClient.swift in Sources */,
 				9DBD20232140D30F0047905E /* SolDescription.swift in Sources */,
+				EF502EB323308BB8008B3523 /* URLSession+NetworkDataLoader.swift in Sources */,
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
-				9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */,
+				9DBD20242140D30F0047905E /* MarsPhotoReference.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF502EB423308CCD008B3523 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF502ECF233138AC008B3523 /* URLSession+NetworkDataLoader.swift in Sources */,
+				EF502EC823313847008B3523 /* MarsPhotoReference.swift in Sources */,
+				EF502EC923313847008B3523 /* MarsRover.swift in Sources */,
+				EF502ECA23313847008B3523 /* SolDescription.swift in Sources */,
+				EF502ECB23313847008B3523 /* Camera.swift in Sources */,
+				EF502ECC23313847008B3523 /* MarsRoverClient.swift in Sources */,
+				EF502ECD23313847008B3523 /* NetworkDataLoader.swift in Sources */,
+				EF502ECE23313847008B3523 /* URL+Secure.swift in Sources */,
+				EF502EC523308F77008B3523 /* MockDataLoader.swift in Sources */,
+				EF502EC7233090A4008B3523 /* MockData.swift in Sources */,
+				EF502EC323308CED008B3523 /* AstronomyUnitTesting.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF502EBE23308CCD008B3523 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DBD20042140D1300047905E /* Astronomy */;
+			targetProxy = EF502EBD23308CCD008B3523 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9DBD20112140D1300047905E /* LaunchScreen.storyboard */ = {
@@ -374,7 +472,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = "$(SRCROOT)/Astronomy/Resources/Info.plist";
+				INFOPLIST_FILE = Astronomy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -392,7 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXUQXR6S56;
-				INFOPLIST_FILE = "$(SRCROOT)/Astronomy/Resources/Info.plist";
+				INFOPLIST_FILE = Astronomy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,6 +498,50 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.Astronomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EF502EC023308CCD008B3523 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = AstronomyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luqmaankhan.AstronomyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF502EC123308CCD008B3523 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = AstronomyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luqmaankhan.AstronomyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -421,6 +563,15 @@
 			buildConfigurations = (
 				9DBD20182140D1300047905E /* Debug */,
 				9DBD20192140D1300047905E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF502EBF23308CCD008B3523 /* Build configuration list for PBXNativeTarget "AstronomyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF502EC023308CCD008B3523 /* Debug */,
+				EF502EC123308CCD008B3523 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

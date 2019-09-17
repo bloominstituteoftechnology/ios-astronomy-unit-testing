@@ -8,8 +8,34 @@
 
 import UIKit
 
-class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
+    var cache = Cache<String, Data>()
+    private var photoFetchQueue = OperationQueue()
+    var storedFetchOperations = [Int:FetchPhotoOperation]()
+    private let client = MarsRoverClient()
+    private var roverInfo: MarsRover? {
+        didSet {
+            solDescription = roverInfo?.solDescriptions[3]
+        }
+    }
+    private var solDescription: SolDescription? {
+        didSet {
+            if let rover = roverInfo,
+                let sol = solDescription?.sol {
+                client.fetchPhotos(from: rover, onSol: sol) { (photoRefs, error) in
+                    if let e = error { NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(e)"); return }
+                    self.photoReferences = photoRefs ?? []
+                }
+            }
+        }
+    }
+    private var photoReferences = [MarsPhotoReference]() {
+        didSet {
+            DispatchQueue.main.async { self.collectionView?.reloadData() }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,25 +47,6 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
             
             self.roverInfo = rover
         }
-        
-        configureTitleView()
-        updateViews()
-    }
-    
-    @IBAction func goToPreviousSol(_ sender: Any?) {
-        guard let solDescription = solDescription else { return }
-        guard let solDescriptions = roverInfo?.solDescriptions else { return }
-        guard let index = solDescriptions.index(of: solDescription) else { return }
-        guard index > 0 else { return }
-        self.solDescription = solDescriptions[index-1]
-    }
-    
-    @IBAction func goToNextSol(_ sender: Any?) {
-        guard let solDescription = solDescription else { return }
-        guard let solDescriptions = roverInfo?.solDescriptions else { return }
-        guard let index = solDescriptions.index(of: solDescription) else { return }
-        guard index < solDescriptions.count - 1 else { return }
-        self.solDescription = solDescriptions[index+1]
     }
     
     // UICollectionViewDataSource/Delegate
@@ -49,7 +56,6 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        NSLog("num photos: \(photoReferences.count)")
         return photoReferences.count
     }
     
@@ -62,16 +68,12 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if photoReferences.count > 0 {
-            let photoRef = photoReferences[indexPath.item]
-            operations[photoRef.id]?.cancel()
-        } else {
-            for (_, operation) in operations {
-                operation.cancel()
-            }
-        }
+        let photoReference = photoReferences[indexPath.item]
+        let operation = storedFetchOperations[photoReference.id]
+        operation?.cancel()
     }
     
+    // Make collection view cells fill as much available width as possible
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         var totalUsableWidth = collectionView.frame.width
@@ -85,125 +87,80 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         return CGSize(width: width, height: width)
     }
     
+    // Add margins to the left and right side
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 10.0, bottom: 0, right: 10.0)
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowDetail" {
-            guard let indexPath = collectionView.indexPathsForSelectedItems?.first else { return }
-            let detailVC = segue.destination as! PhotoDetailViewController
-            detailVC.photo = photoReferences[indexPath.item]
-        }
-    }
-    
     // MARK: - Private
-    
-    private func configureTitleView() {
-        
-        let font = UIFont.systemFont(ofSize: 30)
-        let attrs = [NSAttributedStringKey.font: font]
-
-        let prevTitle = NSAttributedString(string: "<", attributes: attrs)
-        let prevButton = UIButton(type: .system)
-        prevButton.accessibilityIdentifier = "PhotosCollectionViewController.PreviousSolButton"
-        prevButton.setAttributedTitle(prevTitle, for: .normal)
-        prevButton.addTarget(self, action: #selector(goToPreviousSol(_:)), for: .touchUpInside)
-        
-        let nextTitle = NSAttributedString(string: ">", attributes: attrs)
-        let nextButton = UIButton(type: .system)
-        nextButton.setAttributedTitle(nextTitle, for: .normal)
-        nextButton.addTarget(self, action: #selector(goToNextSol(_:)), for: .touchUpInside)
-        nextButton.accessibilityIdentifier = "PhotosCollectionViewController.NextSolButton"
-        
-        let stackView = UIStackView(arrangedSubviews: [prevButton, solLabel, nextButton])
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.spacing = UIStackView.spacingUseSystem
-        
-        navigationItem.titleView = stackView
-    }
-    
-    private func updateViews() {
-        guard isViewLoaded else { return }
-        solLabel.text = "Sol \(solDescription?.sol ?? 0)"
-    }
     
     private func loadImage(forCell cell: ImageCollectionViewCell, forItemAt indexPath: IndexPath) {
         let photoReference = photoReferences[indexPath.item]
-        // Check for image in cache
-        if let cachedImage = cache.value(for: photoReference.id) {
-            cell.imageView.image = cachedImage
-            return
+        guard let imageURl = photoReference.imageURL.usingHTTPS else {return}
+        if let cachedImage = cache.value(for: imageURl.absoluteString)  {
+            cell.imageView.image = UIImage(data: cachedImage)
+        }
+        let fetchImageOperation = FetchPhotoOperation(marsPhotoReference: photoReference)
+        
+        let receivedDataInCache = BlockOperation {
+            guard let receivedImageData = fetchImageOperation.imageData, let photoURLString = photoReference.imageURL.usingHTTPS else {return}
+            self.cache.cache(value: receivedImageData, for: photoURLString.absoluteString)
         }
         
-        // Start an operation to fetch image data
-        let fetchOp = FetchPhotoOperation(photoReference: photoReference)
-        let cacheOp = BlockOperation {
-            if let image = fetchOp.image {
-                self.cache.cache(value: image, for: photoReference.id)
-            }
-        }
-        let completionOp = BlockOperation {
-            defer { self.operations.removeValue(forKey: photoReference.id) }
-            
+        let getImage = BlockOperation {
+            defer{self.storedFetchOperations.removeValue(forKey: photoReference.id)}
             if let currentIndexPath = self.collectionView?.indexPath(for: cell),
                 currentIndexPath != indexPath {
+                print("Got image for now-reused cell")
                 return // Cell has been reused
             }
-            
-            if let image = fetchOp.image {
-                cell.imageView.image = image
+            guard let imageData = fetchImageOperation.imageData else {return}
+                cell.imageView.image = UIImage(data: imageData)
             }
-        }
         
-        cacheOp.addDependency(fetchOp)
-        completionOp.addDependency(fetchOp)
+        receivedDataInCache.addDependency(fetchImageOperation)
+        //previously relied on cache
+        getImage.addDependency(fetchImageOperation)
+        photoFetchQueue.addOperation(fetchImageOperation)
+        photoFetchQueue.addOperation(receivedDataInCache)
+        OperationQueue.main.addOperation(getImage)
+        storedFetchOperations[photoReference.id] = fetchImageOperation
+        }
+    
+    
+        // Properties
         
-        photoFetchQueue.addOperation(fetchOp)
-        photoFetchQueue.addOperation(cacheOp)
-        OperationQueue.main.addOperation(completionOp)
+    
         
-        operations[photoReference.id] = fetchOp
-    }
-    
-    // Properties
-    
-    private let client = MarsRoverClient()
-    private let cache = Cache<Int, UIImage>()
-    private let photoFetchQueue = OperationQueue()
-    private var operations = [Int : Operation]()
-    
-    private var roverInfo: MarsRover? {
-        didSet {
-            solDescription = roverInfo?.solDescriptions[0]
-        }
-    }
-    
-    private var solDescription: SolDescription? {
-        didSet {
-            if let rover = roverInfo,
-                let sol = solDescription?.sol {
-                photoReferences = []
-                client.fetchPhotos(from: rover, onSol: sol) { (photoRefs, error) in
-                    if let e = error { NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(e)"); return }
-                    self.photoReferences = photoRefs ?? []
-                    DispatchQueue.main.async { self.updateViews() }
-                }
-            }
-        }
-    }
-    
-    private var photoReferences = [MarsPhotoReference]() {
-        didSet {
-            cache.clear()
-            DispatchQueue.main.async { self.collectionView?.reloadData() }
-        }
-    }
-    
-    @IBOutlet var collectionView: UICollectionView!
-    let solLabel = UILabel()
+        @IBOutlet var collectionView: UICollectionView!
 }
+
+
+//        let photoReference = photoReferences[indexPath.item]
+//        if let cachedImageData = cache.value(for: photoReference.imageURL.usingHTTPS!.absoluteString){
+//            cell.imageView.image = UIImage(data: cachedImageData)
+//        } else {
+//            guard let imageURL = photoReference.imageURL.usingHTTPS else {return}
+//            URLSession.shared.dataTask(with: imageURL) { (data, _, error) in
+//                var cellIndexPath: IndexPath?
+//                DispatchQueue.main.async {
+//                    cellIndexPath = self.collectionView.indexPath(for: cell)
+//                }
+//                if let collectionViewIndexPath = cellIndexPath {
+//                    if collectionViewIndexPath != indexPath {
+//                        return
+//                    }
+//                }
+//                if let error = error {
+//                    NSLog("error fetching image: \(error)")
+//                    return
+//                }
+//                guard let data = data else {return}
+//                DispatchQueue.main.async {
+//                        self.cache.cache(value: data, for: photoReference.imageURL.usingHTTPS!.absoluteString)
+//                        let receivedImage = UIImage(data: data)
+//                        cell.imageView.image = receivedImage
+//                    }
+//
+//                }.resume()
+//        }
