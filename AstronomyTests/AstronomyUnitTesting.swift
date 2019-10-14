@@ -7,8 +7,13 @@
 //
 
 import XCTest
+@testable import Astronomy
 
-class AstronomyUnitTesting: XCTestCase {
+class MarsRoverClientTests: XCTestCase {
+    func testFetchMarsRover() {
+        let resultsExpectation = expectation(description: "Wait for results")
+        let mock = 
+    }
 
     
 
