@@ -1,6 +1,6 @@
 //
-//  NetworkDataLoader.swift
-//  AstronomyTests
+//  NDL.swift
+//  Astronomy
 //
 //  Created by Alex Rhodes on 10/14/19.
 //  Copyright © 2019 Lambda School. All rights reserved.
