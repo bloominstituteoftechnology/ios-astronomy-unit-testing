@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		3267034D2355031200CB1BCC /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267034C2355031200CB1BCC /* NetworkDataLoader.swift */; };
 		3267034F2355038F00CB1BCC /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267034E2355038F00CB1BCC /* URLSession+NetworkDataLoader.swift */; };
-		32670357235510B900CB1BCC /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32670356235510B900CB1BCC /* AstronomyTests.swift */; };
+		3267036B2355189A00CB1BCC /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267036A2355189A00CB1BCC /* MarsRoverClientTests.swift */; };
+		32670372235518A100CB1BCC /* MockResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326703602355149D00CB1BCC /* MockResultData.swift */; };
+		32670373235518A300CB1BCC /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267035E2355112300CB1BCC /* MockDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -29,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		32670359235510B900CB1BCC /* PBXContainerItemProxy */ = {
+		3267036D2355189B00CB1BCC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9DBD1FFD2140D1300047905E /* Project object */;
 			proxyType = 1;
@@ -41,9 +43,11 @@
 /* Begin PBXFileReference section */
 		3267034C2355031200CB1BCC /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		3267034E2355038F00CB1BCC /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
-		32670354235510B900CB1BCC /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		32670356235510B900CB1BCC /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
-		32670358235510B900CB1BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3267035E2355112300CB1BCC /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		326703602355149D00CB1BCC /* MockResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResultData.swift; sourceTree = "<group>"; };
+		326703682355189A00CB1BCC /* MarsRoverClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarsRoverClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3267036A2355189A00CB1BCC /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
+		3267036C2355189B00CB1BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,7 +69,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		32670351235510B900CB1BCC /* Frameworks */ = {
+		326703652355189A00CB1BCC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -91,20 +95,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		32670355235510B900CB1BCC /* AstronomyTests */ = {
+		326703692355189A00CB1BCC /* MarsRoverClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				32670356235510B900CB1BCC /* AstronomyTests.swift */,
-				32670358235510B900CB1BCC /* Info.plist */,
+				3267036A2355189A00CB1BCC /* MarsRoverClientTests.swift */,
+				3267035E2355112300CB1BCC /* MockDataLoader.swift */,
+				326703602355149D00CB1BCC /* MockResultData.swift */,
+				3267036C2355189B00CB1BCC /* Info.plist */,
 			);
-			path = AstronomyTests;
+			path = MarsRoverClientTests;
 			sourceTree = "<group>";
 		};
 		9DBD1FFC2140D1300047905E = {
 			isa = PBXGroup;
 			children = (
 				9DBD20072140D1300047905E /* Astronomy */,
-				32670355235510B900CB1BCC /* AstronomyTests */,
+				326703692355189A00CB1BCC /* MarsRoverClientTests */,
 				9DBD20062140D1300047905E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20052140D1300047905E /* Astronomy.app */,
-				32670354235510B900CB1BCC /* AstronomyTests.xctest */,
+				326703682355189A00CB1BCC /* MarsRoverClientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,22 +208,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		32670353235510B900CB1BCC /* AstronomyTests */ = {
+		326703672355189A00CB1BCC /* MarsRoverClientTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3267035B235510B900CB1BCC /* Build configuration list for PBXNativeTarget "AstronomyTests" */;
+			buildConfigurationList = 3267036F2355189B00CB1BCC /* Build configuration list for PBXNativeTarget "MarsRoverClientTests" */;
 			buildPhases = (
-				32670350235510B900CB1BCC /* Sources */,
-				32670351235510B900CB1BCC /* Frameworks */,
-				32670352235510B900CB1BCC /* Resources */,
+				326703642355189A00CB1BCC /* Sources */,
+				326703652355189A00CB1BCC /* Frameworks */,
+				326703662355189A00CB1BCC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3267035A235510B900CB1BCC /* PBXTargetDependency */,
+				3267036E2355189B00CB1BCC /* PBXTargetDependency */,
 			);
-			name = AstronomyTests;
-			productName = AstronomyTests;
-			productReference = 32670354235510B900CB1BCC /* AstronomyTests.xctest */;
+			name = MarsRoverClientTests;
+			productName = MarsRoverClientTests;
+			productReference = 326703682355189A00CB1BCC /* MarsRoverClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9DBD20042140D1300047905E /* Astronomy */ = {
@@ -247,7 +253,7 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Lambda School";
 				TargetAttributes = {
-					32670353235510B900CB1BCC = {
+					326703672355189A00CB1BCC = {
 						CreatedOnToolsVersion = 11.0;
 						TestTargetID = 9DBD20042140D1300047905E;
 					};
@@ -270,13 +276,13 @@
 			projectRoot = "";
 			targets = (
 				9DBD20042140D1300047905E /* Astronomy */,
-				32670353235510B900CB1BCC /* AstronomyTests */,
+				326703672355189A00CB1BCC /* MarsRoverClientTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		32670352235510B900CB1BCC /* Resources */ = {
+		326703662355189A00CB1BCC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -296,11 +302,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		32670350235510B900CB1BCC /* Sources */ = {
+		326703642355189A00CB1BCC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32670357235510B900CB1BCC /* AstronomyTests.swift in Sources */,
+				32670372235518A100CB1BCC /* MockResultData.swift in Sources */,
+				3267036B2355189A00CB1BCC /* MarsRoverClientTests.swift in Sources */,
+				32670373235518A300CB1BCC /* MockDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,10 +337,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3267035A235510B900CB1BCC /* PBXTargetDependency */ = {
+		3267036E2355189B00CB1BCC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9DBD20042140D1300047905E /* Astronomy */;
-			targetProxy = 32670359235510B900CB1BCC /* PBXContainerItemProxy */;
+			targetProxy = 3267036D2355189B00CB1BCC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -348,13 +356,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3267035C235510B900CB1BCC /* Debug */ = {
+		326703702355189B00CB1BCC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YM84C6XKT7;
-				INFOPLIST_FILE = AstronomyTests/Info.plist;
+				INFOPLIST_FILE = MarsRoverClientTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -363,7 +371,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jakeconnerly.AstronomyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakeconnerly.MarsRoverClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -371,13 +379,13 @@
 			};
 			name = Debug;
 		};
-		3267035D235510B900CB1BCC /* Release */ = {
+		326703712355189B00CB1BCC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YM84C6XKT7;
-				INFOPLIST_FILE = AstronomyTests/Info.plist;
+				INFOPLIST_FILE = MarsRoverClientTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -385,7 +393,7 @@
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jakeconnerly.AstronomyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakeconnerly.MarsRoverClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -546,11 +554,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3267035B235510B900CB1BCC /* Build configuration list for PBXNativeTarget "AstronomyTests" */ = {
+		3267036F2355189B00CB1BCC /* Build configuration list for PBXNativeTarget "MarsRoverClientTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3267035C235510B900CB1BCC /* Debug */,
-				3267035D235510B900CB1BCC /* Release */,
+				326703702355189B00CB1BCC /* Debug */,
+				326703712355189B00CB1BCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

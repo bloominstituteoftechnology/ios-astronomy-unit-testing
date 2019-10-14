@@ -20,14 +20,12 @@ class MarsRoverClient {
         self.networkDataLoader = networkDataLoader
     }
     
-    func fetchMarsRover(named name: String,
-                        using session: URLSession = URLSession.shared,
-                        completion: @escaping (MarsRover?, Error?) -> Void) {
+    func fetchMarsRover(named name: String, completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
         fetch(from: url) { (dictionary: [String : MarsRover]?, error: Error?) in
 
-            guard let rover = dictionary?["photoManifest"] else {
+            guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
                 return
             }
@@ -35,10 +33,7 @@ class MarsRoverClient {
         }
     }
     
-    func fetchPhotos(from rover: MarsRover,
-                     onSol sol: Int,
-                     using session: URLSession = URLSession.shared,
-                     completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
+    func fetchPhotos(from rover: MarsRover, onSol sol: Int, completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
         
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
         fetch(from: url) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
