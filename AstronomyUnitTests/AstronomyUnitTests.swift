@@ -10,6 +10,12 @@ import XCTest
 
 class AstronomyUnitTests: XCTestCase {
 
+    func testFetchMarsRover() {
+        
+    }
     
-
+    func testFetchPhotos() {
+        
+    }
+    
 }
