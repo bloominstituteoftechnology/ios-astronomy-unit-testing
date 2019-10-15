@@ -10,17 +10,21 @@ import Foundation
 
 @testable import Astronomy
 
-struct MockDataLoader: NetworkDataLoader {
+class MockDataLoader: NetworkDataLoader {
+    var url: URL?
+    var request: URLRequest?
     var data: Data?
     var error: Error?
     
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
+        self.url = url
         DispatchQueue.main.async {
             completion(self.data, self.error)
         }
     }
     
     func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+        self.request = request
         DispatchQueue.main.async {
             completion(self.data, self.error)
         }
