@@ -40,7 +40,7 @@ class AstronomyUnitTests: XCTestCase {
         let mock = MockDataLoader()
         mock.data = validRoverJSON
         let controller = MarsRoverClient(dataLoader: mock)
-        var photo = [MarsPhotoReference]? = nil
+        var photo: [MarsPhotoReference]?
         let resultsExpectation = expectation(description: "wait for results")
         
         guard let rover = roverCheck else {return}
@@ -55,8 +55,6 @@ class AstronomyUnitTests: XCTestCase {
         wait(for: [resultsExpectation], timeout: 2)
         
         XCTAssertNotNil(photo)
-
-        
     }
     
 }
