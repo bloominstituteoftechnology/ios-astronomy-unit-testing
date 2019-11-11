@@ -1,5 +1,5 @@
 //
-//  AstronomyTests.swift
+//  MarsRoverClientTests.swift
 //  AstronomyTests
 //
 //  Created by Jesse Ruiz on 11/11/19.
@@ -9,7 +9,7 @@
 import XCTest
 
 class MarsRoverClientTests: XCTestCase {
-    
+
     func testFetchMarsRover() {
         
         
@@ -19,5 +19,4 @@ class MarsRoverClientTests: XCTestCase {
         
         
     }
-    
 }
