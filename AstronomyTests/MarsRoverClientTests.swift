@@ -7,8 +7,12 @@
 //
 
 import XCTest
+@testable import Astronomy
 
 class MarsRoverClientTests: XCTestCase {
+    
+    let mock = MockLoader()
+    let client = MarsRoverClient(networkLoader: mock)
 
     func testFetchMarsRover() {
         
