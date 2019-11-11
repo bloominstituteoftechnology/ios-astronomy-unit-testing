@@ -10,13 +10,22 @@ import XCTest
 @testable import Astronomy
 
 class MarsRoverClientTests: XCTestCase {
-    
-    let mock = MockLoader()
-    let client = MarsRoverClient(networkLoader: mock)
 
     func testFetchMarsRover() {
+        let mock = MockLoader()
+        mock.data = validRoverJSON
         
+        let client = MarsRoverClient(networkLoader: mock)
         
+        let resultsExpectation = expectation(description: "Wait for results")
+        
+        client.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            resultsExpectation.fulfill()
+        }
+        
+        wait(for: [resultsExpectation], timeout: 2)
+        
+        //XCTAssert
     }
     
     func testFetchPhotos() {
