@@ -10,6 +10,11 @@ import Foundation
 
 class MarsRoverClient {
     
+    let networkLoader: NetworkDataLoader
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -41,7 +46,7 @@ class MarsRoverClient {
     }
     
     // MARK: - Private
-    
+    //should change something here to self.networkLoader.something
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
