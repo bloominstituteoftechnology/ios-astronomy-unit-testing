@@ -26,6 +26,8 @@
 		A60AF4CE2379FC67009566A9 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60AF4CD2379FC67009566A9 /* AstronomyTests.swift */; };
 		A60AF4D72379FDD4009566A9 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60AF4D62379FDD4009566A9 /* NetworkDataLoader.swift */; };
 		A60AF4D92379FEEE009566A9 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60AF4D82379FEEE009566A9 /* URLSession+NetworkDataLoader.swift */; };
+		A60AF4DB237A05F3009566A9 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60AF4DA237A05F3009566A9 /* TestJSON.swift */; };
+		A60AF4DD237A0727009566A9 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60AF4DC237A0727009566A9 /* MockDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		A60AF4CF2379FC67009566A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A60AF4D62379FDD4009566A9 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		A60AF4D82379FEEE009566A9 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		A60AF4DA237A05F3009566A9 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
+		A60AF4DC237A0727009566A9 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,8 +188,10 @@
 		A60AF4CC2379FC67009566A9 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
+				A60AF4DA237A05F3009566A9 /* TestJSON.swift */,
 				A60AF4CD2379FC67009566A9 /* AstronomyTests.swift */,
 				A60AF4CF2379FC67009566A9 /* Info.plist */,
+				A60AF4DC237A0727009566A9 /* MockDataLoader.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -324,6 +330,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A60AF4CE2379FC67009566A9 /* AstronomyTests.swift in Sources */,
+				A60AF4DB237A05F3009566A9 /* TestJSON.swift in Sources */,
+				A60AF4DD237A0727009566A9 /* MockDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
