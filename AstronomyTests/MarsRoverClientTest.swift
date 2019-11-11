@@ -14,6 +14,7 @@ class MarsRoverClientTest: XCTestCase {
     //MARK: Properties
     private let roverClkient = MarsRoverClient()
     private let photoCollectionVC = PhotosCollectionViewController()
+    private let mock = MockDataLoader()
     
     
     
