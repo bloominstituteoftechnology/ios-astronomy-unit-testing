@@ -81,6 +81,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     
     
     
+    
     // UICollectionViewDataSource/Delegate
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -158,6 +159,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         nextButton.accessibilityIdentifier = "PhotosCollectionViewController.NextSolButton"
         
         let stackView = UIStackView(arrangedSubviews: [prevButton, solLabel, nextButton])
+        solLabel.accessibilityIdentifier = "PhotosCollectionViewController.SolNumber"
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fill
