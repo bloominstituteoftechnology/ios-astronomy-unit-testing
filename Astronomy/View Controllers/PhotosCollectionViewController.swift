@@ -179,7 +179,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     
     private var roverInfo: MarsRover? {
         didSet {
-            solDescription = roverInfo?.solDescriptions[0]
+            solDescription = roverInfo?.solDescriptions[1]
         }
     }
     
@@ -187,7 +187,6 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         didSet {
             if let rover = roverInfo,
                 let sol = solDescription?.sol {
-                photoReferences = []
                 client.fetchPhotos(from: rover, onSol: sol) { (photoRefs, error) in
                     if let e = error { NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(e)"); return }
                     self.photoReferences = photoRefs ?? []
