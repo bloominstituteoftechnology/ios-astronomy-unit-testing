@@ -10,6 +10,12 @@ import Foundation
 
 class MarsRoverClient {
     
+    let networkLoader: NetworkDataLoader
+    
+    init(loader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = loader
+    }
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -17,7 +23,7 @@ class MarsRoverClient {
         let url = self.url(forInfoForRover: name)
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
 
-            guard let rover = dictionary?["photoManifest"] else {
+            guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
                 return
             }
@@ -45,7 +51,7 @@ class MarsRoverClient {
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+        self.networkLoader.loadData(from: url) { (data, error) in
             if let error = error {
                 completion(nil, error)
                 return
@@ -63,7 +69,7 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
+        }
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
