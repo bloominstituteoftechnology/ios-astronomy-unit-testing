@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		374ADAC123986EF7002B2EE8 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374ADAC023986EF7002B2EE8 /* TestJSON.swift */; };
+		374ADAC223986EF7002B2EE8 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374ADAC023986EF7002B2EE8 /* TestJSON.swift */; };
 		379DD33823985921003430EE /* AstronomyUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379DD33723985921003430EE /* AstronomyUnitTests.swift */; };
 		379DD34023985CE1003430EE /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379DD33F23985CE1003430EE /* NetworkDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		374ADAC023986EF7002B2EE8 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
 		379DD33523985920003430EE /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		379DD33723985921003430EE /* AstronomyUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyUnitTests.swift; sourceTree = "<group>"; };
 		379DD33923985921003430EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				379DD33723985921003430EE /* AstronomyUnitTests.swift */,
+				374ADAC023986EF7002B2EE8 /* TestJSON.swift */,
 				379DD33923985921003430EE /* Info.plist */,
 			);
 			path = AstronomyUnitTests;
@@ -291,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				379DD33823985921003430EE /* AstronomyUnitTests.swift in Sources */,
+				374ADAC223986EF7002B2EE8 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +314,7 @@
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
 				9DBD202A2140D35B0047905E /* MarsRoverClient.swift in Sources */,
 				9DBD20232140D30F0047905E /* SolDescription.swift in Sources */,
+				374ADAC123986EF7002B2EE8 /* TestJSON.swift in Sources */,
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
 				9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,

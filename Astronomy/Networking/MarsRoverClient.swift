@@ -13,7 +13,7 @@ class MarsRoverClient {
     let networkLoader: NetworkDataLoader
     
     init(networkLoader: NetworkDataLoader) {
-        self.networkLoader = URLSession.shared
+        self.networkLoader = networkLoader
     }
     
     
