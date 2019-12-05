@@ -56,40 +56,58 @@ class AstronomyTests: XCTestCase {
             var rover: MarsRover?
             
             let expectation = self.expectation(description: "Waiting for astronomy API to return valid results.")
+            let newExpectation = self.expectation(description: "Waiting for rover to return solid results.")
             let bundle = Bundle(for: AstronomyTests.self)
-            let path = bundle.path(forResource: "TestPhotos", ofType: "txt")!
-            let fileData = try! Data(contentsOf: URL(fileURLWithPath: path))
-            mockLoader.data = fileData
+            let photosPath = bundle.path(forResource: "TestPhotos", ofType: "txt")!
+            let roversPath = bundle.path(forResource: "TestRover", ofType: "txt")!
+            let roverFileData = try! Data(contentsOf: URL(fileURLWithPath: roversPath))
+            let photosFileData = try! Data(contentsOf: URL(fileURLWithPath: photosPath))
+            mockLoader.data = roverFileData
         
             client.fetchMarsRover(named: "Curiosity", using: mockLoader) { (data, error) in
                 rover = client.rover
-            }
-            
-            client.fetchPhotos(from: rover!, onSol: 1, using: mockLoader) { (data, error) in
-                XCTAssert(!client.photos.isEmpty)
                 expectation.fulfill()
             }
             
-            
             wait(for: [expectation], timeout: 5)
+            
+            mockLoader.data = photosFileData
+            client.fetchPhotos(from: rover!, onSol: 1, using: mockLoader) { (data, error) in
+                XCTAssert(!client.photos.isEmpty)
+                print(client.photos.count)
+                newExpectation.fulfill()
+            }
+            
+            
+            wait(for: [newExpectation], timeout: 5)
         }
         
         
         func testMockNoPhotos() {
             let mockLoader = MockLoader()
             let client = MarsRoverClient()
+            var rover: MarsRover?
             
             let expectation = self.expectation(description: "Waiting for astronomy API to return valid results.")
-            mockLoader.data = nil
+            let newExpectation = self.expectation(description: "Waiting for rover to return solid results.")
+            let bundle = Bundle(for: AstronomyTests.self)
+            let roversPath = bundle.path(forResource: "TestRover", ofType: "txt")!
+            let roverFileData = try! Data(contentsOf: URL(fileURLWithPath: roversPath))
+            mockLoader.data = roverFileData
             
-            client.fetchPhotos(from: client.rover!, onSol: 1, using: mockLoader) { (data, error) in
-                XCTAssert(client.photos.isEmpty)
+            client.fetchMarsRover(named: "Curiosity", using: mockLoader) { (data, error) in
+                rover = client.rover
                 expectation.fulfill()
             }
             wait(for: [expectation], timeout: 5)
-        }
-    
-
+            
+            mockLoader.data = nil
+            client.fetchPhotos(from: rover!, onSol: 1, using: mockLoader) { (data, error) in
+                XCTAssert(client.photos.isEmpty)
+                newExpectation.fulfill()
+            }
+            wait(for: [newExpectation], timeout: 5)
+    }
 }
 
 class MockLoader: NetworkDataLoader {
