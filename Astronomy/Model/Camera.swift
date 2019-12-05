@@ -11,6 +11,6 @@ import Foundation
 struct Camera: Codable, Equatable {
     let id: Int
     let name: String
-    let roverId: Int
-    let fullName: String
+    let rover_id: Int
+    let full_name: String
 }
