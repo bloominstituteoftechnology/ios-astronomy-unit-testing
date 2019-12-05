@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		922FEF042398BEE6008261FC /* roverJSON.js in Resources */ = {isa = PBXBuildFile; fileRef = 922FEF032398BEE5008261FC /* roverJSON.js */; };
+		922FEF062398BF98008261FC /* solJSON.js in Resources */ = {isa = PBXBuildFile; fileRef = 922FEF052398BF98008261FC /* solJSON.js */; };
 		92C415EF2398A258006D2CB7 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C415EE2398A258006D2CB7 /* AstronomyTests.swift */; };
 		92C415F72398A358006D2CB7 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C415F62398A358006D2CB7 /* NetworkDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		922FEF032398BEE5008261FC /* roverJSON.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = roverJSON.js; sourceTree = "<group>"; };
+		922FEF052398BF98008261FC /* solJSON.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = solJSON.js; sourceTree = "<group>"; };
 		92C415EC2398A258006D2CB7 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C415EE2398A258006D2CB7 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		92C415F02398A258006D2CB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				922FEF032398BEE5008261FC /* roverJSON.js */,
+				922FEF052398BF98008261FC /* solJSON.js */,
 				92C415EE2398A258006D2CB7 /* AstronomyTests.swift */,
 				92C415F02398A258006D2CB7 /* Info.plist */,
 			);
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				922FEF042398BEE6008261FC /* roverJSON.js in Resources */,
+				922FEF062398BF98008261FC /* solJSON.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
