@@ -23,7 +23,7 @@ extension URLSession: NetworkDataLoader {
     func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data, _, error) in
-                completion(data, error)
+            completion(data, error)
         }
         
         dataTask.resume()
@@ -33,12 +33,29 @@ extension URLSession: NetworkDataLoader {
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
         
         let dataTask = URLSession.shared.dataTask(with: url) { (data, _, error) in
-                completion(data, error)
+            completion(data, error)
         }
         
         dataTask.resume()
-        
+    }
+}
+
+
+struct MockLoader: NetworkDataLoader {
+    
+    var data: Data?
+    var error: Error?
+    
+    func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+        DispatchQueue.global().async {
+            completion(self.data, self.error)
+        }
     }
     
+    func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
+        DispatchQueue.global().async {
+            completion(self.data, self.error)
+        }
+    }
     
 }
