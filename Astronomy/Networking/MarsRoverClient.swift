@@ -43,10 +43,10 @@ class MarsRoverClient {
     // MARK: - Private
     
     private func fetch<T: Codable>(from url: URL,
-                                   networkDataLoader: NetworkDataLoader,
+                                   using session: NetworkDataLoader,
                                    completion: @escaping (T?, Error?) -> Void) {
         
-        networkDataLoader.loadData(from: url) { (possibleData, possibleError) in
+        session.loadData(from: url) { (possibleData, possibleError) in
             
             if let error = possibleError {
                 completion(nil, error)
