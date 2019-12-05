@@ -10,6 +10,8 @@ import XCTest
 @testable import Astronomy
 
 class AstronomyTests: XCTestCase {
+    
+    
 
         func testMockFetchRover() {
             
@@ -47,38 +49,46 @@ class AstronomyTests: XCTestCase {
             wait(for: [expectation], timeout: 5)
         }
         
-    /*
+    
         func testMockFetchPhotos() {
             let mockLoader = MockLoader()
-            let client = MarsRoverClient(networkLoader: mockLoader)
+            let client = MarsRoverClient()
+            var rover: MarsRover?
             
             let expectation = self.expectation(description: "Waiting for astronomy API to return valid results.")
-            let bundle = Bundle(for: MarsRoverClientTests.self)
-            let path = bundle.path(forResource: "TestJSON", ofType: "js")!
+            let bundle = Bundle(for: AstronomyTests.self)
+            let path = bundle.path(forResource: "TestPhotos", ofType: "txt")!
             let fileData = try! Data(contentsOf: URL(fileURLWithPath: path))
             mockLoader.data = fileData
         
+            client.fetchMarsRover(named: "Curiosity", using: mockLoader) { (data, error) in
+                rover = client.rover
+            }
             
-            client.fetchPhotos(from: MarsRover, onSol: 1) { (data, error) in
+            client.fetchPhotos(from: rover!, onSol: 1, using: mockLoader) { (data, error) in
+                XCTAssert(!client.photos.isEmpty)
                 expectation.fulfill()
             }
+            
+            
             wait(for: [expectation], timeout: 5)
         }
         
         
         func testMockNoPhotos() {
             let mockLoader = MockLoader()
-            let client = MarsRoverClient(networkLoader: mockLoader)
+            let client = MarsRoverClient()
             
             let expectation = self.expectation(description: "Waiting for astronomy API to return valid results.")
             mockLoader.data = nil
             
-            client.fetchPhotos(from: MarsRover, onSol: 1) { (data, error) in
+            client.fetchPhotos(from: client.rover!, onSol: 1, using: mockLoader) { (data, error) in
+                XCTAssert(client.photos.isEmpty)
                 expectation.fulfill()
             }
             wait(for: [expectation], timeout: 5)
         }
-    */
+    
 
 }
 

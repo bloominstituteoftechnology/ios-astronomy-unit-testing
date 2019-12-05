@@ -11,7 +11,7 @@ import Foundation
 class MarsRoverClient {
     
     var rover: MarsRover?
-    var photos: [MarsPhotoReference] = []
+    var photos: [MarsPhotoReference?] = []
     
     func fetchMarsRover(named name: String,
                         using loader: NetworkDataLoader,
