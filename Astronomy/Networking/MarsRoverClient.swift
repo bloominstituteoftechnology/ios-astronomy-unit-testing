@@ -10,6 +10,9 @@ import Foundation
 
 class MarsRoverClient {
     
+    var rover: MarsRover?
+    var photos: [MarsPhotoReference] = []
+    
     func fetchMarsRover(named name: String,
                         using loader: NetworkDataLoader,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -21,6 +24,7 @@ class MarsRoverClient {
                 completion(nil, error)
                 return
             }
+            self.rover = rover
             completion(rover, nil)
         }
     }
@@ -36,6 +40,7 @@ class MarsRoverClient {
                 completion(nil, error)
                 return
             }
+            self.photos = photos
             completion(photos, nil)
         }
     }
