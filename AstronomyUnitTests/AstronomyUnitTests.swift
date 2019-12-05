@@ -13,7 +13,7 @@ class MarsRoverClientTests: XCTestCase {
 
     func testMockFetchRover() {
         let mockLoader = MockLoader()
-        let client = MarsRoverClient(networkLoader: mockLoader)
+        let client = MarsRoverClient()
         
         let expectation = self.expectation(description: "Waiting for astronomy API to return valid results.")
         
@@ -22,7 +22,7 @@ class MarsRoverClientTests: XCTestCase {
         let fileData = try! Data(contentsOf: URL(fileURLWithPath: path))
         mockLoader.data = fileData
         
-        client.fetchMarsRover(named: "Curiosity") { (data, error) in
+        client.fetchMarsRover(named: "Curiosity", using: mockLoader) { (data, error) in
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 5)
@@ -31,13 +31,13 @@ class MarsRoverClientTests: XCTestCase {
     
     func testMockNoRover() {
         let mockLoader = MockLoader()
-        let client = MarsRoverClient(networkLoader: mockLoader)
+        let client = MarsRoverClient()
         
         let expectation = self.expectation(description: "Waiting for astronomy API to return valid results.")
         
         mockLoader.data = nil
         
-        client.fetchMarsRover(named: "Curiosity") { (data, error) in
+        client.fetchMarsRover(named: "Curiosity", using: mockLoader) { (data, error) in
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 5)

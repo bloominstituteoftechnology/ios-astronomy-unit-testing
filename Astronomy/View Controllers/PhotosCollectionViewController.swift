@@ -13,7 +13,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        client.fetchMarsRover(named: "curiosity") { (rover, error) in
+        client.fetchMarsRover(named: "curiosity", using: URLSession.shared) { (rover, error) in
             if let error = error {
                 NSLog("Error fetching info for curiosity: \(error)")
                 return
@@ -172,7 +172,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     
     // Properties
     
-    private let client = MarsRoverClient(networkLoader: URLSession.shared)
+    private let client = MarsRoverClient()
     private let cache = Cache<Int, UIImage>()
     private let photoFetchQueue = OperationQueue()
     private var operations = [Int : Operation]()
@@ -187,7 +187,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         didSet {
             if let rover = roverInfo,
                 let sol = solDescription?.sol {
-                client.fetchPhotos(from: rover, onSol: sol) { (photoRefs, error) in
+                client.fetchPhotos(from: rover, onSol: sol, using: URLSession.shared) { (photoRefs, error) in
                     if let e = error { NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(e)"); return }
                     self.photoReferences = photoRefs ?? []
                     DispatchQueue.main.async { self.updateViews() }
