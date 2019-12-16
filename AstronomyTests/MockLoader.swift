@@ -26,6 +26,4 @@ struct MockLoader: NetworkDataLoader {
             completion(self.data, self.error)
         }
     }
-    
-    
 }
