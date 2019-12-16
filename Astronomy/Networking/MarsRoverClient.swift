@@ -32,7 +32,7 @@ class MarsRoverClient {
         
         fetch([String: MarsRover].self, from: url, using: dataLoader) { (result) in
             do {
-                if let rover = try result.get()["photoManifest"] {
+                if let rover = try result.get()["photo_manifest"] {
                     completion(.success(rover))
                 } else {
                     completion(.failure(NetworkError.badData))
