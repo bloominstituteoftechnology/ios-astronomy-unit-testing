@@ -12,13 +12,31 @@ import XCTest
 class MarsRoverClientTests: XCTestCase {
     // MARK: - Setup
     
-    var dataLoader: DataLoader!
+    var roverClient: MarsRoverClient!
+    var expectation: XCTestExpectation!
     
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        expectation = XCTestExpectation(description: "Waiting for mock data (simulating API request)")
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func mockRoverClient(withData data: Data) {
+        roverClient = MarsRoverClient(dataLoader: MockLoader(data: data))
+    }
+    
+    // MARK: - Tests
+    
+    func testFetchRoverSuccess() {
+        mockRoverClient(withData: MockData.validRoverJSON)
+        
+        var rover: MarsRover? = nil
+        
+        roverClient.fetchMarsRover(named: "curiosity") { result in
+            XCTAssertNoThrow(try? result.get())
+            rover = try! result.get()
+            self.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
+        
+        XCTAssertNotNil(rover)
     }
 }
