@@ -25,7 +25,7 @@ class MarsRoverClient {
     func fetchMarsRover(
         named name: String,
         using dataLoader: DataLoader? = nil,
-        completion: @escaping (Result<MarsRover, Error>) -> Void)
+        completion: @escaping (Result<MarsRover, NetworkError>) -> Void)
     {
         let dataLoader = dataLoader ?? self.dataLoader
         let url = self.url(forInfoForRover: name)
@@ -35,10 +35,11 @@ class MarsRoverClient {
                 if let rover = try result.get()["photo_manifest"] {
                     completion(.success(rover))
                 } else {
-                    completion(.failure(NetworkError.badData))
+                    completion(.failure(.badData))
                 }
             } catch {
-                completion(.failure(error))
+                NSLog(error.localizedDescription)
+                completion(.failure(.noDecode))
             }
         }
     }
@@ -47,7 +48,7 @@ class MarsRoverClient {
         from rover: MarsRover,
         onSol sol: Int,
         using dataLoader: DataLoader? = nil,
-        completion: @escaping (Result<[MarsPhotoReference], Error>) -> Void)
+        completion: @escaping (Result<[MarsPhotoReference], NetworkError>) -> Void)
     {
         let dataLoader = dataLoader ?? self.dataLoader
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
@@ -63,7 +64,8 @@ class MarsRoverClient {
                     completion(.failure(NetworkError.badData))
                 }
             } catch {
-                completion(.failure(error))
+                NSLog(error.localizedDescription)
+                completion(.failure(.noDecode))
             }
         }
     }
@@ -74,17 +76,27 @@ class MarsRoverClient {
         _ type: T.Type,
         from url: URL,
         using dataLoader: DataLoader? = nil,
-        completion: @escaping (Result<T, Error>) -> Void)
+        completion: @escaping (Result<T, NetworkError>) -> Void)
     {
         let dataLoader = dataLoader ?? self.dataLoader
         dataLoader.loadData(with: url) { result in
+            let jsonDecoder = MarsPhotoReference.jsonDecoder
+            var data: Data
+            
             do {
-                let data = try result.get()
-                let jsonDecoder = MarsPhotoReference.jsonDecoder
+                data = try result.get()
+            } catch {
+                NSLog(error.localizedDescription)
+                completion(.failure(.badData))
+                return
+            }
+            
+            do {
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
                 completion(.success(decodedObject))
             } catch {
-                completion(.failure(error))
+                NSLog(error.localizedDescription)
+                completion(.failure(.noDecode))
             }
         }
     }

@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: Error, Equatable {
     case badData
-    case noData(URLResponse?)
-    case badResponse(URLResponse)
+    case noData
+    case badResponse
     case noDecode
     case noEncode
-    case unknown
+    case other
 }

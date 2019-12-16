@@ -11,23 +11,26 @@ import Foundation
 extension URLSession: DataLoader {
     func loadData(
         with request: URLRequest,
-        completion: @escaping (Result<Data, Error>) -> Void)
+        completion: @escaping (Result<Data, NetworkError>) -> Void)
     {
         dataTask(with: request) { (data, response, error) in
             if let error = error {
-                completion(.failure(error))
+                NSLog(error.localizedDescription)
+                completion(.failure(NetworkError.other))
                 return
             }
             
             if let response = response as? HTTPURLResponse,
                 response.statusCode < 200 || response.statusCode > 299
             {
-                completion(.failure(NetworkError.badResponse(response)))
+                NSLog(response.debugDescription)
+                completion(.failure(NetworkError.badResponse))
                 return
             }
             
             guard let data = data else {
-                completion(.failure(NetworkError.noData(response)))
+                NSLog(response.debugDescription)
+                completion(.failure(NetworkError.noData))
                 return
             }
             
