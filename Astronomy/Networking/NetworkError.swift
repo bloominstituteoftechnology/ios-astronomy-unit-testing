@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+enum NetworkError: Error {
+    case badData
+    case noData(URLResponse?)
+    case badResponse(URLResponse)
+    case noDecode
+    case noEncode
+    case unknown
+}
