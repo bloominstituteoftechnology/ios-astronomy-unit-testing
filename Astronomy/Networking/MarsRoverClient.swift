@@ -17,7 +17,7 @@ class MarsRoverClient {
     }
     
     func fetchMarsRover(named name: String,
-                        using networkLoader: NetworkDataLoader,
+                        using networkLoader: NetworkDataLoader = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
@@ -33,7 +33,7 @@ class MarsRoverClient {
     
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
-                     using networkLoader: NetworkDataLoader,
+                     using networkLoader: NetworkDataLoader = URLSession.shared,
                      completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
         
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
@@ -49,7 +49,7 @@ class MarsRoverClient {
     // MARK: - Private
     
     private func fetch<T: Codable>(from url: URL,
-                           using networkLoader: NetworkDataLoader,
+                                   using networkLoader: NetworkDataLoader = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
         networkLoader.loadData(from: url) { (data, error) in
             if let error = error {
