@@ -16,8 +16,8 @@ class MarsRoverClient {
     
     let dataLoader: DataLoader
     
-    init(networkLoader: DataLoader = URLSession.shared) {
-        self.dataLoader = networkLoader
+    init(dataLoader: DataLoader = URLSession.shared) {
+        self.dataLoader = dataLoader
     }
     
     // MARK: - Public API

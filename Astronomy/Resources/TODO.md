@@ -3,7 +3,6 @@
 ## tests to write
 
 - MarsRoverClient
-    - [ ] baseURL
     - [ ] fetch rover
     - [ ] fetch photos
     - [ ] fetch <generic>
