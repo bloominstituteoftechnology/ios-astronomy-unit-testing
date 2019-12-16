@@ -12,7 +12,7 @@ import XCTest
 
 class MarsRoverClientTests: XCTestCase {
 
-    func testFetchMarsRover() {
+    func testNetworkFetchMarsRover() {
         
         let exp = expectation(description: "Fetched Rover!")
         
@@ -27,7 +27,7 @@ class MarsRoverClientTests: XCTestCase {
         XCTAssertNotNil(roverInfo, "We got a rover!")
     }
     
-    func testFetchPhotos() {
+    func testNetworkFetchPhotos() {
         
         let roverExpectation = expectation(description: "Fetched Rover!")
         
@@ -59,7 +59,47 @@ class MarsRoverClientTests: XCTestCase {
         wait(for: [photoExpectation], timeout: 100)
         
         XCTAssertNotNil(photoRefs, "Got the rover photos!")
-        //XCTAssertTrue(photoRefs!.count > 0)
+    }
+    
+    
+    func testMockFetchMarsRover() {
+        var mock = MockLoader()
+        mock.data = validRoverJSON
+        
+        let marsRoverClient = MarsRoverClient(networkDataLoader: mock)
+        let roverExpectation = expectation(description: "Returned Rover")
+        
+        var roverInfo: MarsRover?
+        marsRoverClient.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            roverInfo = rover
+            roverExpectation.fulfill()
+        }
+        
+        wait(for: [roverExpectation], timeout: 2)
+        XCTAssertNotNil(roverInfo)
+        XCTAssertEqual(roverInfo?.name, "Curiosity")
+    }
+    
+    func testMockFetchPhotos() {
+        var mock = MockLoader()
+        mock.data = validSol1JSON
+        
+        let marsRoverClient = MarsRoverClient(networkDataLoader: mock)
+        let photoExpectation = expectation(description: "Got photos for sol1!")
+        let rover = MarsRover(name: "", launchDate: Date(), landingDate: Date(), status: .complete, maxSol: 1, maxDate: Date(), numberOfPhotos: 1, solDescriptions: [SolDescription(sol: 1, totalPhotos: 1, cameras: [""])])
+        var photoRefs: [MarsPhotoReference]?
+        marsRoverClient.fetchPhotos(from: rover, onSol: 1) { (photos, error) in
+            if let error = error {
+                mock.error = error
+            }
+            photoRefs = photos
+            photoExpectation.fulfill()
+        }
+        
+        wait(for: [photoExpectation], timeout: 2)
+        XCTAssertNotNil(photoRefs)
+        XCTAssertNil(mock.error)
+        XCTAssertTrue(photoRefs!.count > 0)
     }
 
 }
