@@ -11,7 +11,7 @@ import Foundation
 struct MockData {
     static let invalidJSON = """
     { "oentuhonuh":]]]]
-    """
+    """.data(using: .utf8)!
     
     static let validJSONBadModel = """
     {
@@ -29,7 +29,7 @@ struct MockData {
         },
         "noThanks": "yes"
     }
-    """
+    """.data(using: .utf8)!
     
     static let validRoverJSON = """
     {
