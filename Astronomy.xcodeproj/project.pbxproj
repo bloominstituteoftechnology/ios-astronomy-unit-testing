@@ -24,6 +24,7 @@
 		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
 		A29FAD1123A8264A0038BCB1 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29FAD1023A8264A0038BCB1 /* AstronomyTests.swift */; };
+		A29FAD1E23A846510038BCB1 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29FAD1D23A846510038BCB1 /* MarsRoverClientTests.swift */; };
 		A2AAEBA7237A00F1005673F8 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AAEBA6237A00F1005673F8 /* NetworkDataLoader.swift */; };
 		A2AAEBA9237A01B8005673F8 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AAEBA8237A01B8005673F8 /* URLSession+NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		A29FAD0E23A8264A0038BCB1 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A29FAD1023A8264A0038BCB1 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		A29FAD1223A8264A0038BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A29FAD1D23A846510038BCB1 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
 		A2AAEBA6237A00F1005673F8 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		A2AAEBA8237A01B8005673F8 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +189,7 @@
 			children = (
 				A29FAD1023A8264A0038BCB1 /* AstronomyTests.swift */,
 				A29FAD1223A8264A0038BCB1 /* Info.plist */,
+				A29FAD1D23A846510038BCB1 /* MarsRoverClientTests.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A29FAD1E23A846510038BCB1 /* MarsRoverClientTests.swift in Sources */,
 				A29FAD1123A8264A0038BCB1 /* AstronomyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
