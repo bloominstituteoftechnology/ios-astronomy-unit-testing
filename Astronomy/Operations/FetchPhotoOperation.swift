@@ -10,11 +10,23 @@ import UIKit
 
 class FetchPhotoOperation: ConcurrentOperation {
     
+    // MARK: Properties
+    
+    let photoReference: MarsPhotoReference
+    
+    private let session: URLSession
+    private(set) var image: UIImage?
+    private var dataTask: URLSessionDataTask?
+    
+    // MARK: - Init
+    
     init(photoReference: MarsPhotoReference, session: URLSession = URLSession.shared) {
         self.photoReference = photoReference
         self.session = session
         super.init()
     }
+    
+    // MARK: - Methods
     
     override func start() {
         state = .isExecuting
@@ -40,14 +52,4 @@ class FetchPhotoOperation: ConcurrentOperation {
         dataTask?.cancel()
         super.cancel()
     }
-    
-    // MARK: Properties
-    
-    let photoReference: MarsPhotoReference
-    
-    private let session: URLSession
-    
-    private(set) var image: UIImage?
-    
-    private var dataTask: URLSessionDataTask?
 }
