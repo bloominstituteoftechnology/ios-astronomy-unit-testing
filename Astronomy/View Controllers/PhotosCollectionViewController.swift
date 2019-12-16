@@ -29,12 +29,18 @@ class PhotosCollectionViewController:
     private var solDescription: SolDescription? {
         didSet {
             if let rover = roverInfo,
-                let sol = solDescription?.sol {
+                let sol = solDescription?.sol
+            {
                 photoReferences = []
-                client.fetchPhotos(from: rover, onSol: sol) { (photoRefs, error) in
-                    if let e = error { NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(e)"); return }
-                    self.photoReferences = photoRefs ?? []
-                    DispatchQueue.main.async { self.updateViews() }
+                client.fetchPhotos(from: rover, onSol: sol) { result in
+                    do {
+                        self.photoReferences = try result.get()
+                        DispatchQueue.main.async {
+                            self.updateViews()
+                        }
+                    } catch {
+                        NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(error)")
+                    }
                 }
             }
         }
@@ -55,13 +61,10 @@ class PhotosCollectionViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        client.fetchMarsRover(named: "curiosity") { (rover, error) in
-            if let error = error {
+        client.fetchMarsRover(named: "curiosity") { result in
+            do { self.roverInfo = try result.get() } catch {
                 NSLog("Error fetching info for curiosity: \(error)")
-                return
             }
-            
-            self.roverInfo = rover
         }
         
         configureTitleView()

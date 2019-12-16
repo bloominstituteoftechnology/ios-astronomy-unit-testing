@@ -14,66 +14,79 @@ class MarsRoverClient {
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
     private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
     
+    let dataLoader: DataLoader
+    
+    init(networkLoader: DataLoader = URLSession.shared) {
+        self.dataLoader = networkLoader
+    }
+    
     // MARK: - Public API
     
     func fetchMarsRover(
         named name: String,
-        using session: URLSession = URLSession.shared,
-        completion: @escaping (MarsRover?, Error?) -> Void)
+        using dataLoader: DataLoader? = nil,
+        completion: @escaping (Result<MarsRover, Error>) -> Void)
     {
+        let dataLoader = dataLoader ?? self.dataLoader
         let url = self.url(forInfoForRover: name)
-        fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
-
-            guard let rover = dictionary?["photoManifest"] else {
-                completion(nil, error)
-                return
+        
+        fetch([String: MarsRover].self, from: url, using: dataLoader) { (result) in
+            do {
+                if let rover = try result.get()["photoManifest"] {
+                    completion(.success(rover))
+                } else {
+                    completion(.failure(NetworkError.badData))
+                }
+            } catch {
+                completion(.failure(error))
             }
-            completion(rover, nil)
         }
     }
     
     func fetchPhotos(
         from rover: MarsRover,
         onSol sol: Int,
-        using session: URLSession = URLSession.shared,
-        completion: @escaping ([MarsPhotoReference]?, Error?) -> Void)
+        using dataLoader: DataLoader? = nil,
+        completion: @escaping (Result<[MarsPhotoReference], Error>) -> Void)
     {
+        let dataLoader = dataLoader ?? self.dataLoader
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
-        fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
-            guard let photos = dictionary?["photos"] else {
-                completion(nil, error)
-                return
+        
+        fetch([String: [MarsPhotoReference]].self,
+              from: url,
+              using: dataLoader)
+        { result in
+            do {
+                if let photos = try result.get()["photos"] {
+                    completion(.success(photos))
+                } else {
+                    completion(.failure(NetworkError.badData))
+                }
+            } catch {
+                completion(.failure(error))
             }
-            completion(photos, nil)
         }
     }
     
     // MARK: - Private
     
     private func fetch<T: Codable>(
+        _ type: T.Type,
         from url: URL,
-        using session: URLSession = URLSession.shared,
-        completion: @escaping (T?, Error?) -> Void)
+        using dataLoader: DataLoader? = nil,
+        completion: @escaping (Result<T, Error>) -> Void)
     {
-        session.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            
-            guard let data = data else {
-                completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
-                return
-            }
-            
+        let dataLoader = dataLoader ?? self.dataLoader
+        dataLoader.loadData(with: url) { result in
             do {
+                let data = try result.get()
                 let jsonDecoder = MarsPhotoReference.jsonDecoder
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
-                completion(decodedObject, nil)
+                completion(.success(decodedObject))
             } catch {
-                completion(nil, error)
+                completion(.failure(error))
             }
-        }.resume()
+        }
     }
 
     private func url(forInfoForRover roverName: String) -> URL {
