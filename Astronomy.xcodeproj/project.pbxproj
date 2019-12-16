@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		997CB9D523A81B4700D3A126 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CB9D423A81B4700D3A126 /* AstronomyTests.swift */; };
 		997CB9DE23A81D4D00D3A126 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CB9DD23A81D4D00D3A126 /* DataLoader.swift */; };
 		997CB9E023A81DF500D3A126 /* URLSession+DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CB9DF23A81DF500D3A126 /* URLSession+DataLoader.swift */; };
 		997CB9E223A81ED700D3A126 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CB9E123A81ED700D3A126 /* NetworkError.swift */; };
+		997CB9E423A82BDA00D3A126 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CB9E323A82BDA00D3A126 /* MarsRoverClientTests.swift */; };
+		997CB9E623A82C1900D3A126 /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997CB9E523A82C1900D3A126 /* MockLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -41,12 +42,13 @@
 
 /* Begin PBXFileReference section */
 		997CB9D223A81B4700D3A126 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		997CB9D423A81B4700D3A126 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		997CB9D623A81B4700D3A126 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		997CB9DC23A81B6000D3A126 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		997CB9DD23A81D4D00D3A126 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		997CB9DF23A81DF500D3A126 /* URLSession+DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+DataLoader.swift"; sourceTree = "<group>"; };
 		997CB9E123A81ED700D3A126 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		997CB9E323A82BDA00D3A126 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
+		997CB9E523A82C1900D3A126 /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,8 +90,8 @@
 		997CB9D323A81B4700D3A126 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
-				997CB9D423A81B4700D3A126 /* AstronomyTests.swift */,
 				997CB9D623A81B4700D3A126 /* Info.plist */,
+				997CB9E323A82BDA00D3A126 /* MarsRoverClientTests.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -163,6 +165,7 @@
 				997CB9DD23A81D4D00D3A126 /* DataLoader.swift */,
 				997CB9DF23A81DF500D3A126 /* URLSession+DataLoader.swift */,
 				997CB9E123A81ED700D3A126 /* NetworkError.swift */,
+				997CB9E523A82C1900D3A126 /* MockLoader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				TargetAttributes = {
 					997CB9D123A81B4700D3A126 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 						TestTargetID = 9DBD20042140D1300047905E;
 					};
 					9DBD20042140D1300047905E = {
@@ -298,7 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				997CB9D523A81B4700D3A126 /* AstronomyTests.swift in Sources */,
+				997CB9E423A82BDA00D3A126 /* MarsRoverClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +322,7 @@
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
 				9DBD202A2140D35B0047905E /* MarsRoverClient.swift in Sources */,
 				9DBD20232140D30F0047905E /* SolDescription.swift in Sources */,
+				997CB9E623A82C1900D3A126 /* MockLoader.swift in Sources */,
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
 				9DBD20242140D30F0047905E /* MarsPhotoReference.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,
@@ -351,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22X3GA956P;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
@@ -364,6 +370,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonbash.AstronomyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astronomy.app/Astronomy";
@@ -374,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22X3GA956P;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
