@@ -39,4 +39,21 @@ class MarsRoverClientTests: XCTestCase {
         
         XCTAssertNotNil(rover)
     }
+    
+    func testFetchRoverInvalidJSON() {
+        mockRoverClient(withData: MockData.invalidJSON)
+        
+        roverClient.fetchMarsRover(named: "curiosity") { result in
+            do {
+                XCTAssertThrowsError(try result.get())
+                let _ = try result.get()
+            } catch {
+                XCTAssertEqual(error as! NetworkError, NetworkError.noDecode)
+            }
+            self.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
+    }
+    
+    
 }
