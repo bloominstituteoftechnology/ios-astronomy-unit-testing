@@ -34,9 +34,4 @@ extension URLSession: DataLoader {
             completion(.success(data))
         }.resume()
     }
-    
-    func loadData(with url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
-        let request = URLRequest(url: url)
-        loadData(with: request, completion: completion)
-    }
 }

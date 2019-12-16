@@ -18,3 +18,14 @@ protocol DataLoader {
         completion: @escaping (Result<Data, Error>) -> Void)
 }
 
+// MARK: - Default Implementation
+
+extension DataLoader {
+    func loadData(
+        with url: URL,
+        completion: @escaping (Result<Data, Error>) -> Void)
+    {
+        let request = URLRequest(url: url)
+        loadData(with: request, completion: completion)
+    }
+}
