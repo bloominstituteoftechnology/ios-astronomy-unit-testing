@@ -99,28 +99,91 @@ class MarsRoverClientTests: XCTestCase {
         XCTAssertNil(dataLoader.data)
         XCTAssertEqual(dataLoader.error as! NetworkError, NetworkError.noData)
     }
-            XCTAssertNoThrow(try? result.get())
-            rover = try! result.get()
-            self.expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 3)
+    
+    // MARK: - Fetch Photos Tests
+    
+    func testFetchPhotosValid() {
+        getRover()
         
-        XCTAssertNotNil(rover)
+        let photoClient = mockClient(withData: MockData.validSol1JSON)
+        
+        photoClient.fetchPhotos(from: rover, onSol: 1) { result in
+            XCTAssertNoThrow(try? result.get())
+            let photos = try! result.get()
+            XCTAssertNotNil(photos)
+            
+            self.photosExpectation.fulfill()
+        }
+        wait(for: [photosExpectation], timeout: 3)
+        
+        let dataLoader = photoClient.dataLoader as! MockLoader
+        XCTAssertNil(dataLoader.error)
+        XCTAssertNotNil(dataLoader.data)
     }
     
-    func testFetchRoverInvalidJSON() {
-        mockRoverClient(withData: MockData.invalidJSON)
+    func testFetchPhotosInvalidJSON() {
+        getRover()
         
-        roverClient.fetchMarsRover(named: "curiosity") { result in
+        let photoClient = mockClient(withData: MockData.invalidJSON)
+        
+        photoClient.fetchPhotos(from: rover, onSol: 1) { result in
             do {
                 XCTAssertThrowsError(try result.get())
                 let _ = try result.get()
             } catch {
                 XCTAssertEqual(error as! NetworkError, NetworkError.noDecode)
             }
-            self.expectation.fulfill()
+            self.photosExpectation.fulfill()
         }
-        wait(for: [expectation], timeout: 3)
+        wait(for: [photosExpectation], timeout: 3)
+        
+        let dataLoader = photoClient.dataLoader as! MockLoader
+        // dataLoader will not catch the error; only when the MarsRoverClient tries to decode it will the error be thrown
+        XCTAssertNil(dataLoader.error)
+        XCTAssertNotNil(dataLoader.data)
+    }
+    
+    func testFetchPhotosBadModel() {
+        getRover()
+        
+        let photoClient = mockClient(withData: MockData.validJSONBadModel)
+        
+        photoClient.fetchPhotos(from: rover, onSol: 1) { result in
+            do {
+                XCTAssertThrowsError(try result.get())
+                let _ = try result.get()
+            } catch {
+                XCTAssertEqual(error as! NetworkError, NetworkError.noDecode)
+            }
+            self.photosExpectation.fulfill()
+        }
+        wait(for: [photosExpectation], timeout: 3)
+        
+        let dataLoader = photoClient.dataLoader as! MockLoader
+        // dataLoader will not catch the error; only when the MarsRoverClient tries to decode it will the error be thrown
+        XCTAssertNil(dataLoader.error)
+        XCTAssertNotNil(dataLoader.data)
+    }
+    
+    func testFetchPhotosNoData() {
+        getRover()
+        let photosClient = mockClient()
+        
+        photosClient.fetchPhotos(from: rover, onSol: 1) { result in
+            do {
+                XCTAssertThrowsError(try result.get())
+                let _ = try result.get()
+            } catch {
+                XCTAssertEqual(error as! NetworkError, NetworkError.noData)
+            }
+            self.photosExpectation.fulfill()
+        }
+        wait(for: [photosExpectation], timeout: 3)
+        
+        let dataLoader = photosClient.dataLoader as! MockLoader
+        
+        XCTAssertNil(dataLoader.data)
+        XCTAssertEqual(dataLoader.error as! NetworkError, NetworkError.noData)
     }
     
     // MARK: - Helper Methods
