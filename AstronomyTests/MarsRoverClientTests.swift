@@ -111,6 +111,7 @@ class MarsRoverClientTests: XCTestCase {
             XCTAssertNoThrow(try? result.get())
             let photos = try! result.get()
             XCTAssertNotNil(photos)
+            XCTAssertFalse(photos.isEmpty)
             
             self.photosExpectation.fulfill()
         }
