@@ -14,9 +14,6 @@ struct MarsRover: Codable {
     let launchDate: Date
     let landingDate: Date
     
-    enum Status: String, Codable {
-        case active, complete
-    }
     let status: Status
     
     let maxSol: Int
@@ -25,17 +22,6 @@ struct MarsRover: Codable {
     let numberOfPhotos: Int
     
     let solDescriptions: [SolDescription]
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case launchDate
-        case landingDate
-        case status
-        case maxSol
-        case maxDate
-        case numberOfPhotos = "totalPhotos"
-        case solDescriptions = "photos"
-    }
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -50,5 +36,20 @@ struct MarsRover: Codable {
         result.keyDecodingStrategy = .convertFromSnakeCase
         result.dateDecodingStrategy = .formatted(dateFormatter)
         return result
+    }
+    
+    enum Status: String, Codable {
+        case active, complete
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case launchDate
+        case landingDate
+        case status
+        case maxSol
+        case maxDate
+        case numberOfPhotos = "totalPhotos"
+        case solDescriptions = "photos"
     }
 }

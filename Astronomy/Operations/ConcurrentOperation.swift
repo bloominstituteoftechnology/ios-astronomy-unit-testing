@@ -9,13 +9,6 @@
 import Foundation
 
 class ConcurrentOperation: Operation {
-    
-    // MARK: Types
-    
-    enum State: String {
-        case isReady, isExecuting, isFinished
-    }
-    
     // MARK: Properties
     
     private var _state = State.isReady
@@ -59,6 +52,12 @@ class ConcurrentOperation: Operation {
     
     override var isAsynchronous: Bool {
         return true
+    }
+    
+    // MARK: `State` Type
+    
+    enum State: String {
+        case isReady, isExecuting, isFinished
     }
     
 }

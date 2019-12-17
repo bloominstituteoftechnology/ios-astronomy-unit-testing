@@ -8,28 +8,75 @@
 
 import UIKit
 
-class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PhotosCollectionViewController:
+    UIViewController,
+    UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout
+{
+    // MARK: - Properties
+    
+    private let client = MarsRoverClient()
+    private let cache = Cache<Int, UIImage>()
+    private let photoFetchQueue = OperationQueue()
+    private var operations = [Int : Operation]()
+    
+    private var roverInfo: MarsRover? {
+        didSet {
+            solDescription = roverInfo?.solDescriptions[0]
+        }
+    }
+    
+    private var solDescription: SolDescription? {
+        didSet {
+            if let rover = roverInfo,
+                let sol = solDescription?.sol
+            {
+                photoReferences = []
+                client.fetchPhotos(from: rover, onSol: sol) { result in
+                    do {
+                        self.photoReferences = try result.get()
+                        DispatchQueue.main.async {
+                            self.updateViews()
+                        }
+                    } catch {
+                        NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    private var photoReferences = [MarsPhotoReference]() {
+        didSet {
+            cache.clear()
+            DispatchQueue.main.async { self.collectionView?.reloadData() }
+        }
+    }
+    
+    @IBOutlet var collectionView: UICollectionView!
+    let solLabel = UILabel()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        client.fetchMarsRover(named: "curiosity") { (rover, error) in
-            if let error = error {
+        client.fetchMarsRover(named: "curiosity") { result in
+            do { self.roverInfo = try result.get() } catch {
                 NSLog("Error fetching info for curiosity: \(error)")
-                return
             }
-            
-            self.roverInfo = rover
         }
         
         configureTitleView()
         updateViews()
     }
     
+    // MARK: - Actions
+    
     @IBAction func goToPreviousSol(_ sender: Any?) {
         guard let solDescription = solDescription else { return }
         guard let solDescriptions = roverInfo?.solDescriptions else { return }
-        guard let index = solDescriptions.index(of: solDescription) else { return }
+        guard let index = solDescriptions.firstIndex(of: solDescription) else { return }
         guard index > 0 else { return }
         self.solDescription = solDescriptions[index-1]
     }
@@ -37,12 +84,12 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     @IBAction func goToNextSol(_ sender: Any?) {
         guard let solDescription = solDescription else { return }
         guard let solDescriptions = roverInfo?.solDescriptions else { return }
-        guard let index = solDescriptions.index(of: solDescription) else { return }
+        guard let index = solDescriptions.firstIndex(of: solDescription) else { return }
         guard index < solDescriptions.count - 1 else { return }
         self.solDescription = solDescriptions[index+1]
     }
     
-    // UICollectionViewDataSource/Delegate
+    // MARK: - UICollectionViewDataSource/Delegate
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -104,7 +151,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     private func configureTitleView() {
         
         let font = UIFont.systemFont(ofSize: 30)
-        let attrs = [NSAttributedStringKey.font: font]
+        let attrs = [NSAttributedString.Key.font: font]
 
         let prevTitle = NSAttributedString(string: "<", attributes: attrs)
         let prevButton = UIButton(type: .system)
@@ -169,41 +216,4 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         
         operations[photoReference.id] = fetchOp
     }
-    
-    // Properties
-    
-    private let client = MarsRoverClient()
-    private let cache = Cache<Int, UIImage>()
-    private let photoFetchQueue = OperationQueue()
-    private var operations = [Int : Operation]()
-    
-    private var roverInfo: MarsRover? {
-        didSet {
-            solDescription = roverInfo?.solDescriptions[0]
-        }
-    }
-    
-    private var solDescription: SolDescription? {
-        didSet {
-            if let rover = roverInfo,
-                let sol = solDescription?.sol {
-                photoReferences = []
-                client.fetchPhotos(from: rover, onSol: sol) { (photoRefs, error) in
-                    if let e = error { NSLog("Error fetching photos for \(rover.name) on sol \(sol): \(e)"); return }
-                    self.photoReferences = photoRefs ?? []
-                    DispatchQueue.main.async { self.updateViews() }
-                }
-            }
-        }
-    }
-    
-    private var photoReferences = [MarsPhotoReference]() {
-        didSet {
-            cache.clear()
-            DispatchQueue.main.async { self.collectionView?.reloadData() }
-        }
-    }
-    
-    @IBOutlet var collectionView: UICollectionView!
-    let solLabel = UILabel()
 }

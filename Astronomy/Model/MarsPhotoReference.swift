@@ -1,5 +1,5 @@
 //
-//  MarsPhoto.swift
+//  MarsPhotoReference.swift
 //  Astronomy
 //
 //  Created by Andrew R Madsen on 9/5/18.

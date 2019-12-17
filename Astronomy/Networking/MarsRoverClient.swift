@@ -9,65 +9,106 @@
 import Foundation
 
 class MarsRoverClient {
+    // MARK: - Properties
     
-    func fetchMarsRover(named name: String,
-                        using session: URLSession = URLSession.shared,
-                        completion: @escaping (MarsRover?, Error?) -> Void) {
-        
+    private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
+    private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
+    
+    let dataLoader: DataLoader
+    
+    init(dataLoader: DataLoader = URLSession.shared) {
+        self.dataLoader = dataLoader
+    }
+    
+    // MARK: - Public API
+    
+    func fetchMarsRover(
+        named name: String,
+        using dataLoader: DataLoader? = nil,
+        completion: @escaping (Result<MarsRover, NetworkError>) -> Void)
+    {
+        let dataLoader = dataLoader ?? self.dataLoader
         let url = self.url(forInfoForRover: name)
-        fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
-
-            guard let rover = dictionary?["photoManifest"] else {
-                completion(nil, error)
-                return
+        
+        fetch([String: MarsRover].self, from: url, using: dataLoader) { (result) in
+            do {
+                if let rover = try result.get()["photo_manifest"] {
+                    completion(.success(rover))
+                } else {
+                    completion(.failure(.badData))
+                }
+            } catch let networkError as NetworkError {
+                completion(.failure(networkError))
+            } catch {
+                NSLog(error.localizedDescription)
+                completion(.failure(.badData))
             }
-            completion(rover, nil)
         }
     }
     
-    func fetchPhotos(from rover: MarsRover,
-                     onSol sol: Int,
-                     using session: URLSession = URLSession.shared,
-                     completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
-        
+    func fetchPhotos(
+        from rover: MarsRover,
+        onSol sol: Int,
+        using dataLoader: DataLoader? = nil,
+        completion: @escaping (Result<[MarsPhotoReference], NetworkError>) -> Void)
+    {
+        let dataLoader = dataLoader ?? self.dataLoader
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
-        fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
-            guard let photos = dictionary?["photos"] else {
-                completion(nil, error)
-                return
+        
+        fetch([String: [MarsPhotoReference]].self,
+              from: url,
+              using: dataLoader)
+        { result in
+            do {
+                if let photos = try result.get()["photos"] {
+                    completion(.success(photos))
+                } else {
+                    completion(.failure(NetworkError.badData))
+                }
+            } catch let networkError as NetworkError {
+                completion(.failure(networkError))
+            } catch {
+                NSLog(error.localizedDescription)
+                completion(.failure(.badData))
             }
-            completion(photos, nil)
         }
     }
     
     // MARK: - Private
     
-    private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
-                           completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                completion(nil, error)
-                return
-            }
+    private func fetch<T: Codable>(
+        _ type: T.Type,
+        from url: URL,
+        using dataLoader: DataLoader? = nil,
+        completion: @escaping (Result<T, NetworkError>) -> Void)
+    {
+        let dataLoader = dataLoader ?? self.dataLoader
+        dataLoader.loadData(with: url) { result in
+            let jsonDecoder = MarsPhotoReference.jsonDecoder
+            var data: Data
             
-            guard let data = data else {
-                completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
+            do {
+                data = try result.get()
+            } catch let networkError as NetworkError {
+                completion(.failure(networkError))
+                return
+            } catch {
+                NSLog(error.localizedDescription)
+                completion(.failure(.badData))
                 return
             }
             
             do {
-                let jsonDecoder = MarsPhotoReference.jsonDecoder
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
-                completion(decodedObject, nil)
+                completion(.success(decodedObject))
+            } catch let networkError as NetworkError {
+                completion(.failure(networkError))
             } catch {
-                completion(nil, error)
+                NSLog(error.localizedDescription)
+                completion(.failure(.noDecode))
             }
-        }.resume()
+        }
     }
-    
-    private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
-    private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
 
     private func url(forInfoForRover roverName: String) -> URL {
         var url = baseURL
@@ -78,14 +119,21 @@ class MarsRoverClient {
         return urlComponents.url!
     }
     
-    private func url(forPhotosfromRover roverName: String, on sol: Int) -> URL {
+    private func url(
+        forPhotosfromRover roverName: String,
+        on sol: Int
+    ) -> URL {
         var url = baseURL
         url.appendPathComponent("rovers")
         url.appendPathComponent(roverName)
         url.appendPathComponent("photos")
-        let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: true)!
-        urlComponents.queryItems = [URLQueryItem(name: "sol", value: String(sol)),
-                                    URLQueryItem(name: "api_key", value: apiKey)]
+        let urlComponents = NSURLComponents(
+            url: url,
+            resolvingAgainstBaseURL: true)!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "sol", value: String(sol)),
+            URLQueryItem(name: "api_key", value: apiKey)
+        ]
         return urlComponents.url!
     }
 }
