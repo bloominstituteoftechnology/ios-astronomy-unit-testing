@@ -37,9 +37,11 @@ class MarsRoverClient {
                 } else {
                     completion(.failure(.badData))
                 }
+            } catch let networkError as NetworkError {
+                completion(.failure(networkError))
             } catch {
                 NSLog(error.localizedDescription)
-                completion(.failure(.noDecode))
+                completion(.failure(.badData))
             }
         }
     }
@@ -63,9 +65,11 @@ class MarsRoverClient {
                 } else {
                     completion(.failure(NetworkError.badData))
                 }
+            } catch let networkError as NetworkError {
+                completion(.failure(networkError))
             } catch {
                 NSLog(error.localizedDescription)
-                completion(.failure(.noDecode))
+                completion(.failure(.badData))
             }
         }
     }
@@ -85,6 +89,9 @@ class MarsRoverClient {
             
             do {
                 data = try result.get()
+            } catch let networkError as NetworkError {
+                completion(.failure(networkError))
+                return
             } catch {
                 NSLog(error.localizedDescription)
                 completion(.failure(.badData))
@@ -94,6 +101,8 @@ class MarsRoverClient {
             do {
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
                 completion(.success(decodedObject))
+            } catch let networkError as NetworkError {
+                completion(.failure(networkError))
             } catch {
                 NSLog(error.localizedDescription)
                 completion(.failure(.noDecode))

@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct MockLoader: DataLoader {
+class MockLoader: DataLoader {
     private(set) var data: Data?
-    private(set) var error: NetworkError?
+    private(set) var error: Error?
     
     init(data: Data? = nil, error: NetworkError? = nil) {
         self.data = data
@@ -29,10 +29,12 @@ struct MockLoader: DataLoader {
             }
             
             guard let data = self.data else {
-                completion(.failure(NetworkError.badData))
+                self.error = NetworkError.noData
+                completion(.failure(NetworkError.noData))
                 return
             }
             
+            self.data = data
             completion(.success(data))
         }
     }
