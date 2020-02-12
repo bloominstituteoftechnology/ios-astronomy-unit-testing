@@ -10,14 +10,14 @@ import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Outlets
+    
+    @IBOutlet var imageView: UIImageView!
+    
+    //MARK: - Methods
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = #imageLiteral(resourceName: "MarsPlaceholder")
     }
-    
-    // MARK: Properties
-    
-    // MARK: IBOutlets
-    
-    @IBOutlet var imageView: UIImageView!
 }

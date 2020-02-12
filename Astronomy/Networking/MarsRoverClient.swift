@@ -10,8 +10,14 @@ import Foundation
 
 class MarsRoverClient {
     
+    //MARK: - Properties
+    
     var rover: MarsRover?
     var photos: [MarsPhotoReference?] = []
+    private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
+    private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
+    
+    //MARK: - Methods
     
     func fetchMarsRover(named name: String,
                         using loader: NetworkDataLoader,
@@ -45,8 +51,6 @@ class MarsRoverClient {
         }
     }
     
-    // MARK: - Private
-    
     private func fetch<T: Codable>(from url: URL,
                            using networkLoader: NetworkDataLoader,
                            completion: @escaping (T?, Error?) -> Void) {
@@ -71,9 +75,6 @@ class MarsRoverClient {
             }
         }
     }
-    
-    private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
-    private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
 
     private func url(forInfoForRover roverName: String) -> URL {
         var url = baseURL
