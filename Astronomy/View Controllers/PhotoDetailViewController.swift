@@ -11,6 +11,24 @@ import Photos
 
 class PhotoDetailViewController: UIViewController {
     
+    var photo: MarsPhotoReference? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    lazy var dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        return df
+    }()
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var cameraLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
@@ -57,21 +75,6 @@ class PhotoDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    var photo: MarsPhotoReference? {
-        didSet {
-            updateViews()
-        }
-    }
     
-    lazy var dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateStyle = .short
-        df.timeStyle = .short
-        return df
-    }()
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var cameraLabel: UILabel!
     
 }
