@@ -17,12 +17,13 @@ class MarsRoverClient {
         let url = self.url(forInfoForRover: name)
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
 
-            guard let rover = dictionary?["photoManifest"] else {
+            guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
                 return
             }
             completion(rover, nil)
         }
+
     }
     
     func fetchPhotos(from rover: MarsRover,
@@ -38,7 +39,9 @@ class MarsRoverClient {
             }
             completion(photos, nil)
         }
+        
     }
+    
     
     // MARK: - Private
     
@@ -64,7 +67,12 @@ class MarsRoverClient {
                 completion(nil, error)
             }
         }.resume()
+        
+        
+        
     }
+    
+    
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
     private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
@@ -88,4 +96,8 @@ class MarsRoverClient {
                                     URLQueryItem(name: "api_key", value: apiKey)]
         return urlComponents.url!
     }
+}
+
+extension URLSession : NetworkDataLoader {
+    
 }

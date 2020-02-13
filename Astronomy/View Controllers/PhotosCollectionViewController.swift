@@ -60,7 +60,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        NSLog("num photos: \(photoReferences.count)")
+        NSLog("num photos:\(photoReferences.count)")
         return photoReferences.count
     }
     
