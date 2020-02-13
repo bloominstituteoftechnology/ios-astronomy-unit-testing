@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		933CA22823F4EFBB00433CA6 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CA22723F4EFBB00433CA6 /* AstronomyTests.swift */; };
+		933CA23323F5026000433CA6 /* URLSession + NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CA23223F5026000433CA6 /* URLSession + NetworkDataLoader.swift */; };
+		933CA23523F5057400433CA6 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CA23423F5057400433CA6 /* NetworkDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -40,6 +42,8 @@
 		933CA22523F4EFBB00433CA6 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		933CA22723F4EFBB00433CA6 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		933CA22923F4EFBB00433CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		933CA23223F5026000433CA6 /* URLSession + NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession + NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		933CA23423F5057400433CA6 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,9 +91,19 @@
 			path = AstronomyTests;
 			sourceTree = "<group>";
 		};
+		933CA22F23F4FA9100433CA6 /* Testing Documents */ = {
+			isa = PBXGroup;
+			children = (
+				933CA23223F5026000433CA6 /* URLSession + NetworkDataLoader.swift */,
+				933CA23423F5057400433CA6 /* NetworkDataLoader.swift */,
+			);
+			name = "Testing Documents";
+			sourceTree = "<group>";
+		};
 		9DBD1FFC2140D1300047905E = {
 			isa = PBXGroup;
 			children = (
+				933CA22F23F4FA9100433CA6 /* Testing Documents */,
 				9DBD20072140D1300047905E /* Astronomy */,
 				933CA22623F4EFBB00433CA6 /* AstronomyTests */,
 				9DBD20062140D1300047905E /* Products */,
@@ -299,11 +313,13 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				933CA23523F5057400433CA6 /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
 				9DBD202A2140D35B0047905E /* MarsRoverClient.swift in Sources */,
 				9DBD20232140D30F0047905E /* SolDescription.swift in Sources */,
+				933CA23323F5026000433CA6 /* URLSession + NetworkDataLoader.swift in Sources */,
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
 				9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,
