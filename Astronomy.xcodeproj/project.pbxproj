@@ -23,9 +23,11 @@
 		9DBD20382140E46E0047905E /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20362140E46E0047905E /* ConcurrentOperation.swift */; };
 		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
-		B9870BF624041A270020168A /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870BF524041A270020168A /* AstronomyTests.swift */; };
 		B9870BFE24041AD90020168A /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870BFD24041AD90020168A /* NetworkDataLoader.swift */; };
 		B9870C0024041B6B0020168A /* URLSession+NetworkLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870BFF24041B6B0020168A /* URLSession+NetworkLoader.swift */; };
+		B9870C1D240489B00020168A /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870C1C240489B00020168A /* MarsRoverClientTests.swift */; };
+		B9870C1F24048A2F0020168A /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870C1E24048A2F0020168A /* TestJSON.swift */; };
+		B9870C2224048ABA0020168A /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870C2124048ABA0020168A /* MockDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +60,12 @@
 		9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPhotoOperation.swift; sourceTree = "<group>"; };
 		9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		B9870BF324041A270020168A /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9870BF524041A270020168A /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		B9870BF724041A270020168A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9870BFD24041AD90020168A /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		B9870BFF24041B6B0020168A /* URLSession+NetworkLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkLoader.swift"; sourceTree = "<group>"; };
+		B9870C1C240489B00020168A /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
+		B9870C1E24048A2F0020168A /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
+		B9870C2124048ABA0020168A /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20082140D1300047905E /* AppDelegate.swift */,
+				B9870C2024048AA00020168A /* Helpers */,
 				9DBD20272140D31B0047905E /* Model */,
 				9DBD20282140D31F0047905E /* Views */,
 				9DBD20262140D3130047905E /* View Controllers */,
@@ -132,8 +137,6 @@
 				9DBD20222140D30F0047905E /* MarsRover.swift */,
 				9DBD20202140D30F0047905E /* SolDescription.swift */,
 				9DBD202E2140D7720047905E /* Camera.swift */,
-				B9870BFD24041AD90020168A /* NetworkDataLoader.swift */,
-				B9870BFF24041B6B0020168A /* URLSession+NetworkLoader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,10 +188,21 @@
 		B9870BF424041A270020168A /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
-				B9870BF524041A270020168A /* AstronomyTests.swift */,
+				B9870C1E24048A2F0020168A /* TestJSON.swift */,
 				B9870BF724041A270020168A /* Info.plist */,
+				B9870C1C240489B00020168A /* MarsRoverClientTests.swift */,
+				B9870C2124048ABA0020168A /* MockDataLoader.swift */,
 			);
 			path = AstronomyTests;
+			sourceTree = "<group>";
+		};
+		B9870C2024048AA00020168A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B9870BFD24041AD90020168A /* NetworkDataLoader.swift */,
+				B9870BFF24041B6B0020168A /* URLSession+NetworkLoader.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +258,7 @@
 					};
 					B9870BF224041A270020168A = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 						TestTargetID = 9DBD20042140D1300047905E;
 					};
 				};
@@ -314,7 +329,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9870BF624041A270020168A /* AstronomyTests.swift in Sources */,
+				B9870C1D240489B00020168A /* MarsRoverClientTests.swift in Sources */,
+				B9870C1F24048A2F0020168A /* TestJSON.swift in Sources */,
+				B9870C2224048ABA0020168A /* MockDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34P4RF23ET;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
@@ -507,6 +525,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hazystudios.AstronomyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astronomy.app/Astronomy";
@@ -517,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34P4RF23ET;
 				INFOPLIST_FILE = AstronomyTests/Info.plist;
