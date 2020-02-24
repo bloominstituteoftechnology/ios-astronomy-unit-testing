@@ -8,7 +8,23 @@
 
 import Foundation
 
+/*
+Add an extension to URLSession to add conformance to NetworkDataLoader. Implement both loadData() variants.
+In MarsRoverClient, add a constant property called networkLoader of type NetworkDataLoader.
+Add an initializer to MarsRoverClient that takes a NetworkDataLoader object. Give the initializer's argument a default value of URLSession.shared. This way, MarsRoverClient will continue to function as always in existing code, but test code can provide (inject) a different network loader.
+Update all MarsRoverClient methods to use the networkLoader property instead of obtaining URLSession.shared directly. If you're using the starter code, only one method, fetch<T>() needs to be changed.
+Build and run the app and verify that it still works as it did before.
+*/
+
 class MarsRoverClient {
+    
+    var error: Error? // NEW
+    let networkLoader: NetworkDataLoader // NEW
+    
+    // NEW
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
     
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
@@ -16,8 +32,9 @@ class MarsRoverClient {
         
         let url = self.url(forInfoForRover: name)
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
-
-            guard let rover = dictionary?["photoManifest"] else {
+            
+            // Used to have ["photoManifest"]
+            guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
                 return
             }
@@ -42,10 +59,12 @@ class MarsRoverClient {
     
     // MARK: - Private
     
-    private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
-                           completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+    // private func fetch<T: Codable>(from url: URL, using session: URLSession = URLSession.shared, completion: @escaping (T?, Error?) -> Void) // OLD declaration for fetch<T>
+    
+    /// NEW. Updated to use networkLoader.loadData(url)
+    private func fetch<T: Codable>(from url: URL, using session: URLSession = URLSession.shared, completion: @escaping (T?, Error?) -> Void) {
+        // networkLoader.loadData  from: url   response
+        networkLoader.loadData(from: url) { (data, error) in
             if let error = error {
                 completion(nil, error)
                 return
@@ -62,8 +81,9 @@ class MarsRoverClient {
                 completion(decodedObject, nil)
             } catch {
                 completion(nil, error)
+                self.error = error // NEW
             }
-        }.resume()
+        }//.resume()
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
