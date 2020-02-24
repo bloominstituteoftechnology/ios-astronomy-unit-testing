@@ -61,7 +61,7 @@ class MarsRoverClient {
     
     // private func fetch<T: Codable>(from url: URL, using session: URLSession = URLSession.shared, completion: @escaping (T?, Error?) -> Void) // OLD declaration for fetch<T>
     
-    /// NEW. Updated to use networkLoader.loadData(url)
+    /// NEW. Updated to use networkLoader.loadData(url). DOES NOT WORK WITH REAL SESSION/DATA
     private func fetch<T: Codable>(from url: URL, using session: URLSession = URLSession.shared, completion: @escaping (T?, Error?) -> Void) {
         // networkLoader.loadData  from: url   response
         networkLoader.loadData(from: url) { (data, error) in
