@@ -11,20 +11,23 @@ import XCTest
 
 /*
 
- In your tests, create a MockLoader instance with appropriate data or an error (depending on the test), and pass it into the initializer for MarsRoverClient.
- In the completion closure passed to the client being tested, use assertions to ensure that the parameters passed to the completion closure behave as expected.
- Use expectations to ensure that results from the (asynchronously called) closure passed to MarsRoverClient's fetch methods are reported.
+ 6. In your tests, create a MockLoader instance with appropriate data or an error (depending on the test), and pass it into the initializer for MarsRoverClient.
+ 7. In the completion closure passed to the client being tested, use assertions to ensure that the parameters passed to the completion closure behave as expected.
+ 8. Use expectations to ensure that results from the (asynchronously called) closure passed to MarsRoverClient's fetch methods are reported.
 
  */
 
 class MarsRoverClientTests: XCTestCase {
     
-    private var mock: MockDataLoader {
-        return MockDataLoader()
-    }
+//    private var mock: MockDataLoader {
+//        return MockDataLoader()
+//    }
     
     func testFetchMarsRover() {
         let mock = MockDataLoader()
+        mock.data = validRoverJSON
+        
+        
         // change to use self.mock later?
     }
     

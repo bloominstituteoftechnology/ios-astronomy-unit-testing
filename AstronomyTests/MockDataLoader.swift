@@ -10,7 +10,7 @@ import Foundation
 @testable import Astronomy
 
 // Create a MockLoader struct that conforms to the NetworkDataLoader protocol.
-struct MockDataLoader: NetworkDataLoader {
+class MockDataLoader: NetworkDataLoader {
     
     // Add properties for data and error so that the struct can be initialized with explicitly known data and/or an error.
     var data: Data?
