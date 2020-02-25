@@ -17,12 +17,10 @@ class MarsRoverClient {
     }
     
     func fetchMarsRover(named name: String,
-                        using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
         fetch(from: url) { (dictionary: [String : MarsRover]?, error: Error?) in
-
             guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
                 return
