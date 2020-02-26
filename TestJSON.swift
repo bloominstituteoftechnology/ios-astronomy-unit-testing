@@ -907,4 +907,4 @@ let validSol1JSON = """
     }
   ]
 }
-""".data(using: .utf8)
+""".data(using: .utf8)!
