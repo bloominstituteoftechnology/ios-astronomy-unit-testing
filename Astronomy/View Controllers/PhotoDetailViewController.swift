@@ -11,10 +11,34 @@ import Photos
 
 class PhotoDetailViewController: UIViewController {
     
+    // MARK: - Outlets
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var cameraLabel: UILabel!
+    
+    // MARK: - Properties
+    
+    var photo: MarsPhotoReference? {
+        didSet {
+            updateViews()
+        }
+    }
+    lazy var dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        return df
+    }()
+    
+    // MARK: - Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
     }
+    
+    // MARK: - Actions
     
     @IBAction func save(_ sender: Any) {
         guard let image = imageView.image else { return }
@@ -30,6 +54,8 @@ class PhotoDetailViewController: UIViewController {
             }
         })
     }
+    
+    // MARK: - Alerts
     
     func presentSuccessfulSaveAlert() {
         let alert = UIAlertController(title: "Photo Saved!", message: "The photo has been saved to your Photo Library!", preferredStyle: .alert)
@@ -54,24 +80,4 @@ class PhotoDetailViewController: UIViewController {
             NSLog("Error setting up views on detail view controller: \(error)")
         }
     }
-    
-    // MARK: - Properties
-    
-    var photo: MarsPhotoReference? {
-        didSet {
-            updateViews()
-        }
-    }
-    
-    lazy var dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateStyle = .short
-        df.timeStyle = .short
-        return df
-    }()
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var cameraLabel: UILabel!
-    
 }
