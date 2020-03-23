@@ -75,12 +75,44 @@ class MarsRoverClientTests : XCTestCase {
             XCTAssertNotNil(photos)
             XCTAssertNil(error)
             XCTAssertEqual(marPhotos.count, 16)
-            XCTAssertEqual(marPhotos[0].id, 4477)
+            XCTAssertEqual(marPhotos[1].id, 509233)
             expectation.fulfill()
             
         }
        
          wait(for: [expectation], timeout: 5)
     }
+    
+    
+    
+    func testNoResultData() {
+        let mockDataLoader = MockLoader(data: noResultsData, error: nil)
+        
+        let controller = MarsRoverClient(networkLoader: mockDataLoader)
+        
+        let expectation = self.expectation(description: "Wait for results")
+        
+        controller.fetchMarsRover(named: "asdsadasd") { (mar, error) in
+            expectation.fulfill()
+             XCTAssertNil(mar)
+            XCTAssertNotNil(error)
+        }
+        
+        wait(for: [expectation], timeout: 5)
+       
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
  
 }
