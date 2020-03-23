@@ -8,6 +8,12 @@
 
 import Foundation
 
+let noResultsData = """
+{
+"photos": [ ]
+}
+""".data(using: .utf8)!
+
 let validRoverJSON = """
 {
     "photo_manifest": {
