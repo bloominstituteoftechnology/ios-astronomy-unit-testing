@@ -7,11 +7,21 @@
 //
 
 import XCTest
+@testable import Astronomy
 
 class MarsRoverClientTests: XCTestCase {
-
-    func testForSomeResults() {
+    
+    func testForRoverResults() {
+        let controller = MarsRoverClient()
         
+        let expectation = self.expectation(description: "Wait for results")
+        
+        controller.fetchMarsRover(named: "Curiosity") {data,error in
+            XCTAssertNotNil(data)
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
     
     func testSpeedRequest() {
@@ -37,5 +47,5 @@ class MarsRoverClientTests: XCTestCase {
     func testFetchPhotos() {
         
     }
-
+    
 }

@@ -11,6 +11,7 @@ import Foundation
 class MarsRoverClient {
     
     var networkDataloader: NetworkDataLoader
+
     
     init(dataLoader: NetworkDataLoader = URLSession.shared) {
         self.networkDataloader = dataLoader
