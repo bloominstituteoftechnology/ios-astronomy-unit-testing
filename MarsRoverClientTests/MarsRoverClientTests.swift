@@ -12,10 +12,8 @@ import XCTest
 class MarsRoverClientTests: XCTestCase {
     
     func testForRoverResults() {
-//        let mockDataLoader = MockDataLoader(data: validSol1JSON, error: nil)
-//        let controller = MarsRoverClient(dataLoader: mockDataLoader)
-        
-        let controller = MarsRoverClient()
+        let mockDataLoader = MockDataLoader(data: validRoverJSON, error: nil)
+        let controller = MarsRoverClient(dataLoader: mockDataLoader)
         
         let expectation = self.expectation(description: "Wait for results")
         
@@ -65,7 +63,21 @@ class MarsRoverClientTests: XCTestCase {
         }
     }
     
-    func testValidData() {
+    func testValidRoverData() {
+        let mockDataLoader = MockDataLoader(data: validRoverJSON, error: nil)
+        let controller = MarsRoverClient(dataLoader: mockDataLoader)
+        
+        let expectation = self.expectation(description: "Wait for results")
+        
+        controller.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            XCTAssertNotNil(rover)
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation],
+             timeout: 5)
+        
         
     }
     
@@ -74,14 +86,6 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     func testNoResultsData() {
-        
-    }
-    
-    func testMarsRover() {
-        
-    }
-    
-    func testFetchPhotos() {
         
     }
     
