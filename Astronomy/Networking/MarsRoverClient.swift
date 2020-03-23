@@ -10,6 +10,19 @@ import Foundation
 
 class MarsRoverClient {
     
+    //MARK:- Properties:-
+    
+    private let networkLoader : NetworkDataLoader
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
+    
+    
+    private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
+    private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
+    
+    
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -45,29 +58,27 @@ class MarsRoverClient {
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+        networkLoader.loadData(from: url) { (data, error) in
             if let error = error {
-                completion(nil, error)
+                completion(nil,error)
                 return
             }
-            
             guard let data = data else {
-                completion(nil, NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
+                completion(nil,NSError(domain: "com.LambdaSchool.Astronomy.ErrorDomain", code: -1, userInfo: nil))
                 return
             }
-            
             do {
                 let jsonDecoder = MarsPhotoReference.jsonDecoder
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
                 completion(decodedObject, nil)
             } catch {
+                NSLog("Error decoding JSON: \(error.localizedDescription)")
                 completion(nil, error)
             }
-        }.resume()
+        }
     }
     
-    private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
-    private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
+   
 
     private func url(forInfoForRover roverName: String) -> URL {
         var url = baseURL

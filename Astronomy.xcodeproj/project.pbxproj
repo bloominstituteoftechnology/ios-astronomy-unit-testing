@@ -24,6 +24,7 @@
 		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
 		B6E85A6B2429424E009C513E /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E85A6A2429424E009C513E /* AstronomyTests.swift */; };
+		B6E85A7324294297009C513E /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E85A7224294297009C513E /* NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		B6E85A682429424E009C513E /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E85A6A2429424E009C513E /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		B6E85A6C2429424E009C513E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6E85A7224294297009C513E /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				9DBD20262140D3130047905E /* View Controllers */,
 				9DBD202B2140D3600047905E /* Networking */,
 				9DBD20352140E45D0047905E /* Operations */,
+				B6E85A74242942B6009C513E /* Helpers */,
 				9DBD20302140DDCF0047905E /* Utilities */,
 				9DFE494D2145D3800009922B /* Resources */,
 			);
@@ -183,6 +186,14 @@
 				B6E85A6C2429424E009C513E /* Info.plist */,
 			);
 			path = AstronomyTests;
+			sourceTree = "<group>";
+		};
+		B6E85A74242942B6009C513E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B6E85A7224294297009C513E /* NetworkDataLoader.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +303,7 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				B6E85A7324294297009C513E /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
