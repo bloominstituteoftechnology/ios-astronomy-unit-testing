@@ -29,5 +29,13 @@ class MarsRoverClientTests: XCTestCase {
     func testNoResultsData() {
         
     }
+    
+    func testMarsRover() {
+        
+    }
+    
+    func testFetchPhotos() {
+        
+    }
 
 }
