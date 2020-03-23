@@ -26,6 +26,8 @@
 		D221152A24296F6D0056F195 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221152924296F6D0056F195 /* MarsRoverClientTests.swift */; };
 		D221153224296FDB0056F195 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D221153124296FDB0056F195 /* NetworkDataLoader.swift */; };
 		D2211534242970220056F195 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2211533242970220056F195 /* URLSession+NetworkDataLoader.swift */; };
+		D22115362429763C0056F195 /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22115352429763C0056F195 /* MockLoader.swift */; };
+		D2211538242978AC0056F195 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2211537242978AC0056F195 /* TestJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		D221152B24296F6D0056F195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D221153124296FDB0056F195 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		D2211533242970220056F195 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		D22115352429763C0056F195 /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
+		D2211537242978AC0056F195 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +191,8 @@
 			children = (
 				D221152924296F6D0056F195 /* MarsRoverClientTests.swift */,
 				D221152B24296F6D0056F195 /* Info.plist */,
+				D22115352429763C0056F195 /* MockLoader.swift */,
+				D2211537242978AC0056F195 /* TestJSON.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -314,7 +320,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22115362429763C0056F195 /* MockLoader.swift in Sources */,
 				D221152A24296F6D0056F195 /* MarsRoverClientTests.swift in Sources */,
+				D2211538242978AC0056F195 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
