@@ -28,20 +28,6 @@ class MockNetworkSession: NetworkSession {
 }
 
 class MockNetworkSessionDataTask: NetworkSessionDataTask {
-    func resume() {
-        timer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false, block: { _ in
-            DispatchQueue.global().async {
-                self.completionHandler?(self.data, self.response, self.error)
-            }
-        })
-    }
-    
-    func cancel() {
-        timer?.invalidate()
-    }
-    
-    private var timer: Timer?
-    
     let data: Data?
     let response: URLResponse?
     let error: Error?
@@ -57,4 +43,18 @@ class MockNetworkSessionDataTask: NetworkSessionDataTask {
         
         self.delay = delay
     }
+    
+    func resume() {
+        timer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false, block: { _ in
+            DispatchQueue.global().async {
+                self.completionHandler?(self.data, self.response, self.error)
+            }
+        })
+    }
+    
+    func cancel() {
+        timer?.invalidate()
+    }
+    
+    private var timer: Timer?
 }
