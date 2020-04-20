@@ -53,6 +53,12 @@ enum MockJSON {
       }
     }
     """.data(using: .utf8)!
+    
+    static let badRoverNameData = """
+    {
+    "errors": "Invalid Rover Name"
+    }
+    """
 
     static let validPhotoData = """
     {
@@ -266,6 +272,12 @@ enum MockJSON {
           }
         }
       ]
+    }
+    """.data(using: .utf8)!
+    
+    static let noPhotoData = """
+    {
+      "photos": []
     }
     """.data(using: .utf8)!
 
