@@ -56,7 +56,7 @@ class MarsRoverClientTests: XCTestCase {
         
     }
     
-    // Does not work below
+    // Does not work below, so I just combined both tests at once
     
     func testSolData() {
         
