@@ -9,6 +9,6 @@
 import Foundation
 
 protocol NetworkDataLoader {
-    func loadData(from request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void)
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void)
 }
