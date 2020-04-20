@@ -28,7 +28,17 @@ class MarsRoverClientTests: XCTestCase {
     // MARK: - Tests
 
     func testFetchMarsRover() {
+        let exp = self.expectation(description: "Wait for data task")
         
+        let mockDataTask = MockNetworkSessionDataTask(data: MockJSON.validRoverData, response: nil, error: nil, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        marsRoverClient.fetchMarsRover(named: "curiosity", using: mockSession) { (rover, error) in
+            XCTAssertEqual(rover!.solDescriptions.count, 3)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
     }
     
     func testFetchBadNameMarsRover() {
