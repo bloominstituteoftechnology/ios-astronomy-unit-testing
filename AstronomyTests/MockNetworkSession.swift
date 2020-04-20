@@ -10,6 +10,8 @@ import Foundation
 @testable import Astronomy
 
 class MockNetworkSession: NetworkSession {
+    static let transportError = NSError(domain: "Transport Error", code: 0)
+    
     var dataTask: MockNetworkSessionDataTask!
     
     init(dataTask: MockNetworkSessionDataTask) {
