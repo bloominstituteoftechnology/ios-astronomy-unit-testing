@@ -32,7 +32,7 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     // MARK: - Fetch Mars Rover Tests
-
+    
     func testFetchMarsRover() {
         let exp = self.expectation(description: "Wait for data task")
         
@@ -65,17 +65,34 @@ class MarsRoverClientTests: XCTestCase {
     
     func testFetchMarsRoverInvalidData() {
         let exp = self.expectation(description: "Wait for data task")
-           
-           let mockDataTask = MockNetworkSessionDataTask(data: MockJSON.invalidData, response: nil, error: nil, delay: 0.005)
-           let mockSession = MockNetworkSession(dataTask: mockDataTask)
-           
-           marsRoverClient.fetchMarsRover(named: "curiosity", using: mockSession) { (rover, error) in
-               XCTAssertNil(rover)
-               XCTAssertNotNil(error)
-               exp.fulfill()
-           }
-           
-           wait(for: [exp], timeout: 5)
+        
+        let mockDataTask = MockNetworkSessionDataTask(data: MockJSON.invalidData, response: nil, error: nil, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        marsRoverClient.fetchMarsRover(named: "curiosity", using: mockSession) { (rover, error) in
+            XCTAssertNil(rover)
+            XCTAssertNotNil(error)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
+    }
+    
+    func testFetchMarsRoverNoData() {
+        let exp = self.expectation(description: "Wait for data task")
+        
+        let mockDataTask = MockNetworkSessionDataTask(data: nil, response: nil, error: nil, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        marsRoverClient.fetchMarsRover(named: "curiosity", using: mockSession) { (rover, error) in
+            let nsError = error! as NSError
+            XCTAssertNil(rover)
+            XCTAssertEqual(nsError.domain, "com.LambdaSchool.Astronomy.ErrorDomain")
+            XCTAssertEqual(nsError.code, -1)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
     }
     
     func testFetchMarsRoverTransportError() {
@@ -87,6 +104,7 @@ class MarsRoverClientTests: XCTestCase {
         marsRoverClient.fetchMarsRover(named: "curiosity", using: mockSession) { (rover, error) in
             let nsError = error! as NSError
             XCTAssertEqual(nsError.domain, "Transport Error")
+            XCTAssertEqual(nsError.code, 0)
             XCTAssertNil(rover)
             exp.fulfill()
         }
@@ -150,6 +168,24 @@ class MarsRoverClientTests: XCTestCase {
         marsRoverClient.fetchPhotos(from: mockRover, onSol: 63, using: mockSession) { (photoReferences, error) in
             let nsError = error! as NSError
             XCTAssertEqual(nsError.domain, "Transport Error")
+            XCTAssertEqual(nsError.code, 0)
+            XCTAssertNil(photoReferences)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
+    }
+    
+    func testFetchPhotosNoData() {
+        let exp = self.expectation(description: "Wait for data task")
+        
+        let mockDataTask = MockNetworkSessionDataTask(data: nil, response: nil, error: nil, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        marsRoverClient.fetchPhotos(from: mockRover, onSol: 63, using: mockSession) { (photoReferences, error) in
+            let nsError = error! as NSError
+            XCTAssertEqual(nsError.domain, "com.LambdaSchool.Astronomy.ErrorDomain")
+            XCTAssertEqual(nsError.code, -1)
             XCTAssertNil(photoReferences)
             exp.fulfill()
         }
