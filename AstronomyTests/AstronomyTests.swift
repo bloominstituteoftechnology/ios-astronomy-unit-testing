@@ -68,4 +68,32 @@ class AstronomyTests: XCTestCase {
         XCTAssertNil(error)
     }
 
+    func testFetchRover() {
+        
+        let expectation = self.expectation(description: "wait")
+            MarsRoverClient().fetchMarsRover(named: "Curiosity") {rover,error in
+                self.rover = rover
+                self.error = error
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 10)
+            XCTAssertNil(error)
+            XCTAssertEqual(rover?.name, "Curiosity")
+        }
+    
+    func testFetchImages() {
+        let expectation = self.expectation(description: "wait")
+        
+        testFetchRover()
+        
+        var images: [MarsPhotoReference]?
+        MarsRoverClient().fetchPhotos(from: rover!, onSol: rover!.solDescriptions[0].sol) { image, error in
+            images = image
+            self.error = error
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 30)
+        XCTAssertNotNil(images)
+    }
+    
 }
