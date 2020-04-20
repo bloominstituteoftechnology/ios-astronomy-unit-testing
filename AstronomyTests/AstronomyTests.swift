@@ -10,24 +10,17 @@ import XCTest
 
 class AstronomyTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+    /*
+     
+     1. Test that Mars Rover URL is created correctly
+     2. Test that Mars Rover URLRequest is created correctly
+     3. Test Decoding when JSON received is valid
+     4. Test decoding when JSON received is invalid
+     5. Test that Mars Rover data is correctly saved
+     6. Test that photo URL is created correctly
+     7. Test that photo URLRequest is created correctly
+     8. Test that photo is correctly saved to Cache
+     
+     */
 
 }
