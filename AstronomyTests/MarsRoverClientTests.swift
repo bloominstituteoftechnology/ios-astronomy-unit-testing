@@ -19,6 +19,7 @@ class MarsRoverClientTests: XCTestCase {
         let roverDict = try! jsonDecoder.decode([String : MarsRover].self, from: MockJSON.validRoverData)
         return roverDict["photo_manifest"]!
     }
+    let transportError = NSError(domain: "Transport Error", code: 0)
     
     // MARK: - Setup/Teardown
     
@@ -116,6 +117,21 @@ class MarsRoverClientTests: XCTestCase {
         marsRoverClient.fetchPhotos(from: mockRover, onSol: 63, using: mockSession) { (photoReferences, error) in
             XCTAssertNil(photoReferences)
             XCTAssertNotNil(error)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
+    }
+    
+    func testFetchPhotosTransportError() {
+        let exp = self.expectation(description: "Wait for data task")
+        
+        let mockDataTask = MockNetworkSessionDataTask(data: nil, response: nil, error: transportError, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        marsRoverClient.fetchPhotos(from: mockRover, onSol: 63, using: mockSession) { (photoReferences, error) in
+            let nsError = error! as NSError
+            XCTAssertEqual(nsError.domain, "Transport Error")
             exp.fulfill()
         }
         
