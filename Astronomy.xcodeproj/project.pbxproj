@@ -27,6 +27,7 @@
 		C4C157BC244E336800D35435 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C157BB244E336800D35435 /* URLSession+NetworkDataLoader.swift */; };
 		C4C157C4244E3CB900D35435 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C157C3244E3CB900D35435 /* MarsRoverClientTests.swift */; };
 		C4C157CC244E3D3C00D35435 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C157CB244E3D3C00D35435 /* MockDataLoader.swift */; };
+		C4C157CE244E3FAF00D35435 /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C157CD244E3FAF00D35435 /* MockLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		C4C157C3244E3CB900D35435 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
 		C4C157C5244E3CB900D35435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4C157CB244E3D3C00D35435 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		C4C157CD244E3FAF00D35435 /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 			children = (
 				C4C157C3244E3CB900D35435 /* MarsRoverClientTests.swift */,
 				C4C157CB244E3D3C00D35435 /* MockDataLoader.swift */,
+				C4C157CD244E3FAF00D35435 /* MockLoader.swift */,
 				C4C157C5244E3CB900D35435 /* Info.plist */,
 			);
 			path = MarsRoverClientTests;
@@ -327,6 +330,7 @@
 			files = (
 				C4C157CC244E3D3C00D35435 /* MockDataLoader.swift in Sources */,
 				C4C157C4244E3CB900D35435 /* MarsRoverClientTests.swift in Sources */,
+				C4C157CE244E3FAF00D35435 /* MockLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
