@@ -63,4 +63,23 @@ class AstronomyTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10)
     }
+    
+    func testValidRoverJSON() {
+        let expectation = self.expectation(description: "Testing for valid JSON")
+        let dataLoader = MockLoader(data: validRoverJSON, error: nil)
+        let roverClient = MarsRoverClient(dataLoader: dataLoader)
+        
+        roverClient.fetchMarsRover(named: "Curiosity") { rover, error in
+            XCTAssertNoThrow(rover)
+            
+            if let rover = rover {
+                XCTAssertEqual(rover.numberOfPhotos, 4156)
+                XCTAssertTrue(rover.status == .active)
+                XCTAssertGreaterThan(rover.maxSol, 9)
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5)
+    }
 }
