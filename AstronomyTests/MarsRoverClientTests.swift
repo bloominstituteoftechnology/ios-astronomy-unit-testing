@@ -14,6 +14,11 @@ class MarsRoverClientTests: XCTestCase {
     // MARK: - Properties
     
     var marsRoverClient: MarsRoverClient!
+    var mockRover: MarsRover {
+        let jsonDecoder = MarsPhotoReference.jsonDecoder
+        let roverDict = try! jsonDecoder.decode([String : MarsRover].self, from: MockJSON.validRoverData)
+        return roverDict["photo_manifest"]!
+    }
     
     // MARK: - Setup/Teardown
     
@@ -71,8 +76,18 @@ class MarsRoverClientTests: XCTestCase {
            wait(for: [exp], timeout: 5)
     }
     
-    func testFetchPhotos() {
+    func testFetchPhotos() throws {
+        let exp = self.expectation(description: "Wait for data task")
         
+        let mockDataTask = MockNetworkSessionDataTask(data: MockJSON.validPhotoData, response: nil, error: nil, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        marsRoverClient.fetchPhotos(from: mockRover, onSol: 63, using: mockSession) { (photoReferences, error) in
+            XCTAssertEqual(photoReferences!.count, 4)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
     }
     
     func testFetchPhotosNoResults() {
