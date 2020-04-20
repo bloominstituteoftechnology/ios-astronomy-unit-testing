@@ -31,7 +31,7 @@ class MarsRoverClientTests: XCTestCase {
         marsRoverClient = nil
     }
     
-    // MARK: - Tests
+    // MARK: - Fetch Mars Rover Tests
 
     func testFetchMarsRover() {
         let exp = self.expectation(description: "Wait for data task")
@@ -77,6 +77,24 @@ class MarsRoverClientTests: XCTestCase {
            
            wait(for: [exp], timeout: 5)
     }
+    
+    func testFetchMarsRoverTransportError() {
+        let exp = self.expectation(description: "Wait for data task")
+        
+        let mockDataTask = MockNetworkSessionDataTask(data: nil, response: nil, error: transportError, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        marsRoverClient.fetchMarsRover(named: "curiosity", using: mockSession) { (rover, error) in
+            let nsError = error! as NSError
+            XCTAssertEqual(nsError.domain, "Transport Error")
+            XCTAssertNil(rover)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
+    }
+    
+    // MARK: - Fetch Photos Tests
     
     func testFetchPhotos() throws {
         let exp = self.expectation(description: "Wait for data task")
@@ -132,6 +150,7 @@ class MarsRoverClientTests: XCTestCase {
         marsRoverClient.fetchPhotos(from: mockRover, onSol: 63, using: mockSession) { (photoReferences, error) in
             let nsError = error! as NSError
             XCTAssertEqual(nsError.domain, "Transport Error")
+            XCTAssertNil(photoReferences)
             exp.fulfill()
         }
         
