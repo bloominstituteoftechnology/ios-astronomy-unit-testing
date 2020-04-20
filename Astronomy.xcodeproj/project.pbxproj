@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92F440BD244E563700878B81 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F440BC244E563700878B81 /* NetworkDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		92F440BC244E563700878B81 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,12 +80,12 @@
 			children = (
 				9DBD20082140D1300047905E /* AppDelegate.swift */,
 				9DBD20272140D31B0047905E /* Model */,
-				9DBD20282140D31F0047905E /* Views */,
-				9DBD20262140D3130047905E /* View Controllers */,
 				9DBD202B2140D3600047905E /* Networking */,
 				9DBD20352140E45D0047905E /* Operations */,
-				9DBD20302140DDCF0047905E /* Utilities */,
 				9DFE494D2145D3800009922B /* Resources */,
+				9DBD20302140DDCF0047905E /* Utilities */,
+				9DBD20262140D3130047905E /* View Controllers */,
+				9DBD20282140D31F0047905E /* Views */,
 			);
 			path = Astronomy;
 			sourceTree = "<group>";
@@ -100,11 +102,12 @@
 		9DBD20272140D31B0047905E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9DBD20212140D30F0047905E /* MarsPhoto.swift */,
 				9DBD202C2140D38C0047905E /* Cache.swift */,
-				9DBD20222140D30F0047905E /* MarsRover.swift */,
-				9DBD20202140D30F0047905E /* SolDescription.swift */,
 				9DBD202E2140D7720047905E /* Camera.swift */,
+				9DBD20212140D30F0047905E /* MarsPhoto.swift */,
+				9DBD20222140D30F0047905E /* MarsRover.swift */,
+				92F440BC244E563700878B81 /* NetworkDataLoader.swift */,
+				9DBD20202140D30F0047905E /* SolDescription.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				92F440BD244E563700878B81 /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
