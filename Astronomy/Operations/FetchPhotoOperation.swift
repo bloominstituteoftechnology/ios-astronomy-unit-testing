@@ -10,7 +10,7 @@ import UIKit
 
 class FetchPhotoOperation: ConcurrentOperation {
     
-    init(photoReference: MarsPhotoReference, session: URLSession = URLSession.shared) {
+    init(photoReference: MarsPhotoReference, session: NetworkSession = URLSession.shared) {
         self.photoReference = photoReference
         self.session = session
         super.init()
@@ -45,7 +45,7 @@ class FetchPhotoOperation: ConcurrentOperation {
     
     let photoReference: MarsPhotoReference
     
-    private let session: URLSession
+    private let session: NetworkSession
     
     private(set) var image: UIImage?
     
