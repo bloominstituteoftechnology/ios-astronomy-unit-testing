@@ -91,7 +91,18 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     func testFetchPhotosNoResults() {
+        let exp = self.expectation(description: "Wait for data task")
         
+        let mockDataTask = MockNetworkSessionDataTask(data: MockJSON.noPhotoData, response: nil, error: nil, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        marsRoverClient.fetchPhotos(from: mockRover, onSol: 63, using: mockSession) { (photoReferences, error) in
+            XCTAssertEqual(photoReferences!.count, 0)
+            XCTAssertNil(error)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
     }
     
     func testFetchPhotosInvalidData() {
