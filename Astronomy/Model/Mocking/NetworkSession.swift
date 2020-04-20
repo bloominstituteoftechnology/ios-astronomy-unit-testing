@@ -9,7 +9,8 @@
 import Foundation
 
 protocol NetworkSession {
-    func dataTask(with request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> NetworkSessionDataTask
+    func networkDataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> NetworkSessionDataTask
+    func networkDataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> NetworkSessionDataTask
 }
 
 protocol NetworkSessionDataTask {
@@ -18,8 +19,12 @@ protocol NetworkSessionDataTask {
 }
 
 extension URLSession: NetworkSession {
-    func dataTask(with request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> NetworkSessionDataTask {
-        let dataTask: URLSessionDataTask = self.dataTask(with: request, completionHandler: completion)
+    func networkDataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> NetworkSessionDataTask {
+        let dataTask: URLSessionDataTask = self.dataTask(with: request, completionHandler: completionHandler)
+        return dataTask
+    }
+    func networkDataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> NetworkSessionDataTask {
+        let dataTask: URLSessionDataTask = self.dataTask(with: url, completionHandler: completionHandler)
         return dataTask
     }
 }

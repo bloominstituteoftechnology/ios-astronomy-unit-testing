@@ -11,7 +11,7 @@ import Foundation
 class MarsRoverClient {
     
     func fetchMarsRover(named name: String,
-                        using session: URLSession = URLSession.shared,
+                        using session: NetworkSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
@@ -27,7 +27,7 @@ class MarsRoverClient {
     
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
-                     using session: URLSession = URLSession.shared,
+                     using session: NetworkSession = URLSession.shared,
                      completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
         
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
@@ -43,9 +43,9 @@ class MarsRoverClient {
     // MARK: - Private
     
     private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
+                           using session: NetworkSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+        session.networkDataTask(with: url) { (data, response, error) in
             if let error = error {
                 completion(nil, error)
                 return

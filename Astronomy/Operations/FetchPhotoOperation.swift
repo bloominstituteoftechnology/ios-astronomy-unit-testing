@@ -20,7 +20,7 @@ class FetchPhotoOperation: ConcurrentOperation {
         state = .isExecuting
         let url = photoReference.imageURL.usingHTTPS!
         
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = session.networkDataTask(with: url) { (data, response, error) in
             defer { self.state = .isFinished }
             if self.isCancelled { return }
             if let error = error {
@@ -49,5 +49,5 @@ class FetchPhotoOperation: ConcurrentOperation {
     
     private(set) var image: UIImage?
     
-    private var dataTask: URLSessionDataTask?
+    private var dataTask: NetworkSessionDataTask?
 }
