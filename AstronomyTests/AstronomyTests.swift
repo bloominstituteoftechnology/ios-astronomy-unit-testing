@@ -11,19 +11,34 @@ import XCTest
 
 class AstronomyTests: XCTestCase {
 
-    /*
-        - Does decoding work?
-        - Does decoding fail when given bad data?
-        - Does it build the correct URL?
-        - Does it build the correct URLRequest?
-        - Are the search results saved properly?
-        - Is the completion handler called when data is good?
-        - Is the completion handler called when data is bad?
-        - Is the completion handler called when networking fails?
-    */
 
+    func testFetchMarsRover() {
+        let expectation = self.expectation(description: "Wait for results")
+        let mockLoader = MockLoader(data: validRoverJSON, error: nil)
+        let controller = MarsRoverClient(networkLoader: mockLoader)
+        
+        controller.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            
+            XCTAssertNil(error)
+            XCTAssertNotNil(rover)
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10)
+    }
     
-    
+    func testFetchPhotos() {
+        let expectation = self.expectation(description: "Wait for results")
+        let mockLoader = MockLoader(data: validSol1JSON, error: nil)
+        let controller = MarsRoverClient(networkLoader: mockLoader)
+        
+        
+        
+        
+        
+        
+    }
     
     
     
