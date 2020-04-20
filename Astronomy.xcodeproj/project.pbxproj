@@ -28,6 +28,7 @@
 		BBC991B7244E3AEB00CAE1D9 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC991B6244E3AEB00CAE1D9 /* URLSession+NetworkDataLoader.swift */; };
 		BBC991B9244E56A100CAE1D9 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC991B8244E56A100CAE1D9 /* MarsRoverClientTests.swift */; };
 		BBC991BB244E56DD00CAE1D9 /* mockJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC991BA244E56DD00CAE1D9 /* mockJSON.swift */; };
+		BBC991BD244E5A8F00CAE1D9 /* MockDataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC991BC244E5A8F00CAE1D9 /* MockDataLoading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		BBC991B6244E3AEB00CAE1D9 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
 		BBC991B8244E56A100CAE1D9 /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
 		BBC991BA244E56DD00CAE1D9 /* mockJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mockJSON.swift; sourceTree = "<group>"; };
+		BBC991BC244E5A8F00CAE1D9 /* MockDataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoading.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				BB72FA33244E291C00318C84 /* Info.plist */,
 				BBC991B8244E56A100CAE1D9 /* MarsRoverClientTests.swift */,
 				BBC991BA244E56DD00CAE1D9 /* mockJSON.swift */,
+				BBC991BC244E5A8F00CAE1D9 /* MockDataLoading.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			files = (
 				BBC991B9244E56A100CAE1D9 /* MarsRoverClientTests.swift in Sources */,
 				BB72FA32244E291C00318C84 /* AstronomyTests.swift in Sources */,
+				BBC991BD244E5A8F00CAE1D9 /* MockDataLoading.swift in Sources */,
 				BBC991BB244E56DD00CAE1D9 /* mockJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

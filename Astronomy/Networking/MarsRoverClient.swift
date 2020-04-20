@@ -11,7 +11,6 @@ import Foundation
 class MarsRoverClient {
     
     
-    
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
     private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
     let networkLoader: NetworkDataLoader
