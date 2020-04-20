@@ -11,13 +11,21 @@ import XCTest
 
 class MarsRoverClientTests: XCTestCase {
     
-    func testURLForInfoForRover() {
-        
+    // MARK: - Properties
+    
+    var marsRoverClient: MarsRoverClient!
+    
+    // MARK: - Setup/Teardown
+    
+    override func setUp() {
+        marsRoverClient = MarsRoverClient()
     }
     
-    func testURLForPhotosFromRover() {
-        
+    override func tearDown() {
+        marsRoverClient = nil
     }
+    
+    // MARK: - Tests
 
     func testFetchMarsRover() {
         
