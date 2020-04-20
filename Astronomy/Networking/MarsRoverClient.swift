@@ -75,6 +75,7 @@ class MarsRoverClient {
         url.appendPathComponent(roverName)
         let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: true)!
         urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        print("Rover URL: \(urlComponents.url!)")
         return urlComponents.url!
     }
     
@@ -86,6 +87,7 @@ class MarsRoverClient {
         let urlComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: true)!
         urlComponents.queryItems = [URLQueryItem(name: "sol", value: String(sol)),
                                     URLQueryItem(name: "api_key", value: apiKey)]
+        print("Photos URL: \(urlComponents.url!)")
         return urlComponents.url!
     }
 }

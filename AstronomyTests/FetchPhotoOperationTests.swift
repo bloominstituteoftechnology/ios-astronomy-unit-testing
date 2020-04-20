@@ -1,5 +1,5 @@
 //
-//  AstronomyTests.swift
+//  FetchPhotoOperationTests.swift
 //  AstronomyTests
 //
 //  Created by Shawn Gee on 4/20/20.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class AstronomyTests: XCTestCase {
+class FetchPhotoOperationTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,7 +25,7 @@ class AstronomyTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        measure {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
