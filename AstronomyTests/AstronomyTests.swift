@@ -12,7 +12,7 @@ import XCTest
 class AstronomyTests: XCTestCase {
     
     func testFetchingMarsRover() {
-        let expectation = self.expectation(description: "Waiting for Mars Rover Results...")
+        let expectation = self.expectation(description: "Waiting for Mars Rover results...")
         let roverClient = MarsRoverClient()
         
         roverClient.fetchMarsRover(named: "Curiosity") { data, error in
@@ -36,5 +36,31 @@ class AstronomyTests: XCTestCase {
         }
         
         wait(for: [expectation], timeout: 5)
+    }
+    
+    func testPhotosReceivedFromFetch() {
+        let expectation = self.expectation(description: "Waiting for Mars Rover photos...")
+        let roverClient = MarsRoverClient()
+        
+        let rover = MarsRover(name: "Curiosity",
+                              launchDate: Date(),
+                              landingDate: Date(),
+                              status: .active,
+                              maxSol: 10,
+                              maxDate: Date(),
+                              numberOfPhotos: 4156,
+                              solDescriptions: [SolDescription(sol: 3, totalPhotos: 338, cameras: ["MAST"])])
+        
+        roverClient.fetchPhotos(from: rover, onSol: 3) { data, error in
+            guard let data = data else {
+                XCTFail("Failed to get photos for Curiosity")
+                return
+            }
+            XCTAssertNotNil(data)
+            XCTAssertEqual(data.count, 338)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10)
     }
 }
