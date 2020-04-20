@@ -10,21 +10,18 @@ import XCTest
 @testable import Astronomy
 /*
 
-Does decoding work? ✅
-Does decoding fail when given bad data?✅
-Does it build the correct URL?
-Does it build the correct URLRequest?
-are the search results saved properly?✅
-Is the completion handler called when data is good?✅
-Is the completion handler called when data is bad?✅
-Is the completion handler called when the network fails?
-
-
+Does decoding work? 🛑
+Does decoding fail when given bad data?🛑
+Does it build the correct URL?🛑
+Does it build the correct URLRequest?🛑
+are the search results saved properly?🛑
+Is the completion handler called when data is good?🛑
+Is the completion handler called when data is bad?🛑
+Is the completion handler called when the network fails?🛑
 create expectation
 create controller
 schedule work
 then wait
-
 */
 
 class AstronomyTests: XCTestCase {
