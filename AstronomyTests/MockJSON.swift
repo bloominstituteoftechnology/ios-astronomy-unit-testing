@@ -58,7 +58,7 @@ enum MockJSON {
     {
     "errors": "Invalid Rover Name"
     }
-    """
+    """.data(using: .utf8)!
 
     static let validPhotoData = """
     {
