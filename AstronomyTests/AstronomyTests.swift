@@ -12,17 +12,6 @@ import XCTest
 class AstronomyTests: XCTestCase {
     
     func testFetchingMarsRover() {
-        let expectation = self.expectation(description: "Waiting for Mars Rover results...")
-        let roverClient = MarsRoverClient()
-        
-        roverClient.fetchMarsRover(named: "Curiosity") { data, error in
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 5)
-    }
-    
-    func testForValidDataDuringFetchRequest() {
         let expectation = self.expectation(description: "Waiting for valid data...")
         let roverClient = MarsRoverClient()
         
@@ -32,6 +21,7 @@ class AstronomyTests: XCTestCase {
                 return
             }
             XCTAssertNotNil(data)
+            XCTAssertGreaterThan(data.numberOfPhotos, 1)
             expectation.fulfill()
         }
         
