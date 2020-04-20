@@ -49,6 +49,7 @@ class MarsRoverClientTests: XCTestCase {
         
         marsRoverClient.fetchMarsRover(named: "cursity", using: mockSession) { (rover, error) in
             XCTAssertNil(rover)
+            XCTAssertNotNil(error)
             exp.fulfill()
         }
         
@@ -56,7 +57,18 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     func testFetchMarsRoverInvalidData() {
-        
+        let exp = self.expectation(description: "Wait for data task")
+           
+           let mockDataTask = MockNetworkSessionDataTask(data: MockJSON.invalidData, response: nil, error: nil, delay: 0.005)
+           let mockSession = MockNetworkSession(dataTask: mockDataTask)
+           
+           marsRoverClient.fetchMarsRover(named: "curiosity", using: mockSession) { (rover, error) in
+               XCTAssertNil(rover)
+               XCTAssertNotNil(error)
+               exp.fulfill()
+           }
+           
+           wait(for: [exp], timeout: 5)
     }
     
     func testFetchPhotos() {
