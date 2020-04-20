@@ -31,7 +31,7 @@ class AstronomyTests: XCTestCase {
     private var rover: MarsRover?
     private var error: Error?
 
-    func testFetchRover() {
+    func testFetchMockRover() {
         let mockDataLoader = MockDataLoader(data: validRoverJSON, error: nil)
         
         let controller = MarsRoverClient(networkLoader: mockDataLoader)
@@ -50,24 +50,21 @@ class AstronomyTests: XCTestCase {
     }
     
     
-    func testFetchImage() {
+    func testFetchMockImage() {
         
         var images: [MarsPhotoReference]?
 
-        let mockDataLoader = MockDataLoader(data: validRoverJSON, error: nil)
+        let mockDataLoader = MockDataLoader(data: validSol1JSON, error: nil)
         let controller = MarsRoverClient(networkLoader: mockDataLoader)
-        let marsRover = try! MarsPhotoReference.jsonDecoder.decode([String: MarsRover].self, from: validRoverJSON)
-        let mars = marsRover["photo_manifest"]!
-        
         let expectation = self.expectation(description: "wait")
-        
-        controller.fetchPhotos(from: mars, onSol: 1) { image, error in
+        let rover = MarsRover(name: "", launchDate: Date(), landingDate: Date(), status: .active, maxSol: 1, maxDate: Date(), numberOfPhotos: 1, solDescriptions: [SolDescription(sol: 1, totalPhotos: 1, cameras: [""])])
+        controller.fetchPhotos(from: rover, onSol: 1) { image, error in
             self.error = error
             images = image
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10)
-        XCTAssertNotNil(images)
+        XCTAssertEqual(images?.count,16)
         XCTAssertNil(error)
     }
 
