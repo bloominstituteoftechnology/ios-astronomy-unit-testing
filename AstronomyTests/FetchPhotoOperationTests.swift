@@ -26,6 +26,8 @@ class FetchPhotoOperationTests: XCTestCase {
         return photos[0]
     }
     
+    let photoQueue = OperationQueue()
+    
     // MARK: - Tests
     
     func testFetchPhoto() {
@@ -33,26 +35,67 @@ class FetchPhotoOperationTests: XCTestCase {
         let mockSession = MockNetworkSession(dataTask: mockDataTask)
         
         let fetchPhotoOperation = FetchPhotoOperation(photoReference: mockPhotoReference, session: mockSession)
-        
-        let photoQueue = OperationQueue()
+
         photoQueue.addOperations([fetchPhotoOperation], waitUntilFinished: true)
-    
+        
         XCTAssertEqual(fetchPhotoOperation.image!.size, CGSize(width: 1024, height: 1024))
     }
     
     func testFetchPhotoInvalidData() {
+        let invalidImageData = testImageData.dropFirst(1)
         
+        let mockDataTask = MockNetworkSessionDataTask(data: invalidImageData, response: nil, error: nil, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        let fetchPhotoOperation = FetchPhotoOperation(photoReference: mockPhotoReference, session: mockSession)
+        
+        photoQueue.addOperations([fetchPhotoOperation], waitUntilFinished: true)
+        
+        XCTAssertNil(fetchPhotoOperation.image)
     }
     
     func testFetchPhotoNoData() {
+        let mockDataTask = MockNetworkSessionDataTask(data: nil, response: nil, error: nil, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
         
+        let fetchPhotoOperation = FetchPhotoOperation(photoReference: mockPhotoReference, session: mockSession)
+        
+        photoQueue.addOperations([fetchPhotoOperation], waitUntilFinished: true)
+        
+        XCTAssertNil(fetchPhotoOperation.image)
     }
     
     func testFetchPhotoTransportError() {
+        let mockDataTask = MockNetworkSessionDataTask(data: nil, response: nil, error: MockNetworkSession.transportError, delay: 0.005)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
         
+        let fetchPhotoOperation = FetchPhotoOperation(photoReference: mockPhotoReference, session: mockSession)
+        
+        photoQueue.addOperations([fetchPhotoOperation], waitUntilFinished: true)
+        
+        XCTAssertNil(fetchPhotoOperation.image)
     }
     
     func testFetchPhotoCancelBeforeDone() {
+        let exp = self.expectation(description: "Wait for operation")
         
+        let mockDataTask = MockNetworkSessionDataTask(data: testImageData, response: nil, error: nil, delay: 1.0)
+        let mockSession = MockNetworkSession(dataTask: mockDataTask)
+        
+        let fetchPhotoOperation = FetchPhotoOperation(photoReference: mockPhotoReference, session: mockSession)
+        
+        let testOperation = BlockOperation {
+            exp.fulfill()
+            XCTAssertNil(fetchPhotoOperation.image)
+        }
+        
+        testOperation.addDependency(fetchPhotoOperation)
+        photoQueue.addOperations([fetchPhotoOperation, testOperation], waitUntilFinished: false)
+        
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            fetchPhotoOperation.cancel()
+        }
+
+        wait(for: [exp], timeout: 5)
     }
 }
