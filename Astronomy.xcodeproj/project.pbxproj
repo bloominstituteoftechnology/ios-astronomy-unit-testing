@@ -10,6 +10,8 @@
 		8351DB63244E377B00CDF635 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351DB62244E377B00CDF635 /* AstronomyTests.swift */; };
 		8351DB6C244E399300CDF635 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351DB6B244E399300CDF635 /* NetworkDataLoader.swift */; };
 		8351DB6E244E3A2D00CDF635 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351DB6D244E3A2D00CDF635 /* URLSession+NetworkDataLoader.swift */; };
+		8351DB70244E7D5200CDF635 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351DB6F244E7D5200CDF635 /* TestJSON.swift */; };
+		8351DB72244E7EF900CDF635 /* MockDataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8351DB71244E7EF900CDF635 /* MockDataLoading.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -44,6 +46,8 @@
 		8351DB64244E377B00CDF635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8351DB6B244E399300CDF635 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		8351DB6D244E3A2D00CDF635 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		8351DB6F244E7D5200CDF635 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
+		8351DB71244E7EF900CDF635 /* MockDataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoading.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			children = (
 				8351DB6B244E399300CDF635 /* NetworkDataLoader.swift */,
 				8351DB6D244E3A2D00CDF635 /* URLSession+NetworkDataLoader.swift */,
+				8351DB6F244E7D5200CDF635 /* TestJSON.swift */,
+				8351DB71244E7EF900CDF635 /* MockDataLoading.swift */,
 			);
 			path = Mocking;
 			sourceTree = "<group>";
@@ -302,6 +308,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8351DB63244E377B00CDF635 /* AstronomyTests.swift in Sources */,
+				8351DB70244E7D5200CDF635 /* TestJSON.swift in Sources */,
+				8351DB72244E7EF900CDF635 /* MockDataLoading.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
