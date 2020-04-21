@@ -58,9 +58,8 @@ class MarsRoverClientTests: XCTestCase {
         wait(for: [expectation2], timeout: 10)
     }
     
-    func testloadDataMethods() {
+    func testLoadMockData() {
         let dataExpectation = self.expectation(description: "testy testy")
-        let errorExpectation = self.expectation(description: "testy testy")
         let dataLoader = MockLoader(data: Data())
         
         dataLoader.loadData(from: URL(string: "nowherebro.com")!) { (data, error) in
@@ -68,16 +67,19 @@ class MarsRoverClientTests: XCTestCase {
             XCTAssertNil(error)
             dataExpectation.fulfill()
         }
+        wait(for: [dataExpectation], timeout: 5)
+    }
+    
+    func testLoadMockError() {
+        let errorExpectation = self.expectation(description: "testy testy")
         
         let errorLoader = MockLoader(error: NSError(domain: "", code: 1, userInfo: nil) )
-        
         errorLoader.loadData(from: URL(string: "nowherebro.com")!) { (data, error) in
             XCTAssertNotNil(error)
             XCTAssertNil(data)
             errorExpectation.fulfill()
         }
-        
-        wait(for: [dataExpectation, errorExpectation], timeout: 5)
+        wait(for: [errorExpectation], timeout: 5)
     }
     
     func testloadValidRover() {
