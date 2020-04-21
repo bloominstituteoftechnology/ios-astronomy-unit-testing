@@ -11,6 +11,8 @@ import XCTest
 
 class FetchPhotoOperationTests: XCTestCase {
     
+    // MARK: - Properties
+    
     var testImageData: Data {
         let bundle = Bundle(for: Self.self)
         let path = bundle.path(forResource: "MarsTestPhoto", ofType: "jpg")!
@@ -23,6 +25,8 @@ class FetchPhotoOperationTests: XCTestCase {
         let photos = photosDict["photos"]!
         return photos[0]
     }
+    
+    // MARK: - Tests
     
     func testFetchPhoto() {
         let mockDataTask = MockNetworkSessionDataTask(data: testImageData, response: nil, error: nil, delay: 0.005)
