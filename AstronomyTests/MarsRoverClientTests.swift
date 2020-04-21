@@ -42,6 +42,8 @@ class MarsRoverClientTests: XCTestCase {
         return marsRover
     }
     
+    let newRover = MarsRover(name: "Curiosity", launchDate: Date(), landingDate: Date(), status: .active, maxSol: 10, maxDate: Date(), numberOfPhotos: 4156, solDescriptions: [])
+    
     func testFetchMarsRover() {
         let client = MarsRoverClient()
         let expectation = self.expectation(description: "Wait for mars rover.")
@@ -95,12 +97,12 @@ class MarsRoverClientTests: XCTestCase {
         let expectationPhotos = self.expectation(description: "Wait for photos")
 
         
-        guard let rover = rover else {
-            XCTFail()
-            return
-        }
+//        guard let rover = rover else {
+//            XCTFail()
+//            return
+//        }
         
-        photoClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotos, error) in
+        photoClient.fetchPhotos(from: newRover, onSol: 1) { (marsPhotos, error) in
             XCTAssertNotNil(marsPhotos)
             expectationPhotos.fulfill()
         }
@@ -176,4 +178,5 @@ class MarsRoverClientTests: XCTestCase {
             
             wait(for: [expectation], timeout: 5)
         }
+    }
 }
