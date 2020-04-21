@@ -39,6 +39,7 @@ class FetchPhotoOperation: ConcurrentOperation {
     override func cancel() {
         dataTask?.cancel()
         super.cancel()
+        self.state = .isFinished
     }
     
     // MARK: Properties
