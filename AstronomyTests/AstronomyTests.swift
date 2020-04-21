@@ -10,9 +10,9 @@ import XCTest
 @testable import Astronomy
 
 class MarsRoverClientTests: XCTestCase {
-    
+    // MARK: - EL ROVERTOOOO
     var elRover: MarsRover? {
-        let expectation = self.expectation(description: "Wait for results")
+        let expectation = self.expectation(description: "ROVERTOOOOO")
         var foundRover: MarsRover?
         MarsRoverClient().fetchMarsRover(named: "curiosity") { rover, error in
             guard let rover = rover else {
@@ -25,26 +25,34 @@ class MarsRoverClientTests: XCTestCase {
         return foundRover
     }
     
+    var laRoverta: MarsRover? {
+        let dataExpectation = self.expectation(description: "ROVERTAAAAA")
+        var roverta: MarsRover?
+        MarsRoverClient(networkLoader: MockLoader(data: validRoverJSON)).fetchMarsRover(named: "testting") { (rover, error) in
+            roverta = rover
+            dataExpectation.fulfill()
+        }
+        wait(for: [dataExpectation], timeout: 5)
+        return roverta
+    }
+    
+    // MARK: - To the world wide web
     func testFetchRover() {
         let expectation = self.expectation(description: "Wait for results")
         
         let controller = MarsRoverClient()
         var foundRover: MarsRover?
         
-        controller.fetchMarsRover(named: "curiosity") { rover, error in
-            print("We got back some results!")
-            
+        controller.fetchMarsRover(named: "curiosity") { rover, error in            
             guard let rover = rover else {
                 return
             }
-            
             foundRover = rover
-            
             XCTAssertNotNil(rover)
-            
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10)
+        XCTAssertNotNil(foundRover)
     }
     
     func testfetchPhotos() {
@@ -58,6 +66,7 @@ class MarsRoverClientTests: XCTestCase {
         wait(for: [expectation2], timeout: 10)
     }
     
+    // MARK: - Lol there's nothing here silly program. (Empty Data() and Error() tests)
     func testLoadMockData() {
         let dataExpectation = self.expectation(description: "testy testy")
         let dataLoader = MockLoader(data: Data())
@@ -73,6 +82,7 @@ class MarsRoverClientTests: XCTestCase {
     func testLoadMockError() {
         let errorExpectation = self.expectation(description: "testy testy")
         
+        // MARK: - WHY CAN'T I USE Error()?
         let errorLoader = MockLoader(error: NSError(domain: "", code: 1, userInfo: nil) )
         errorLoader.loadData(from: URL(string: "nowherebro.com")!) { (data, error) in
             XCTAssertNotNil(error)
@@ -82,6 +92,7 @@ class MarsRoverClientTests: XCTestCase {
         wait(for: [errorExpectation], timeout: 5)
     }
     
+    // MARK: - Valid Test JSON tests.
     func testloadValidRover() {
         let dataExpectation = self.expectation(description: "testy testy")
         let dataLoader = MockLoader(data: validRoverJSON)
