@@ -48,7 +48,9 @@ class MockNetworkSessionDataTask: NetworkSessionDataTask {
     
     func resume() {
         DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
-            self.completionHandler?(self.data, self.response, self.error)
+            if !self.isCancelled {
+                self.completionHandler?(self.data, self.response, self.error)
+            }
         }
     }
     
