@@ -20,7 +20,6 @@ class MarsRoverClientTests: XCTestCase {
         return roverDict["photo_manifest"]!
     }
     
-    
     // MARK: - Setup/Teardown
     
     override func setUp() {

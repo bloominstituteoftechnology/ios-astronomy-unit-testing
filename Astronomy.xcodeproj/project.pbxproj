@@ -88,15 +88,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044E956A244F413800ED6C74 /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+				04BA2A6D244E43FA003475B1 /* MockNetworkSession.swift */,
+				04BA2A6F244E7B65003475B1 /* MarsTestPhoto.jpg */,
+				04BA2A68244E37C2003475B1 /* MockJSON.swift */,
+			);
+			path = Mocking;
+			sourceTree = "<group>";
+		};
 		04BA2A44244DEEBF003475B1 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
 				04BA2A4D244DEEFC003475B1 /* MarsRoverClientTests.swift */,
-				04BA2A6D244E43FA003475B1 /* MockNetworkSession.swift */,
 				04BA2A4F244DEF94003475B1 /* FetchPhotoOperationTests.swift */,
+				044E956A244F413800ED6C74 /* Mocking */,
 				04BA2A47244DEEBF003475B1 /* Info.plist */,
-				04BA2A6F244E7B65003475B1 /* MarsTestPhoto.jpg */,
-				04BA2A68244E37C2003475B1 /* MockJSON.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
