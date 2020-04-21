@@ -114,12 +114,12 @@ class MarsRoverClientTests: XCTestCase {
         let mockPhotoData = MockDataLoader(data: validSol1JSON, response: nil, error: nil)
         let mockPhotoClient = MarsRoverClient(networkLoader: mockPhotoData)
         let expectationPhotos = self.expectation(description: "Wait for photos")
-        guard let rover = rover else {
-            XCTFail()
-            return
-        }
+//        guard let rover = rover else {
+//            XCTFail()
+//            return
+//        }
         
-        mockPhotoClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotos, error) in
+        mockPhotoClient.fetchPhotos(from: newRover, onSol: 1) { (marsPhotos, error) in
             XCTAssertNotNil(marsPhotos)
             expectationPhotos.fulfill()
         }
@@ -131,12 +131,12 @@ class MarsRoverClientTests: XCTestCase {
         let mockPhotoData = MockDataLoader(data: invalidSol1JSON, response: nil, error: nil)
         let mockPhotoClient = MarsRoverClient(networkLoader: mockPhotoData)
         let expectationPhotos = self.expectation(description: "Wait for photos")
-        guard let rover = rover else {
-            XCTFail()
-            return
-        }
+//        guard let rover = rover else {
+//            XCTFail()
+//            return
+//        }
         
-        mockPhotoClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotos, error) in
+        mockPhotoClient.fetchPhotos(from: newRover, onSol: 1) { (marsPhotos, error) in
             XCTAssertNil(marsPhotos)
             XCTAssertNotNil(error)
             expectationPhotos.fulfill()
@@ -165,13 +165,13 @@ class MarsRoverClientTests: XCTestCase {
             let expectation = self.expectation(description: "Wait for photos")
             let client = MarsRoverClient(networkLoader: URLSession(configuration: .ephemeral))
             
-            guard let rover = rover else {
-                XCTFail()
-                return
-            }
+//            guard let rover = rover else {
+//                XCTFail()
+//                return
+//            }
             
             startMeasuring()
-            client.fetchPhotos(from: rover, onSol: 1) { (roverPhotos, error) in
+            client.fetchPhotos(from: newRover, onSol: 1) { (roverPhotos, error) in
                 self.stopMeasuring()
                 expectation.fulfill()
             }
