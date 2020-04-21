@@ -61,4 +61,24 @@ class MarsRoverClientTests: XCTestCase {
             XCTAssertTrue(photoReferences.count > 0, "⚠️ No photos returned from production")
         }
     }
+
+    func testValidRoverData() {
+        let expectation = self.expectation(description: "Wait for results")
+        let mockDataLoader = MockDataLoader(data: validRoverJSON, error: nil)
+
+        let client = MarsRoverClient(networkLoader: mockDataLoader)
+
+        client.fetchMarsRover(named: "curiosity") { (rover, error) in
+            XCTAssertNotNil(rover, "⚠️ Rover object is nil")
+
+            if let rover = rover {
+                XCTAssertEqual(rover.solDescriptions[4].sol, 10, "⚠️ Unexpected sol")
+            }
+
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5)
+    }
+
 }

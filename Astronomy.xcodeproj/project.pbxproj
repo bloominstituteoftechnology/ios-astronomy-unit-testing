@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		92B05720244EBCF9005A40D9 /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B0571E244EBCC2005A40D9 /* MockDataLoader.swift */; };
+		92B05722244EBF58005A40D9 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B05721244EBF58005A40D9 /* TestJSON.swift */; };
 		92F440BD244E563700878B81 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F440BC244E563700878B81 /* NetworkDataLoader.swift */; };
 		92F440BF244E570800878B81 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F440BE244E570800878B81 /* URLSession+NetworkDataLoader.swift */; };
 		92F440C7244E785100878B81 /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F440C6244E785100878B81 /* MarsRoverClientTests.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		92B0571E244EBCC2005A40D9 /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		92B05721244EBF58005A40D9 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = "<group>"; };
 		92F440BC244E563700878B81 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		92F440BE244E570800878B81 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
 		92F440C4244E785100878B81 /* MarsRoverClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarsRoverClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 				92B0571E244EBCC2005A40D9 /* MockDataLoader.swift */,
 				92F440C6244E785100878B81 /* MarsRoverClientTests.swift */,
 				92F440C8244E785100878B81 /* Info.plist */,
+				92B05721244EBF58005A40D9 /* TestJSON.swift */,
 			);
 			path = MarsRoverClientTests;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			files = (
 				92B05720244EBCF9005A40D9 /* MockDataLoader.swift in Sources */,
 				92F440C7244E785100878B81 /* MarsRoverClientTests.swift in Sources */,
+				92B05722244EBF58005A40D9 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
