@@ -11,7 +11,21 @@ import XCTest
 
 class MarsRoverClientTests: XCTestCase {
     
-    func testFetchMethods() {
+    var elRover: MarsRover? {
+        let expectation = self.expectation(description: "Wait for results")
+        var foundRover: MarsRover?
+        MarsRoverClient().fetchMarsRover(named: "curiosity") { rover, error in
+            guard let rover = rover else {
+                return
+            }
+            foundRover = rover
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10)
+        return foundRover
+    }
+    
+    func testFetchRover() {
         let expectation = self.expectation(description: "Wait for results")
         
         let controller = MarsRoverClient()
@@ -31,17 +45,16 @@ class MarsRoverClientTests: XCTestCase {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10)
-        
+    }
+    
+    func testfetchPhotos() {
+        let controller = MarsRoverClient()
         let expectation2 = self.expectation(description: "Wait for results")
-        
-        controller.fetchPhotos(from: foundRover!, onSol: 1) { (photoReference, error) in
+        controller.fetchPhotos(from: elRover!, onSol: 1) { (photoReference, error) in
             guard let photos = photoReference else { return }
-            
             XCTAssertNotNil(photos)
             expectation2.fulfill()
-            
         }
-        
         wait(for: [expectation2], timeout: 10)
     }
     
