@@ -43,7 +43,7 @@ class MarsRoverClientTests: XCTestCase {
         let controller = MarsRoverClient()
         var foundRover: MarsRover?
         
-        controller.fetchMarsRover(named: "curiosity") { rover, error in            
+        controller.fetchMarsRover(named: "curiosity") { rover, error in
             guard let rover = rover else {
                 return
             }
@@ -107,23 +107,10 @@ class MarsRoverClientTests: XCTestCase {
     }
     
     func testloadValidPhoto() {
-        let dataExpectation = self.expectation(description: "testy testy")
-        let dataLoader = MockLoader(data: validRoverJSON)
-        let client = MarsRoverClient(networkLoader: dataLoader)
-        var elRoverto: MarsRover?
-        
-        client.fetchMarsRover(named: "testting") { (rover, error) in
-            XCTAssertNotNil(rover)
-            XCTAssertNil(error)
-            elRoverto = rover!
-            dataExpectation.fulfill()
-        }
-        wait(for: [dataExpectation], timeout: 5)
-        
         let photoExpectation = self.expectation(description: "testong testong")
         let imageLoader = MockLoader(data: validSol1JSON)
         let client2 = MarsRoverClient(networkLoader: imageLoader)
-        client2.fetchPhotos(from: elRoverto!, onSol: 1) { (photos, error) in
+        client2.fetchPhotos(from: laRoverta!, onSol: 1) { (photos, error) in
             XCTAssertNotNil(photos)
             XCTAssertNil(error)
             photoExpectation.fulfill()
