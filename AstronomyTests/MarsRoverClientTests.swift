@@ -13,13 +13,34 @@ class MarsRoverClientTests: XCTestCase {
 
     /*
      
-     1. Test that Mars Rover URL is created correctly - Cannot do directly
-     2. Test that Mars Rover URLRequest is created correctly
-     3. Test Decoding when JSON received is valid
-     4. Test decoding when JSON received is invalid
-     5. Test that Mars Rover data is correctly saved
+     1. Test that Mars Rover URL is created correctly - Cannot do directly - indirectly done in testFetchMarsRover
+     2. Test that Mars Rover URLRequest is created correctly - Cannot do directly - indirectly done in testFetchMarsRover
+     3. Test Decoding when JSON received is valid - done in testValidData
+     4. Test decoding when JSON received is invalid - done in testInvalidData
+     5. Test that Mars Rover data is correctly saved - this is not saved in MarsRoverClient
+     6. Test that photo URL is created correctly - Cannot do directly - indrectly done in testFetchPhotos
+     7. Test that photo URLRequest is created correctly - Cannot do directly - indrectly done in testFetchPhotos
+     8. Test that photo is correctly saved to Cache - cannot do directly in MarsRoverClient
+     9. Test decoding when photo JSON data is valid - done in testValidPhotoData
+     10. Test decoding when photo JSON data is invalid
      
      */
+    
+    // mock rover for testing fetchPhotos()
+    var rover: MarsRover? {
+        let mockRoverData = MockDataLoader(data: validRoverJSON, response: nil, error: nil)
+        let client = MarsRoverClient(networkLoader: mockRoverData)
+        var marsRover: MarsRover? = nil
+        let expectation = self.expectation(description: "Wait for mars rover")
+        
+        client.fetchMarsRover(named: "curiosity") { (rover, error) in
+            marsRover = rover
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5)
+        return marsRover
+    }
     
     func testFetchMarsRover() {
         let client = MarsRoverClient()
@@ -67,6 +88,41 @@ class MarsRoverClientTests: XCTestCase {
         }
         
         wait(for: [expectation], timeout: 5)
+    }
+    
+    func testFetchPhotos() {
+        let photoClient = MarsRoverClient()
+        let expectationPhotos = self.expectation(description: "Wait for photos")
+
+        
+        guard let rover = rover else {
+            XCTFail()
+            return
+        }
+        
+        photoClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotos, error) in
+            XCTAssertNotNil(marsPhotos)
+            expectationPhotos.fulfill()
+        }
+        
+        wait(for: [expectationPhotos], timeout: 5)
+    }
+    
+    func testValidPhotoData() {
+        let mockPhotoData = MockDataLoader(data: validSol1JSON, response: nil, error: nil)
+        let mockPhotoClient = MarsRoverClient(networkLoader: mockPhotoData)
+        let expectationPhotos = self.expectation(description: "Wait for photos")
+        guard let rover = rover else {
+            XCTFail()
+            return
+        }
+        
+        mockPhotoClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotos, error) in
+            XCTAssertNotNil(marsPhotos)
+            expectationPhotos.fulfill()
+        }
+        
+        wait(for: [expectationPhotos], timeout: 5)
     }
 
 }
