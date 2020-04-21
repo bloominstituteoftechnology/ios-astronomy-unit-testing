@@ -47,16 +47,14 @@ class MockNetworkSessionDataTask: NetworkSessionDataTask {
     }
     
     func resume() {
-        timer = Timer.scheduledTimer(withTimeInterval: delay, repeats: false, block: { _ in
-            DispatchQueue.global().async {
-                self.completionHandler?(self.data, self.response, self.error)
-            }
-        })
+        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
+            self.completionHandler?(self.data, self.response, self.error)
+        }
     }
     
     func cancel() {
-        timer?.invalidate()
+        isCancelled = true
     }
     
-    private var timer: Timer?
+    private var isCancelled = false
 }
