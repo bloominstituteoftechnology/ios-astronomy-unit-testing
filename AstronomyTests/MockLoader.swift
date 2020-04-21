@@ -22,9 +22,10 @@ struct MockLoader: NetworkDataLoader {
     
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-        completion(self.data, self.error)
+            completion(self.data, self.error)
+        }
     }
-    }
+    
     
     
 }
