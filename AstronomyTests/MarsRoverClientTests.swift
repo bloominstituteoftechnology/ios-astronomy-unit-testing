@@ -124,5 +124,56 @@ class MarsRoverClientTests: XCTestCase {
         
         wait(for: [expectationPhotos], timeout: 5)
     }
-
+    
+    func testInvalidPhotoData() {
+        let mockPhotoData = MockDataLoader(data: invalidSol1JSON, response: nil, error: nil)
+        let mockPhotoClient = MarsRoverClient(networkLoader: mockPhotoData)
+        let expectationPhotos = self.expectation(description: "Wait for photos")
+        guard let rover = rover else {
+            XCTFail()
+            return
+        }
+        
+        mockPhotoClient.fetchPhotos(from: rover, onSol: 1) { (marsPhotos, error) in
+            XCTAssertNil(marsPhotos)
+            XCTAssertNotNil(error)
+            expectationPhotos.fulfill()
+        }
+        
+        wait(for: [expectationPhotos], timeout: 5)
+    }
+    
+    func testSpeedOfMarsRoverRequest() {
+        
+        measure {
+            let expectation = self.expectation(description: "Wait for mars rover")
+            let client = MarsRoverClient()
+            
+            client.fetchMarsRover(named: "curiosity") { (rover, error) in
+                expectation.fulfill()
+            }
+            
+            wait(for: [expectation], timeout: 5)
+        }
+    }
+    
+    func testSpeedOfPhotoRequest() {
+        
+        measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
+            let expectation = self.expectation(description: "Wait for photos")
+            let client = MarsRoverClient(networkLoader: URLSession(configuration: .ephemeral))
+            
+            guard let rover = rover else {
+                XCTFail()
+                return
+            }
+            
+            startMeasuring()
+            client.fetchPhotos(from: rover, onSol: 1) { (roverPhotos, error) in
+                self.stopMeasuring()
+                expectation.fulfill()
+            }
+            
+            wait(for: [expectation], timeout: 5)
+        }
 }
