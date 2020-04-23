@@ -45,6 +45,12 @@ class MarsRoverClientTests: XCTestCase {
     
     // Test with Mock Data
     
- 
+    func testValidJSONData() {
+        let mockDataLoader = M
+    }
+    
+    
+    
+ // valid and invalid inValidSol1JSON
 
 }
