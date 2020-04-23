@@ -10,12 +10,12 @@ import Foundation
 
 @testable import Astronomy
 
-class MockDataLoader: NetworkDataLoader {
+class MockNetworkDataLoader: NetworkDataLoader {
     
     
       let data : Data?
       let error: Error?
-    func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+      func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.020) {
             completion(self.data, self.error)
         }

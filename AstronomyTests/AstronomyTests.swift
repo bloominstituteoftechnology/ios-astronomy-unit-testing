@@ -46,11 +46,39 @@ class MarsRoverClientTests: XCTestCase {
     // Test with Mock Data
     
     func testValidJSONData() {
-        let mockDataLoader = M
+        let mockNetworkDataLoader = MockNetworkDataLoader(data: validRoverJSON, error: nil)
+        let controller = MarsRoverClient(networkLoader: mockNetworkDataLoader)
+        var roverInformation : MarsRover?
+        
+        guard let rover = roverInformation else { return }
+        let expectation = self.expectation(description: "Wait For results")
+        
+        // load rover
+        controller.fetchMarsRover(named: "curiosity") { (rover, error) in
+            roverInformation = rover
+            expectation.fulfill()
+        }
+          wait(for: [expectation], timeout: 30)
+        
+        XCTAssertNotNil(roverInformation, "Mars rover photo wwas unable to load")
+        
+        var photoRefrences = [MarsPhotoReference]()
+        // load photos
+        controller.fetchPhotos(from: rover, onSol: rover.solDescriptions[3].sol) { (photoRef, error) in
+            photoRefrences = photoRef ?? []
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 30)
+        XCTAssertTrue(photoRefrences.count > 0, "No Photos were returned")
+        }
+    
+    
+    
+    
     }
     
     
     
  // valid and invalid inValidSol1JSON
 
-}
+
