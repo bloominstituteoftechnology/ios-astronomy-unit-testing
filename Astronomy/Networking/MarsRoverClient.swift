@@ -10,6 +10,16 @@ import Foundation
 
 class MarsRoverClient {
     
+    //add a constant property called networkLoader of type NetworkDataLoader.
+    let networkLoader : NetworkDataLoader
+    
+    //Add an initializer to MarsRoverClient that takes a NetworkDataLoader object. Give the initializer's argument a default value of URLSession.shared. This way, MarsRoverClient will continue to function as always in existing code, but test code can provide (inject) a different network loader.
+    internal init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
+    
+    
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -45,7 +55,8 @@ class MarsRoverClient {
     private func fetch<T: Codable>(from url: URL,
                            using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+//        session.dataTask(with: url) { (data, response, error) in
+        networkLoader.loadData(from: url) { (data, error) in
             if let error = error {
                 completion(nil, error)
                 return
@@ -63,7 +74,8 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
+        }
+//        .resume() not needed for dummy data
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
