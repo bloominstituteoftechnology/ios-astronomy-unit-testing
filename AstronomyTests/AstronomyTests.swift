@@ -7,27 +7,60 @@
 //
 
 import XCTest
+@testable import Astronomy
 
 class AstronomyTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    func testFetchMarsRover() {
+        let mockLoader = MockLoader(data: validRoverJSON)
+        let marsRoverClient = MarsRoverClient(networkLoader: mockLoader)
+        var marsRover: MarsRover?
+        
+        let expectation = self.expectation(description: "waiting for rover api response")
+        
+        marsRoverClient.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            if let error = error {
+                NSLog("Error fetching info for curiosity: \(error)")
+                return
+            }
+            expectation.fulfill()
+            marsRover = rover
         }
+        
+        wait(for: [expectation], timeout: 5)
+        XCTAssertEqual(marsRover!.name, "Curiosity")
+        XCTAssertNotNil(marsRover)
     }
-
+    
+    func testFetchPhotos() {
+        // get Rover info for fetch photos
+        let mockRoverLoader = MockLoader(data: validRoverJSON)
+        let marsRoverClient = MarsRoverClient(networkLoader: mockRoverLoader)
+        var marsRover: MarsRover?
+        let expectation = self.expectation(description: "waiting for rover api response")
+        marsRoverClient.fetchMarsRover(named: "Curiosity") { (rover, error) in
+            expectation.fulfill()
+            marsRover = rover
+        }
+        wait(for: [expectation], timeout: 3)
+        XCTAssertEqual(marsRover!.name, "Curiosity")
+        
+        // fetch photos
+        let mockPhotoLoader = MockLoader(data: validSol1JSON!)
+        let marsPhotoClient = MarsRoverClient(networkLoader: mockPhotoLoader)
+        var photoReferences: [MarsPhotoReference] = []
+        
+        let photoExpectation = self.expectation(description: "waiting for photo api response")
+        
+        marsPhotoClient.fetchPhotos(from: marsRover!, onSol: 1) { (images, error) in
+            photoExpectation.fulfill()
+            photoReferences = images!
+        }
+        
+        wait(for: [photoExpectation], timeout: 5)
+        XCTAssertNotNil(photoReferences)
+        XCTAssert(photoReferences.count > 0)
+        
+    }
+    
 }

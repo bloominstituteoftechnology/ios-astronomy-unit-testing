@@ -21,6 +21,7 @@ class MarsRoverClient {
                         completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
+        
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
 
             guard let rover = dictionary?["photo_manifest"] else {
@@ -37,6 +38,7 @@ class MarsRoverClient {
                      completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
         
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
+        
         fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
                 completion(nil, error)
@@ -49,7 +51,7 @@ class MarsRoverClient {
     // MARK: - Private
     
     private func fetch<T: Codable>(from url: URL,
-                           using session: NetworkDataLoader,
+                                   using session: NetworkDataLoader = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
         
         networkLoader.loadData(from: url) { (data, error) in
