@@ -21,8 +21,36 @@ import XCTest
  */
 
 
-class AstronomyTests: XCTestCase {
-
-   
+class MarsRoverClientTests: XCTestCase {
+    
+    func testMarsRoverProductionResults() {
+              let expectation = self.expectation(description: "Waiting for results")
+              let controller = MarsRoverClient()
+              controller.fetchMarsRover(named: "curiosity") { (rover, error) in
+                  expectation.fulfill()
+              }
+              wait(for: [expectation], timeout: 30)
+      }
+    
+    func testMarsRoverProductionSpeed() {
+        measure {
+            let expectation = self.expectation(description: "Waiting for results")
+            let controller = MarsRoverClient()
+            controller.fetchMarsRover(named: "curiosity") { (rover, error) in
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 30)
+        }
+    }
+    
+//    func testForPhotoResults() {
+//        let controller = MarsRoverClient()
+//        let expectation = self.expectation(description: "Waiting for results")
+//
+//        controller.fetchPhotos(from: controller, onSol: 1) { ([MarsPhotoReference]?, error) in
+//            expectation.fulfill()
+//        }
+//        wait(for: expectation, timeout: 30)
+//    }
 
 }
