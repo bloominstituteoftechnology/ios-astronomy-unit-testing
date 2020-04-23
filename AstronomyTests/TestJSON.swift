@@ -8,7 +8,7 @@
 
 import Foundation
 
-let validRoverJSON = """
+private let validRoverJSONString = """
 {
     "photo_manifest": {
         "name": "Curiosity",
@@ -68,7 +68,10 @@ let validRoverJSON = """
         ]
     }
 }
-""".data(using: .utf8)!
+"""
+
+    let validRoverJSON = validRoverJSONString.data(using: .utf8)!
+    let invalidRoverJSON = (validRoverJSONString + "{").data(using: .utf8)!
     
     let validSol1JSON = """
 {
