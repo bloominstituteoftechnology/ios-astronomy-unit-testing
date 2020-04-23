@@ -43,14 +43,8 @@ class MarsRoverClientTests: XCTestCase {
         }
     }
     
-//    func testForPhotoResults() {
-//        let controller = MarsRoverClient()
-//        let expectation = self.expectation(description: "Waiting for results")
-//
-//        controller.fetchPhotos(from: controller, onSol: 1) { ([MarsPhotoReference]?, error) in
-//            expectation.fulfill()
-//        }
-//        wait(for: expectation, timeout: 30)
-//    }
+    // Test with Mock Data
+    
+ 
 
 }

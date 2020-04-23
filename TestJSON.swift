@@ -70,9 +70,9 @@ let validRoverJSON = """
 }
 """.data(using: .utf8)!
 
-let validSol1JSON = """
+let inValidSol1JSON = """
 {
-  "photos": [
+  "photos":
     {
       "id": 4477,
       "sol": 1,
@@ -913,7 +913,7 @@ let validSol1JSON = """
 
 let inValidRoverJSON = """
 {
-    "photo_manifest":  // remove bracket
+    "photo_manifest": {
         "name": "Curiosity",
         "landing_date": "2012-08-06",
         "launch_date": "2011-11-26",
