@@ -26,6 +26,7 @@
 		E0502F31245130F800AD19D1 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0502F30245130F800AD19D1 /* TestJSON.swift */; };
 		E0502F392451315700AD19D1 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0502F382451315700AD19D1 /* AstronomyTests.swift */; };
 		E0502F41245131C900AD19D1 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0502F40245131C900AD19D1 /* NetworkDataLoader.swift */; };
+		E0502F43245132CD00AD19D1 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0502F42245132CD00AD19D1 /* URLSession+NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		E0502F382451315700AD19D1 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		E0502F3A2451315700AD19D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0502F40245131C900AD19D1 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		E0502F42245132CD00AD19D1 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20312140DE100047905E /* URL+Secure.swift */,
+				E0502F42245132CD00AD19D1 /* URLSession+NetworkDataLoader.swift */,
 				E0502F40245131C900AD19D1 /* NetworkDataLoader.swift */,
 			);
 			path = Utilities;
@@ -294,6 +297,7 @@
 			files = (
 				9DBD20382140E46E0047905E /* ConcurrentOperation.swift in Sources */,
 				9DBD20322140DE100047905E /* URL+Secure.swift in Sources */,
+				E0502F43245132CD00AD19D1 /* URLSession+NetworkDataLoader.swift in Sources */,
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
