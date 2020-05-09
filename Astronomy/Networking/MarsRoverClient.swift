@@ -8,14 +8,45 @@
 
 import Foundation
 
+protocol NetworkDataLoader
+{
+	func loadData(from request: URLRequest, completion: @escaping(Data?, Error?) -> Void)
+	func loadData(from url: URL, completion: @escaping(Data?, Error?) -> Void)
+}
+
+extension URLSession: NetworkDataLoader
+{
+	func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
+		self.dataTask(with: url) {
+			data, _, error in
+
+			completion(data, error)
+		}.resume()
+	}
+
+	func loadData(from url: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+		self.dataTask(with: url) {
+			data, _, error in
+
+			completion(data, error)
+		}.resume()
+	}
+}
+
+
 class MarsRoverClient {
+	var loader:NetworkDataLoader
+
+	init(loader:NetworkDataLoader)
+	{
+		self.loader = loader
+	}
     
     func fetchMarsRover(named name: String,
-                        using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
-        fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
+        fetch(from: url) { (dictionary: [String : MarsRover]?, error: Error?) in
 
             guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
@@ -27,11 +58,10 @@ class MarsRoverClient {
     
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
-                     using session: URLSession = URLSession.shared,
                      completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
         
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
-        fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
+        fetch(from: url) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
                 completion(nil, error)
                 return
@@ -43,9 +73,8 @@ class MarsRoverClient {
     // MARK: - Private
     
     private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+		loader.loadData(from: url) { (data, error) in
             if let error = error {
                 completion(nil, error)
                 return
@@ -63,7 +92,7 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
+        }
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!

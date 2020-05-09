@@ -172,7 +172,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     
     // Properties
     
-    private let client = MarsRoverClient()
+	private let client = MarsRoverClient(loader: URLSession.shared)
     private let cache = Cache<Int, UIImage>()
     private let photoFetchQueue = OperationQueue()
     private var operations = [Int : Operation]()
