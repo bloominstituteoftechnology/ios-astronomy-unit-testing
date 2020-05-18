@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180025FA24730B9000455A84 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180025F924730B9000455A84 /* AstronomyTests.swift */; };
-		1800260224730BC100455A84 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800260124730BC100455A84 /* NetworkDataLoader.swift */; };
+		1800260324730E3B00455A84 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800260124730BC100455A84 /* NetworkDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -84,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				180025F924730B9000455A84 /* AstronomyTests.swift */,
-				1800260124730BC100455A84 /* NetworkDataLoader.swift */,
 				180025FB24730B9000455A84 /* Info.plist */,
 			);
 			path = AstronomyTests;
@@ -156,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20292140D35A0047905E /* MarsRoverClient.swift */,
+				1800260124730BC100455A84 /* NetworkDataLoader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -290,7 +290,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				180025FA24730B9000455A84 /* AstronomyTests.swift in Sources */,
-				1800260224730BC100455A84 /* NetworkDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +302,7 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				1800260324730E3B00455A84 /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
