@@ -212,4 +212,18 @@ class MarsRoverClientTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10)
     }
+    
+    func testNoDataIsReturned() {
+        let expectation = self.expectation(description: "Wait for rover")
+        
+        let mockDataLoader = MockDataLoader(data: nil, error: nil)
+        let controller = MarsRoverClient(networkLoader: mockDataLoader)
+        
+        controller.fetchMarsRover(named: "curiosity") { rover, error in
+            XCTAssertNil(rover)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 10)
+    }
 }
