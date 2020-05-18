@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		180025FA24730B9000455A84 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180025F924730B9000455A84 /* AstronomyTests.swift */; };
 		1800260324730E3B00455A84 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800260124730BC100455A84 /* NetworkDataLoader.swift */; };
+		1800261B2473169D00455A84 /* MarsClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800261A2473169D00455A84 /* MarsClientTests.swift */; };
+		180026232473175700455A84 /* MockDataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180026222473175700455A84 /* MockDataLoading.swift */; };
+		1800262924731A3300455A84 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800262824731A3300455A84 /* TestJSON.swift */; };
+		1800262B24731EEF00455A84 /* GoodRoverData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1800262A24731EEF00455A84 /* GoodRoverData.json */; };
+		1800262D24731F0100455A84 /* BadData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1800262C24731F0100455A84 /* BadData.json */; };
+		1800262F24731F7200455A84 /* GoodSolData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1800262E24731F7200455A84 /* GoodSolData.json */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -28,7 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		180025FC24730B9000455A84 /* PBXContainerItemProxy */ = {
+		1800261D2473169D00455A84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9DBD1FFD2140D1300047905E /* Project object */;
 			proxyType = 1;
@@ -38,10 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		180025F724730B9000455A84 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		180025F924730B9000455A84 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
-		180025FB24730B9000455A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1800260124730BC100455A84 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		180026182473169D00455A84 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1800261A2473169D00455A84 /* MarsClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsClientTests.swift; sourceTree = "<group>"; };
+		1800261C2473169D00455A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		180026222473175700455A84 /* MockDataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoading.swift; sourceTree = "<group>"; };
+		1800262824731A3300455A84 /* TestJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = "<group>"; };
+		1800262A24731EEF00455A84 /* GoodRoverData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodRoverData.json; sourceTree = "<group>"; };
+		1800262C24731F0100455A84 /* BadData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadData.json; sourceTree = "<group>"; };
+		1800262E24731F7200455A84 /* GoodSolData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodSolData.json; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,7 +73,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		180025F424730B9000455A84 /* Frameworks */ = {
+		180026152473169D00455A84 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,11 +90,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		180025F824730B9000455A84 /* AstronomyTests */ = {
+		180026192473169D00455A84 /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
-				180025F924730B9000455A84 /* AstronomyTests.swift */,
-				180025FB24730B9000455A84 /* Info.plist */,
+				1800261A2473169D00455A84 /* MarsClientTests.swift */,
+				1800262824731A3300455A84 /* TestJSON.swift */,
+				1800262A24731EEF00455A84 /* GoodRoverData.json */,
+				1800262E24731F7200455A84 /* GoodSolData.json */,
+				1800262C24731F0100455A84 /* BadData.json */,
+				1800261C2473169D00455A84 /* Info.plist */,
+				180026222473175700455A84 /* MockDataLoading.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -93,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20072140D1300047905E /* Astronomy */,
-				180025F824730B9000455A84 /* AstronomyTests */,
+				180026192473169D00455A84 /* AstronomyTests */,
 				9DBD20062140D1300047905E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20052140D1300047905E /* Astronomy.app */,
-				180025F724730B9000455A84 /* AstronomyTests.xctest */,
+				180026182473169D00455A84 /* AstronomyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,22 +206,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		180025F624730B9000455A84 /* AstronomyTests */ = {
+		180026172473169D00455A84 /* AstronomyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1800260024730B9000455A84 /* Build configuration list for PBXNativeTarget "AstronomyTests" */;
+			buildConfigurationList = 1800261F2473169D00455A84 /* Build configuration list for PBXNativeTarget "AstronomyTests" */;
 			buildPhases = (
-				180025F324730B9000455A84 /* Sources */,
-				180025F424730B9000455A84 /* Frameworks */,
-				180025F524730B9000455A84 /* Resources */,
+				180026142473169D00455A84 /* Sources */,
+				180026152473169D00455A84 /* Frameworks */,
+				180026162473169D00455A84 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				180025FD24730B9000455A84 /* PBXTargetDependency */,
+				1800261E2473169D00455A84 /* PBXTargetDependency */,
 			);
 			name = AstronomyTests;
 			productName = AstronomyTests;
-			productReference = 180025F724730B9000455A84 /* AstronomyTests.xctest */;
+			productReference = 180026182473169D00455A84 /* AstronomyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9DBD20042140D1300047905E /* Astronomy */ = {
@@ -236,7 +251,7 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Lambda School";
 				TargetAttributes = {
-					180025F624730B9000455A84 = {
+					180026172473169D00455A84 = {
 						CreatedOnToolsVersion = 11.4.1;
 						TestTargetID = 9DBD20042140D1300047905E;
 					};
@@ -259,16 +274,19 @@
 			projectRoot = "";
 			targets = (
 				9DBD20042140D1300047905E /* Astronomy */,
-				180025F624730B9000455A84 /* AstronomyTests */,
+				180026172473169D00455A84 /* AstronomyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		180025F524730B9000455A84 /* Resources */ = {
+		180026162473169D00455A84 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1800262B24731EEF00455A84 /* GoodRoverData.json in Resources */,
+				1800262F24731F7200455A84 /* GoodSolData.json in Resources */,
+				1800262D24731F0100455A84 /* BadData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,11 +303,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		180025F324730B9000455A84 /* Sources */ = {
+		180026142473169D00455A84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				180025FA24730B9000455A84 /* AstronomyTests.swift in Sources */,
+				180026232473175700455A84 /* MockDataLoading.swift in Sources */,
+				1800261B2473169D00455A84 /* MarsClientTests.swift in Sources */,
+				1800262924731A3300455A84 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,10 +337,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		180025FD24730B9000455A84 /* PBXTargetDependency */ = {
+		1800261E2473169D00455A84 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9DBD20042140D1300047905E /* Astronomy */;
-			targetProxy = 180025FC24730B9000455A84 /* PBXContainerItemProxy */;
+			targetProxy = 1800261D2473169D00455A84 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -336,7 +356,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		180025FE24730B9000455A84 /* Debug */ = {
+		180026202473169D00455A84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -358,7 +378,7 @@
 			};
 			name = Debug;
 		};
-		180025FF24730B9000455A84 /* Release */ = {
+		180026212473169D00455A84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -532,11 +552,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1800260024730B9000455A84 /* Build configuration list for PBXNativeTarget "AstronomyTests" */ = {
+		1800261F2473169D00455A84 /* Build configuration list for PBXNativeTarget "AstronomyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				180025FE24730B9000455A84 /* Debug */,
-				180025FF24730B9000455A84 /* Release */,
+				180026202473169D00455A84 /* Debug */,
+				180026212473169D00455A84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
