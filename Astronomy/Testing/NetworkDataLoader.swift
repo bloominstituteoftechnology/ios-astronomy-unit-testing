@@ -8,21 +8,25 @@
 
 import Foundation
 
+//NetworkDataLoader Protocol
 protocol NetworkDataLoader {
     func loadData(from request: URLRequest, completion: @escaping(Data?, Error?) -> Void)
     
     func loadData(from url: URL, completion: @escaping(Data?, Error?) -> Void)
 }
 
+//NetworkDataLoader Extensions
 extension URLSession: NetworkDataLoader {
-    
     func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
-        //TODO
+        dataTask(with: request) { (data, response, error) in
+            completion(data, error)
+        }.resume()
     }
     
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
-        //TODO
+        dataTask(with: url) { (data, response, error) in
+            completion(data, error)
+        }.resume()
     }
-    
-    
 }
+
