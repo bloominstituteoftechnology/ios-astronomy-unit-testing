@@ -7,9 +7,11 @@
 //
 
 import XCTest
+@testable import Astronomy
 
 class AstronomyTests: XCTestCase {
 
     
     
 }
+
