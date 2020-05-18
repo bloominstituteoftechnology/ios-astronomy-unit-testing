@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3F0F890724731A3B00CB148F /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F890624731A3B00CB148F /* AstronomyTests.swift */; };
 		3F0F890F24731A5D00CB148F /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F890E24731A5D00CB148F /* NetworkDataLoader.swift */; };
+		3F0F891124733D2200CB148F /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F891024733D2200CB148F /* MockDataLoader.swift */; };
+		3F0F89132473418300CB148F /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F89122473418300CB148F /* TestJSON.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -42,6 +44,8 @@
 		3F0F890624731A3B00CB148F /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		3F0F890824731A3B00CB148F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F0F890E24731A5D00CB148F /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		3F0F891024733D2200CB148F /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		3F0F89122473418300CB148F /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 			children = (
 				3F0F890624731A3B00CB148F /* AstronomyTests.swift */,
 				3F0F890824731A3B00CB148F /* Info.plist */,
+				3F0F891024733D2200CB148F /* MockDataLoader.swift */,
+				3F0F89122473418300CB148F /* TestJSON.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -289,7 +295,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F0F891124733D2200CB148F /* MockDataLoader.swift in Sources */,
 				3F0F890724731A3B00CB148F /* AstronomyTests.swift in Sources */,
+				3F0F89132473418300CB148F /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
