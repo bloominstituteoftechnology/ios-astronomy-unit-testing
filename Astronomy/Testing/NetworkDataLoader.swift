@@ -17,11 +17,11 @@ protocol NetworkDataLoader {
 extension URLSession: NetworkDataLoader {
     
     func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
-        <#code#>
+        //TODO
     }
     
     func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
-        <#code#>
+        //TODO
     }
     
     
