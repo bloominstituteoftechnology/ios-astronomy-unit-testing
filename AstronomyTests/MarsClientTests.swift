@@ -33,6 +33,8 @@ class MarsClientTests: XCTestCase {
 
     func testFetchPhotos() {
         var rover: MarsRover?
+        var error: Error?
+        var photoReferences: [MarsPhotoReference]?
 
         let roverExpectation = self.expectation(description: "Received Rover results.")
 
@@ -44,10 +46,8 @@ class MarsClientTests: XCTestCase {
             roverExpectation.fulfill()
         }
         wait(for: [roverExpectation], timeout: 10)
-        XCTAssertNotNil(rover)
 
-        var error: Error?
-        var photoReferences: [MarsPhotoReference]?
+        XCTAssertNotNil(rover)
 
         let solExpectation = expectation(description: "Received Photo results.")
 
