@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		274856392473133D00D23AFE /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274856382473133D00D23AFE /* AstronomyTests.swift */; };
 		274856422473157E00D23AFE /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274856412473157E00D23AFE /* NetworkDataLoader.swift */; };
+		274856442473203800D23AFE /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274856432473203800D23AFE /* MockDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -42,6 +43,7 @@
 		274856382473133D00D23AFE /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		2748563A2473133D00D23AFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		274856412473157E00D23AFE /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		274856432473203800D23AFE /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				274856382473133D00D23AFE /* AstronomyTests.swift */,
+				274856432473203800D23AFE /* MockDataLoader.swift */,
 				2748563A2473133D00D23AFE /* Info.plist */,
 			);
 			path = AstronomyTests;
@@ -298,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				274856442473203800D23AFE /* MockDataLoader.swift in Sources */,
 				274856392473133D00D23AFE /* AstronomyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
