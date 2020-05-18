@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B4C3FA1247326EB00FAE1EA /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA0247326EB00FAE1EA /* AstronomyTests.swift */; };
+		2B4C3FA1247326EB00FAE1EA /* MarsRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA0247326EB00FAE1EA /* MarsRoverClientTests.swift */; };
+		2B4C3FA924732EE400FAE1EA /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA824732EE400FAE1EA /* NetworkDataLoader.swift */; };
+		2B4C3FAB2473323500FAE1EA /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FAA2473323500FAE1EA /* MockDataLoader.swift */; };
+		2B4C3FB2247335FE00FAE1EA /* GoodRoverJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4C3FB1247335FE00FAE1EA /* GoodRoverJSON.json */; };
+		2B4C3FB42473364200FAE1EA /* GoodSolJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4C3FB32473364200FAE1EA /* GoodSolJSON.json */; };
+		2B4C3FB62473366500FAE1EA /* BadRoverJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4C3FB52473366500FAE1EA /* BadRoverJSON.json */; };
+		2B4C3FB82473368400FAE1EA /* BadSolJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4C3FB72473368400FAE1EA /* BadSolJSON.json */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -38,8 +44,14 @@
 
 /* Begin PBXFileReference section */
 		2B4C3F9E247326EB00FAE1EA /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B4C3FA0247326EB00FAE1EA /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
+		2B4C3FA0247326EB00FAE1EA /* MarsRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClientTests.swift; sourceTree = "<group>"; };
 		2B4C3FA2247326EB00FAE1EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B4C3FA824732EE400FAE1EA /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		2B4C3FAA2473323500FAE1EA /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		2B4C3FB1247335FE00FAE1EA /* GoodRoverJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodRoverJSON.json; sourceTree = "<group>"; };
+		2B4C3FB32473364200FAE1EA /* GoodSolJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodSolJSON.json; sourceTree = "<group>"; };
+		2B4C3FB52473366500FAE1EA /* BadRoverJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadRoverJSON.json; sourceTree = "<group>"; };
+		2B4C3FB72473368400FAE1EA /* BadSolJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadSolJSON.json; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,7 +93,12 @@
 		2B4C3F9F247326EB00FAE1EA /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
-				2B4C3FA0247326EB00FAE1EA /* AstronomyTests.swift */,
+				2B4C3FA0247326EB00FAE1EA /* MarsRoverClientTests.swift */,
+				2B4C3FAA2473323500FAE1EA /* MockDataLoader.swift */,
+				2B4C3FB1247335FE00FAE1EA /* GoodRoverJSON.json */,
+				2B4C3FB32473364200FAE1EA /* GoodSolJSON.json */,
+				2B4C3FB52473366500FAE1EA /* BadRoverJSON.json */,
+				2B4C3FB72473368400FAE1EA /* BadSolJSON.json */,
 				2B4C3FA2247326EB00FAE1EA /* Info.plist */,
 			);
 			path = AstronomyTests;
@@ -153,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20292140D35A0047905E /* MarsRoverClient.swift */,
+				2B4C3FA824732EE400FAE1EA /* NetworkDataLoader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -266,6 +284,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B4C3FB2247335FE00FAE1EA /* GoodRoverJSON.json in Resources */,
+				2B4C3FB42473364200FAE1EA /* GoodSolJSON.json in Resources */,
+				2B4C3FB82473368400FAE1EA /* BadSolJSON.json in Resources */,
+				2B4C3FB62473366500FAE1EA /* BadRoverJSON.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +308,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B4C3FA1247326EB00FAE1EA /* AstronomyTests.swift in Sources */,
+				2B4C3FAB2473323500FAE1EA /* MockDataLoader.swift in Sources */,
+				2B4C3FA1247326EB00FAE1EA /* MarsRoverClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +322,7 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				2B4C3FA924732EE400FAE1EA /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
