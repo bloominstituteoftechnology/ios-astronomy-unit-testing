@@ -24,6 +24,7 @@
 		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
 		DDD37D002473131300CAC6A7 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD37CFF2473131300CAC6A7 /* AstronomyTests.swift */; };
+		DDD37D092473143A00CAC6A7 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD37D082473143A00CAC6A7 /* NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		DDD37CFD2473131300CAC6A7 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD37CFF2473131300CAC6A7 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		DDD37D012473131300CAC6A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDD37D082473143A00CAC6A7 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		9DBD20072140D1300047905E /* Astronomy */ = {
 			isa = PBXGroup;
 			children = (
+				DDD37D072473142400CAC6A7 /* Testing */,
 				9DBD20082140D1300047905E /* AppDelegate.swift */,
 				9DBD20272140D31B0047905E /* Model */,
 				9DBD20282140D31F0047905E /* Views */,
@@ -183,6 +186,14 @@
 				DDD37D012473131300CAC6A7 /* Info.plist */,
 			);
 			path = AstronomyTests;
+			sourceTree = "<group>";
+		};
+		DDD37D072473142400CAC6A7 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				DDD37D082473143A00CAC6A7 /* NetworkDataLoader.swift */,
+			);
+			path = Testing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +302,7 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				DDD37D092473143A00CAC6A7 /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
