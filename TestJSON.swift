@@ -29,7 +29,7 @@ let validRoverJSON = """
                     "RHAZ"
                 ]
             },
-            // missing
+            {
                 "sol": 1,
                 "earth_date": "2012-08-07",
                 "total_photos": 16,
