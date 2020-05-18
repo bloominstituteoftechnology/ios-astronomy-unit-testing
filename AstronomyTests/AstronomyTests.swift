@@ -7,27 +7,49 @@
 //
 
 import XCTest
+@testable import Astronomy
 
 class AstronomyTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    //Seems to fail sometimes but it's successful other times. May be due to my internet.
+    func testFetchRoverAndPhotos() {
+        
+        //Variables
+        let marsRoverClient = MarsRoverClient()
+        var roverInfo: MarsRover?
+        var photoReferences: [MarsPhotoReference]?
+        
+        //Expectation
+        let expectation1 = self.expectation(description: "Wait for Rover")
+        let expectation2 = self.expectation(description: "Wait for Photos")
+        
+        //Get the Rover
+        marsRoverClient.fetchMarsRover(named: "curiosity") { (rover, error) in
+            if let error = error {
+                NSLog("Error fetching info for curiosity: \(error)")
+                return
+            }
+            
+            roverInfo = rover
+            XCTAssertNotNil(rover)
+            expectation1.fulfill()
         }
+    
+        wait(for: [expectation1], timeout: 10)
+        XCTAssertNotNil(roverInfo)
+        
+        
+        //Fetch Photos
+        marsRoverClient.fetchPhotos(from: roverInfo!, onSol: 1) { (photos, error) in
+            
+            photoReferences = photos
+            expectation2.fulfill()
+        }
+        
+        wait(for: [expectation2], timeout: 10)
+        
+        XCTAssertNotNil(photoReferences)
     }
+
 
 }

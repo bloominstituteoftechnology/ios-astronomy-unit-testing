@@ -22,7 +22,8 @@ class MarsRoverClient {
         
         let url = self.url(forInfoForRover: name)
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
-
+            
+            print("In fetch Mars Rover")
             guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
                 return
