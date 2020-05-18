@@ -10,7 +10,6 @@
 		1800260324730E3B00455A84 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800260124730BC100455A84 /* NetworkDataLoader.swift */; };
 		1800261B2473169D00455A84 /* MarsClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800261A2473169D00455A84 /* MarsClientTests.swift */; };
 		180026232473175700455A84 /* MockDataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180026222473175700455A84 /* MockDataLoading.swift */; };
-		1800262924731A3300455A84 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800262824731A3300455A84 /* TestJSON.swift */; };
 		1800262B24731EEF00455A84 /* GoodRoverData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1800262A24731EEF00455A84 /* GoodRoverData.json */; };
 		1800262D24731F0100455A84 /* BadData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1800262C24731F0100455A84 /* BadData.json */; };
 		1800262F24731F7200455A84 /* GoodSolData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1800262E24731F7200455A84 /* GoodSolData.json */; };
@@ -48,7 +47,6 @@
 		1800261A2473169D00455A84 /* MarsClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsClientTests.swift; sourceTree = "<group>"; };
 		1800261C2473169D00455A84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		180026222473175700455A84 /* MockDataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoading.swift; sourceTree = "<group>"; };
-		1800262824731A3300455A84 /* TestJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = "<group>"; };
 		1800262A24731EEF00455A84 /* GoodRoverData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodRoverData.json; sourceTree = "<group>"; };
 		1800262C24731F0100455A84 /* BadData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadData.json; sourceTree = "<group>"; };
 		1800262E24731F7200455A84 /* GoodSolData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodSolData.json; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				1800261A2473169D00455A84 /* MarsClientTests.swift */,
-				1800262824731A3300455A84 /* TestJSON.swift */,
 				1800262A24731EEF00455A84 /* GoodRoverData.json */,
 				1800262E24731F7200455A84 /* GoodSolData.json */,
 				1800262C24731F0100455A84 /* BadData.json */,
@@ -309,7 +306,6 @@
 			files = (
 				180026232473175700455A84 /* MockDataLoading.swift in Sources */,
 				1800261B2473169D00455A84 /* MarsClientTests.swift in Sources */,
-				1800262924731A3300455A84 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
