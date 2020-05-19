@@ -43,6 +43,7 @@ class MarsRoverClient {
                 completion(nil, error)
                 return
             }
+            
             completion(photos, nil)
         }
     }

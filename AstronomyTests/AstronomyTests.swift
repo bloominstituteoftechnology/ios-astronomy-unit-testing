@@ -11,45 +11,62 @@ import XCTest
 
 class AstronomyTests: XCTestCase {
 
-    //Seems to fail sometimes but it's successful other times. May be due to my internet.
-    func testFetchRoverAndPhotos() {
+    func testFetchRover() {
         
         //Variables
-        let marsRoverClient = MarsRoverClient()
         var roverInfo: MarsRover?
-        var photoReferences: [MarsPhotoReference]?
+        let mockDataLoader = MockLoader(data: validRoverJSON, response: nil, error: nil, request: nil, url: nil)
+        let marsRoverClient = MarsRoverClient(networkLoader: mockDataLoader)
         
         //Expectation
         let expectation1 = self.expectation(description: "Wait for Rover")
-        let expectation2 = self.expectation(description: "Wait for Photos")
         
         //Get the Rover
         marsRoverClient.fetchMarsRover(named: "curiosity") { (rover, error) in
-            if let error = error {
-                NSLog("Error fetching info for curiosity: \(error)")
-                return
-            }
-            
             roverInfo = rover
             XCTAssertNotNil(rover)
+            XCTAssertNil(error)
             expectation1.fulfill()
         }
     
-        wait(for: [expectation1], timeout: 10)
+        wait(for: [expectation1], timeout: 2)
         XCTAssertNotNil(roverInfo)
-        
-        
-        //Fetch Photos
-        marsRoverClient.fetchPhotos(from: roverInfo!, onSol: 1) { (photos, error) in
-            
-            photoReferences = photos
-            expectation2.fulfill()
-        }
-        
-        wait(for: [expectation2], timeout: 10)
-        
-        XCTAssertNotNil(photoReferences)
     }
-
+    
+    func testFetchPhoto() {
+            
+            //Variables
+            var roverInfo: MarsRover?
+            var photoReferences: [MarsPhotoReference]?
+            let mockDataLoader = MockLoader(data: validRoverJSON, response: nil, error: nil, request: nil, url: nil)
+            let marsRoverClient = MarsRoverClient(networkLoader: mockDataLoader)
+            
+            //Expectation
+            let expectation1 = self.expectation(description: "Wait for Rover")
+            let expectation2 = self.expectation(description: "Wait for Photos")
+            
+            //Get the Rover
+            marsRoverClient.fetchMarsRover(named: "curiosity") { (rover, error) in
+                roverInfo = rover
+                XCTAssertNotNil(rover)
+                XCTAssertNil(error)
+                expectation1.fulfill()
+            }
+        
+            wait(for: [expectation1], timeout: 2)
+            XCTAssertNotNil(roverInfo)
+            print("Got Rover!")
+        
+            //Fetch Photos
+            marsRoverClient.fetchPhotos(from: roverInfo!, onSol: 1) { (photo, error) in
+                photoReferences = photo
+                XCTAssertNil(error)
+                expectation2.fulfill()
+            }
+            
+            wait(for: [expectation2], timeout: 2)
+            
+            XCTAssertNotNil(photoReferences)
+    }
 
 }
