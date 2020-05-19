@@ -64,4 +64,44 @@ class MarsClientTests: XCTestCase {
         XCTAssertNil(error)
         XCTAssertNotNil(photoReferences)
     }
+
+    func testUnavailableNetwork() {
+        var rover: MarsRover?
+        var error: Error?
+        let expectation = self.expectation(description: "Wait for results")
+
+        let mockDataLoader = MockDataLoader(data: nil, response: nil, error: NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotConnectToHost, userInfo: nil))
+
+        let controller = MarsRoverClient(dataLoader: mockDataLoader)
+
+        controller.fetchMarsRover(named: "Curiosity") { (roverResult, errorResult) in
+            rover = roverResult
+            error = errorResult
+            XCTAssertNil(rover)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testBadRoverData() {
+        var rover: MarsRover?
+        var error: Error?
+
+        let expectation = self.expectation(description: "Wait for results")
+
+         let mockRoverLoader = MockDataLoader(data: .mockJSONData(with: "BadRoverData"), response: nil, error: nil)
+
+        let controller = MarsRoverClient(dataLoader: mockRoverLoader)
+
+        controller.fetchMarsRover(named: "Curiosity") { (roverResult, errorResult) in
+            rover = roverResult
+            error = errorResult
+            XCTAssertNil(rover)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+
+    }
 }
