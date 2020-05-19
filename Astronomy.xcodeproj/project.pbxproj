@@ -10,6 +10,7 @@
 		1D3F0F082473460B004712EE /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F0F072473460A004712EE /* AstronomyTests.swift */; };
 		1D3F0F1124734A1C004712EE /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F0F1024734A1C004712EE /* NetworkDataLoader.swift */; };
 		1D3F0F1324734A65004712EE /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3F0F1224734A65004712EE /* URLSession+NetworkDataLoader.swift */; };
+		1D94470224735DCE00370E03 /* MockNetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D94470124735DCE00370E03 /* MockNetworkDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -44,6 +45,7 @@
 		1D3F0F092473460B004712EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D3F0F1024734A1C004712EE /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		1D3F0F1224734A65004712EE /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		1D94470124735DCE00370E03 /* MockNetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkDataLoader.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				1D3F0F072473460A004712EE /* AstronomyTests.swift */,
 				1D3F0F092473460B004712EE /* Info.plist */,
+				1D94470124735DCE00370E03 /* MockNetworkDataLoader.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D3F0F082473460B004712EE /* AstronomyTests.swift in Sources */,
+				1D94470224735DCE00370E03 /* MockNetworkDataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
