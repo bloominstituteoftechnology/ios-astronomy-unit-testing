@@ -48,7 +48,7 @@ class MarsRoverClient {
     
     // MARK: - Private
     
-    private func fetch<T: Codable>(from url: URL,
+    func fetch<T: Codable>(from url: URL,
                            using session: NetworkDataLoader,
                            completion: @escaping (T?, Error?) -> Void) {
         
