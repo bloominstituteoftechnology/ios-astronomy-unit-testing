@@ -11,6 +11,25 @@ import Photos
 
 class PhotoDetailViewController: UIViewController {
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var cameraLabel: UILabel!
+    
+    // MARK: - Properties
+    
+    var photo: MarsPhotoReference? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    lazy var dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        return df
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
@@ -54,24 +73,4 @@ class PhotoDetailViewController: UIViewController {
             NSLog("Error setting up views on detail view controller: \(error)")
         }
     }
-    
-    // MARK: - Properties
-    
-    var photo: MarsPhotoReference? {
-        didSet {
-            updateViews()
-        }
-    }
-    
-    lazy var dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateStyle = .short
-        df.timeStyle = .short
-        return df
-    }()
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var cameraLabel: UILabel!
-    
 }
