@@ -18,7 +18,7 @@ class MarsRoverClient {
     }
     
     func fetchMarsRover(named name: String,
-                        using session: URLSession = URLSession.shared,
+                        using session: NetworkDataLoader = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
@@ -34,7 +34,7 @@ class MarsRoverClient {
     
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
-                     using session: URLSession = URLSession.shared,
+                     using session: NetworkDataLoader = URLSession.shared,
                      completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
         
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
