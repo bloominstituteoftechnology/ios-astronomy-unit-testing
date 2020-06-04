@@ -10,6 +10,13 @@ import Foundation
 
 class MarsRoverClient {
     
+    let networkLoader = NetworkDataLoader()
+    
+    
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        
+    }
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
