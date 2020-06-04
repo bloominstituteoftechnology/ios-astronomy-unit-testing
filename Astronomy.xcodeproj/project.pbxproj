@@ -25,6 +25,7 @@
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
 		EDF8C00E24887C19002C56E0 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8C00D24887C19002C56E0 /* AstronomyTests.swift */; };
 		EDF8C0162488841D002C56E0 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8C0152488841D002C56E0 /* NetworkDataLoader.swift */; };
+		EDF8C01824889212002C56E0 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF8C01724889212002C56E0 /* TestJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		EDF8C00D24887C19002C56E0 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		EDF8C00F24887C19002C56E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDF8C0152488841D002C56E0 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		EDF8C01724889212002C56E0 /* TestJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			children = (
 				EDF8C00D24887C19002C56E0 /* AstronomyTests.swift */,
 				EDF8C00F24887C19002C56E0 /* Info.plist */,
+				EDF8C01724889212002C56E0 /* TestJSON.swift */,
 			);
 			path = AstronomyTests;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDF8C00E24887C19002C56E0 /* AstronomyTests.swift in Sources */,
+				EDF8C01824889212002C56E0 /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
