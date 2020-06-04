@@ -10,8 +10,6 @@ import XCTest
 
 class AstronomyTests: XCTestCase {
    
-   let app = XCUIApplication()
-   
    override func setUpWithError() throws {
       
    }
