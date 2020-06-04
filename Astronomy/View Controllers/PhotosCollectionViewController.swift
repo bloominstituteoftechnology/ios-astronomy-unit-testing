@@ -10,6 +10,8 @@ import UIKit
 
 class PhotosCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet var collectionView: UICollectionView!
+    
     // Properties
     
     private let client = MarsRoverClient()
@@ -43,8 +45,6 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
             DispatchQueue.main.async { self.collectionView?.reloadData() }
         }
     }
-    
-    @IBOutlet var collectionView: UICollectionView!
     
     let solLabel = UILabel()
     
