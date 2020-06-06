@@ -102,6 +102,6 @@ class MarsRoverClientTests: XCTestCase {
          }
       }
       
-      wait(for: [expectation], timeout: 40)
+      wait(for: [expectation], timeout: 40) // this takes too long! has to be over 30 seconds to pass.
    }
 }
