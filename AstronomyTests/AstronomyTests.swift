@@ -28,26 +28,29 @@ class AstronomyTests: XCTestCase {
     func testMarsRover() {
         
         let client = MarsRoverClient()
-        let expectation = self.expectation(description: "Wait for results.")
+        let expectationRover = self.expectation(description: "Wait for results.")
         
         client.fetchMarsRover(named: "curiosity") { (MarsRover, error) in
             print("We recieved the mars rover data!😄")
-            expectation.fulfill()
+            expectationRover.fulfill()
         }
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectationRover], timeout: 5)
+        
+        
+        let photoExpectation = expectation(description: "Wait for the photos")
+        
+        client.fetchPhotos(from: marsRoverForTest, onSol: 1) { (photos, error) in
+            XCTAssertNil(error)
+            print("We have photos!")
+            XCTAssertGreaterThan(photos!.count, 0)
+            photoExpectation.fulfill()
+        }
+        wait(for: [photoExpectation], timeout: 5)
     }
     
-    func testFetchPhotos() {
-        let client = MarsRoverClient()
-        let expectation = self.expectation(description: "Wait for photos.")
+    func testValidData() {
         
-        client.fetchPhotos(from: marsRoverForTest, onSol: <#T##Int#>, completion: <#T##([MarsPhotoReference]?, Error?) -> Void#>)
         
     }
-    
-    
-    
-    
-    
 
 }
