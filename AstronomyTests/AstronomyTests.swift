@@ -22,7 +22,7 @@ Is the completion handler called when networking fails?
 @testable import Astronomy
 class AstronomyTests: XCTestCase {
     
-    let marsRoverForTest = MarsRover(name: "curiosity", launchDate: Date(), landingDate: Date() + 2, status: .active, maxSol: 2, maxDate: Date(), numberOfPhotos: 16, solDescriptions: [])
+    let marsRoverForTest = MarsRover(name: "Curiosity", launchDate: Date(), landingDate: Date() + 2, status: .active, maxSol: 2, maxDate: Date(), numberOfPhotos: 16, solDescriptions: [])
     
 
     func testMarsRover() {
@@ -48,9 +48,68 @@ class AstronomyTests: XCTestCase {
         wait(for: [photoExpectation], timeout: 5)
     }
     
-    func testValidData() {
+    func testValidRoverData() {
+        let mockDataLoader = MockDataLoader(data: validRoverJSON, error: nil)
+        let expectation = self.expectation(description: "Wait for results.")
+
+        let client = MarsRoverClient(networkLoader: mockDataLoader)
         
-        
+        client.fetchMarsRover(named: "Curiosity") { (MarsRover, error) in
+
+            XCTAssertEqual(MarsRover?.name, "Curiosity")
+            
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
 
+    func testInValidRoverData() {
+        let mockDataLoader = MockDataLoader(data: inValidRoverJSON, error: nil)
+        let expectation = self.expectation(description: "Wait for results.")
+
+        let client = MarsRoverClient(networkLoader: mockDataLoader)
+        
+        client.fetchMarsRover(named: "Curiosity") { (MarsRover, error) in
+
+            XCTAssertTrue(MarsRover?.name != "Curiosity")
+            
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
+    }
+    
+    func testValidSol1Data() {
+        let mockDataLoader = MockDataLoader(data: validSol1JSON, error: nil)
+        let expectation = self.expectation(description: "Wait for photos.")
+
+        let client = MarsRoverClient(networkLoader: mockDataLoader)
+        
+        client.fetchPhotos(from: marsRoverForTest, onSol: 1) { (photos, error) in
+            guard let photos = photos else { return }
+
+            XCTAssertGreaterThan(photos.count, 0)
+            
+            XCTAssertEqual(photos[0].imageURL, URL(string: "http://mars.jpl.nasa.gov/msl-raw-images/msss/00001/mcam/0001ML0000001000I1_DXXX.jpg"))
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 15)
+    }
+    
+    func testInValidSol1Data() {
+        let mockDataLoader = MockDataLoader(data: inValidSol1JSON, error: nil)
+        let expectation = self.expectation(description: "Wait for photos.")
+
+        let client = MarsRoverClient(networkLoader: mockDataLoader)
+        
+        client.fetchPhotos(from: marsRoverForTest, onSol: 1) { (photos, error) in
+            
+            guard let photos = photos else { return }
+            XCTAssertGreaterThan(photos.count, 0)
+            
+            XCTAssertTrue(photos[0].imageURL != URL(string: "http://mars.jpl.nasa.gov/msl-raw-images/msss/00001/mcam/0001ML0000001000I1_DXXX.jpg"))
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 15)
+    }
+    
 }
