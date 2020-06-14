@@ -8,26 +8,46 @@
 
 import XCTest
 
+/*
+Does decoding work?
+Does decoding fail when given bad data?
+Does it build the correct URL?
+Does it build the correct URLRequest?
+Are the search results saved properly?
+Is the completion handler called when the data is good?
+Is the completion handler called when the data is bad?
+Is the completion handler called when networking fails?
+*/
+
+@testable import Astronomy
 class AstronomyTests: XCTestCase {
+    
+    let marsRoverForTest = MarsRover(name: "curiosity", launchDate: Date(), landingDate: Date() + 2, status: .active, maxSol: 2, maxDate: Date(), numberOfPhotos: 16, solDescriptions: [])
+    
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    func testMarsRover() {
+        
+        let client = MarsRoverClient()
+        let expectation = self.expectation(description: "Wait for results.")
+        
+        client.fetchMarsRover(named: "curiosity") { (MarsRover, error) in
+            print("We recieved the mars rover data!😄")
+            expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 5)
     }
+    
+    func testFetchPhotos() {
+        let client = MarsRoverClient()
+        let expectation = self.expectation(description: "Wait for photos.")
+        
+        client.fetchPhotos(from: marsRoverForTest, onSol: <#T##Int#>, completion: <#T##([MarsPhotoReference]?, Error?) -> Void#>)
+        
+    }
+    
+    
+    
+    
+    
 
 }
