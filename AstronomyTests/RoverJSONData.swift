@@ -68,10 +68,8 @@ let validRoverJSON = """
         ]
     }
 }
-""".data(using: .utf8)!
+""".data(using: .utf8)
 
-
-// Invalid: missing final closing bracket
 let invalidRoverJSON = """
 {
     "photo_manifest": {
@@ -132,4 +130,4 @@ let invalidRoverJSON = """
         ]
     }
 
-""".data(using: .utf8)!
+""".data(using: .utf8)
