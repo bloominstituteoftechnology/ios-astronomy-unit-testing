@@ -19,6 +19,8 @@ class MockDataLoader: NetworkDataLoader {
         self.error = error
     }
     
+    //TODO: Implement the two loadData() functions. They should call the passed completion closure with the values of object's data and error properties. Make them call the completion closure asynchronously on the global background queue.
+    
     func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
             completion(self.data, self.error)
