@@ -2,7 +2,7 @@
 //  AstronomyTests.swift
 //  AstronomyTests
 //
-//  Created by Bling Morley on 6/15/20.
+//  Created by Cody Morley on 6/15/20.
 //  Copyright © 2020 Lambda School. All rights reserved.
 //
 
