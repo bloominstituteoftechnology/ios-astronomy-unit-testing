@@ -20,7 +20,7 @@ Be sure that you test the networking parts of the app, paying particular attenti
 
 #### Add a Test Target
 
-Add a unit test target to your project, following the steps learned in [Unit Testing I](https://learn.lambdaschool.com/ios/module/recfuveglad8xlwmr).
+Add a unit test target to your project, following the steps learned in [Unit Testing I](https://learn.lambdaschool.com/ios3/module/recfUVEglad8Xlwmr/).
 
 #### Refactor MarsRoverClient to Improve Testability
 
