@@ -62,6 +62,20 @@ class AstronomyTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 5)
     }
+    
+    func testrequestSpeed() {
+        measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
+            let speedRequestExcpectation = self.expectation(description: "Wait for the results to come back.")
+            let client = MarsRoverClient(networkLoader: URLSession(configuration: .ephemeral))
+            
+            startMeasuring()
+            client.fetchMarsRover(named: "Curiosity") { (MarsRover, error) in
+                self.stopMeasuring()
+                speedRequestExcpectation.fulfill()
+            }
+            wait(for: [speedRequestExcpectation], timeout: 5)
+        }
+    }
 
     func testInValidRoverData() {
         let mockDataLoader = MockDataLoader(data: inValidRoverJSON, error: nil)
@@ -111,5 +125,4 @@ class AstronomyTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 15)
     }
-    
 }
