@@ -24,6 +24,12 @@ Is the completion handler called when networking fails?
 
 class AstronomyTests: XCTestCase {
 
-   
+    func testFetchMarsRover() {
+        
+    }
+    
+    func testFetchPhotos() {
+        
+    }
 
 }
