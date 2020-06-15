@@ -24,53 +24,45 @@ Is the completion handler called when networking fails?
 
 class AstronomyTests: XCTestCase {
 
-    func testFetchMarsRover() {
-        
-    }
-    
-    func testFetchPhotos() {
-        
-    }
-
     func testForSomeResults() {
         
         // TODO: fix
-//        let expectation = self.expectation(description: "Wait for results")
-//        let controller = MarsRoverClient()
-//        controller.fetchMarsRover(named: "Mast") {_,_ in
-//            print("We got back some results!")
-//            XCTAssertGreaterThan(controller., 0)
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 5)
-//        XCTAssertGreaterThan(controller., 0)
+        let expectation = self.expectation(description: "Wait for results")
+        let controller = MarsRoverClient()
+        controller.fetchMarsRover(named: "Mast") {_,_ in
+            print("We got back some results!")
+            XCTAssertGreaterThan(controller., 0)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
+        XCTAssertGreaterThan(controller., 0)
     }
     
     func testSpeedOfTypicalRequest() {
-//        measure {
-//            let expectation = self.expectation(description: "Wait for results")
-//            let controller = MarsRoverClient(dataLoader: URLSession(configuration: .ephemeral))
-//
-//            controller.fetchPhotos(from: "Mast", onSol: 1) {
-//                expectation.fulfill()
-//            }
-//
-//            wait(for: [expectation], timeout:  5)
-//        }
+        measure {
+            let expectation = self.expectation(description: "Wait for results")
+            let controller = MarsRoverClient(dataLoader: URLSession(configuration: .ephemeral))
+
+            controller.fetchPhotos(from: "Mast", onSol: 1) {
+                expectation.fulfill()
+            }
+
+            wait(for: [expectation], timeout:  5)
+        }
     }
     
     func testSpeedOfTypicalRequestMoreAccurately() {
-//        measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
-//            let expectation = self.expectation(description: "Wait for results")
-//            let controller = MarsRoverClient(dataLoader: URLSession(configuration: .ephemeral))
-//
-//            startMeasuring()
-//            controller.fetchPhotos(from: "Mast", onSol: 1) {
-//                self.stopMeasuring()
-//                expectation.fulfill()
-//            }
-//            wait(for: [expectation], timeout: 5)
-//        }
+        measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
+            let expectation = self.expectation(description: "Wait for results")
+            let controller = MarsRoverClient(dataLoader: URLSession(configuration: .ephemeral))
+
+            startMeasuring()
+            controller.fetchPhotos(from: , onSol: 1) {
+                self.stopMeasuring()
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 5)
+        }
     }
     
     func testValidRoverData() {
@@ -79,7 +71,9 @@ class AstronomyTests: XCTestCase {
         let expectation = self.expectation(description: "Wait for results")
         let controller = MarsRoverClient(dataLoader: mockDataLoader)
         
-        controller
+        controller.fetchMarsRover(named: "Curiosity") { _,_  in
+            XCTAssertEqual(<#T##expression1: Equatable##Equatable#>, <#T##expression2: Equatable##Equatable#>)
+        }
         
         
     }
@@ -90,7 +84,9 @@ class AstronomyTests: XCTestCase {
         let expectation = self.expectation(description: "Wait for results")
         let controller = MarsRoverClient(dataLoader: mockDataLoader)
         
-        controller
+        controller.fetchMarsRover(named: "Curiosity") { _, _ in
+            <#code#>
+        }
     }
     
     func testValidSolData() {
@@ -116,5 +112,35 @@ class AstronomyTests: XCTestCase {
         
         let expectation = self.expectation(description: "Wait for results")
         let controller = MarsRoverClient(dataLoader: mockDataLoader)
+    }
+    
+    func testDataWithError() {
+        let expectation = self.expectation(description: "There should be no search results")
+        let error = NSError(domain: "com.lambdaschool.Astronomy", code: -1, userInfo: nil)
+        
+        let mockDataLoader = MockDataLoader(data: validRoverJSON, error: error)
+        let controller = MarsRoverClient(dataLoader: mockDataLoader)
+        
+        controller.fetchMarsRover(named: "Curiosity") {_,_ in
+            XCTAssertTrue(fetchMarsRover.isEmpty)
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testNoDataWithError() {
+        let expectation = self.expectation(description: "There should be no search results")
+        let error = NSError(domain: "com.lambdaschool.Astronomy", code: -1, userInfo: nil)
+        
+        let mockDataLoader = MockDataLoader(data: nil, error: error)
+        let controller = MarsRoverClient(dataLoader: mockDataLoader)
+        
+        controller.fetchMarsRover(named: "Curiosity") {_,_ in
+            XCTAssertTrue(fetchMarsRover.isEmpty)
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5)
     }
 }
