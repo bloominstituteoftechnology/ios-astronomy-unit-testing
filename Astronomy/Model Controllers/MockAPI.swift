@@ -10,9 +10,9 @@ import Foundation
 
 class MockAPI: NetworkDataLoader {
     
-    let data: Data
-    let error: Error
-    init(data: Data, error: Error) {
+    let data: Data?
+    let error: Error?
+    init(data: Data?, error: Error?) {
         self.data = data
         self.error = error
     }
