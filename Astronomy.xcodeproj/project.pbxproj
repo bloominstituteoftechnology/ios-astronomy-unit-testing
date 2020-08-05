@@ -10,6 +10,8 @@
 		0B98822424DB3C480034B7B0 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B98822324DB3C480034B7B0 /* AstronomyTests.swift */; };
 		0B98822C24DB3CB50034B7B0 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B98822B24DB3CB50034B7B0 /* NetworkDataLoader.swift */; };
 		0B98822E24DB3D370034B7B0 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B98822D24DB3D370034B7B0 /* URLSession+NetworkDataLoader.swift */; };
+		0B98823024DB41040034B7B0 /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B98822F24DB41040034B7B0 /* TestJSON.swift */; };
+		0B98823224DB41170034B7B0 /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B98823124DB41170034B7B0 /* MockLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -44,6 +46,8 @@
 		0B98822524DB3C480034B7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B98822B24DB3CB50034B7B0 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		0B98822D24DB3D370034B7B0 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		0B98822F24DB41040034B7B0 /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
+		0B98823124DB41170034B7B0 /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				0B98822324DB3C480034B7B0 /* AstronomyTests.swift */,
+				0B98823124DB41170034B7B0 /* MockLoader.swift */,
+				0B98822F24DB41040034B7B0 /* TestJSON.swift */,
 				0B98822524DB3C480034B7B0 /* Info.plist */,
 			);
 			path = AstronomyTests;
@@ -293,6 +299,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B98822424DB3C480034B7B0 /* AstronomyTests.swift in Sources */,
+				0B98823024DB41040034B7B0 /* TestJSON.swift in Sources */,
+				0B98823224DB41170034B7B0 /* MockLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
