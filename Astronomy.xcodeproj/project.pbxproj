@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		384E9C1624DB8E47003E41A2 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9C1524DB8E47003E41A2 /* NetworkDataLoader.swift */; };
+		384E9C1824DB8F77003E41A2 /* URLSession+DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E9C1724DB8F77003E41A2 /* URLSession+DataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		384E9C1524DB8E47003E41A2 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		384E9C1724DB8F77003E41A2 /* URLSession+DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+DataLoader.swift"; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20312140DE100047905E /* URL+Secure.swift */,
+				384E9C1524DB8E47003E41A2 /* NetworkDataLoader.swift */,
+				384E9C1724DB8F77003E41A2 /* URLSession+DataLoader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -229,6 +235,7 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				384E9C1624DB8E47003E41A2 /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
@@ -237,6 +244,7 @@
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
 				9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,
+				384E9C1824DB8F77003E41A2 /* URLSession+DataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
