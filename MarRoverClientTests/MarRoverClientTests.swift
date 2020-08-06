@@ -1,14 +1,14 @@
 //
-//  AstronomyTests.swift
-//  AstronomyTests
+//  MarRoverClientTests.swift
+//  MarRoverClientTests
 //
-//  Created by Lambda_School_Loaner_241 on 6/3/20.
+//  Created by Lambda_School_Loaner_241 on 8/5/20.
 //  Copyright © 2020 Lambda School. All rights reserved.
 //
 
 import XCTest
 
-class AstronomyTests: XCTestCase {
+class MarRoverClientTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

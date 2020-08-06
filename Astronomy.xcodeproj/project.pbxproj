@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		92936CED2488946600068979 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92936CEC2488946600068979 /* AstronomyTests.swift */; };
 		92936CF52488949500068979 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92936CF42488949500068979 /* NetworkDataLoader.swift */; };
+		92A9630124DBB08C00AA06CE /* MarRoverClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9630024DBB08C00AA06CE /* MarRoverClientTests.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -28,7 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		92936CEF2488946600068979 /* PBXContainerItemProxy */ = {
+		92A9630324DBB08C00AA06CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9DBD1FFD2140D1300047905E /* Project object */;
 			proxyType = 1;
@@ -38,10 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		92936CEA2488946600068979 /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		92936CEC2488946600068979 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
-		92936CEE2488946600068979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92936CF42488949500068979 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		92A962FE24DBB08C00AA06CE /* MarRoverClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarRoverClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92A9630024DBB08C00AA06CE /* MarRoverClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarRoverClientTests.swift; sourceTree = "<group>"; };
+		92A9630224DBB08C00AA06CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		92936CE72488946600068979 /* Frameworks */ = {
+		92A962FB24DBB08C00AA06CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,20 +80,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		92936CEB2488946600068979 /* AstronomyTests */ = {
+		92A962FF24DBB08C00AA06CE /* MarRoverClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				92936CEC2488946600068979 /* AstronomyTests.swift */,
-				92936CEE2488946600068979 /* Info.plist */,
+				92A9630024DBB08C00AA06CE /* MarRoverClientTests.swift */,
+				92A9630224DBB08C00AA06CE /* Info.plist */,
 			);
-			path = AstronomyTests;
+			path = MarRoverClientTests;
 			sourceTree = "<group>";
 		};
 		9DBD1FFC2140D1300047905E = {
 			isa = PBXGroup;
 			children = (
 				9DBD20072140D1300047905E /* Astronomy */,
-				92936CEB2488946600068979 /* AstronomyTests */,
+				92A962FF24DBB08C00AA06CE /* MarRoverClientTests */,
 				9DBD20062140D1300047905E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20052140D1300047905E /* Astronomy.app */,
-				92936CEA2488946600068979 /* AstronomyTests.xctest */,
+				92A962FE24DBB08C00AA06CE /* MarRoverClientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,22 +191,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		92936CE92488946600068979 /* AstronomyTests */ = {
+		92A962FD24DBB08C00AA06CE /* MarRoverClientTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92936CF32488946600068979 /* Build configuration list for PBXNativeTarget "AstronomyTests" */;
+			buildConfigurationList = 92A9630524DBB08C00AA06CE /* Build configuration list for PBXNativeTarget "MarRoverClientTests" */;
 			buildPhases = (
-				92936CE62488946600068979 /* Sources */,
-				92936CE72488946600068979 /* Frameworks */,
-				92936CE82488946600068979 /* Resources */,
+				92A962FA24DBB08C00AA06CE /* Sources */,
+				92A962FB24DBB08C00AA06CE /* Frameworks */,
+				92A962FC24DBB08C00AA06CE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				92936CF02488946600068979 /* PBXTargetDependency */,
+				92A9630424DBB08C00AA06CE /* PBXTargetDependency */,
 			);
-			name = AstronomyTests;
-			productName = AstronomyTests;
-			productReference = 92936CEA2488946600068979 /* AstronomyTests.xctest */;
+			name = MarRoverClientTests;
+			productName = MarRoverClientTests;
+			productReference = 92A962FE24DBB08C00AA06CE /* MarRoverClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9DBD20042140D1300047905E /* Astronomy */ = {
@@ -232,12 +232,12 @@
 		9DBD1FFD2140D1300047905E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Lambda School";
 				TargetAttributes = {
-					92936CE92488946600068979 = {
-						CreatedOnToolsVersion = 11.5;
+					92A962FD24DBB08C00AA06CE = {
+						CreatedOnToolsVersion = 11.6;
 						TestTargetID = 9DBD20042140D1300047905E;
 					};
 					9DBD20042140D1300047905E = {
@@ -259,13 +259,13 @@
 			projectRoot = "";
 			targets = (
 				9DBD20042140D1300047905E /* Astronomy */,
-				92936CE92488946600068979 /* AstronomyTests */,
+				92A962FD24DBB08C00AA06CE /* MarRoverClientTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		92936CE82488946600068979 /* Resources */ = {
+		92A962FC24DBB08C00AA06CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -285,11 +285,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		92936CE62488946600068979 /* Sources */ = {
+		92A962FA24DBB08C00AA06CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92936CED2488946600068979 /* AstronomyTests.swift in Sources */,
+				92A9630124DBB08C00AA06CE /* MarRoverClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,10 +317,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		92936CF02488946600068979 /* PBXTargetDependency */ = {
+		92A9630424DBB08C00AA06CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9DBD20042140D1300047905E /* Astronomy */;
-			targetProxy = 92936CEF2488946600068979 /* PBXContainerItemProxy */;
+			targetProxy = 92A9630324DBB08C00AA06CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -336,13 +336,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		92936CF12488946600068979 /* Debug */ = {
+		92A9630624DBB08C00AA06CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AstronomyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				INFOPLIST_FILE = MarRoverClientTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -350,7 +350,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kennedysamarakody.AstronomyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kennedysamarakody.MarRoverClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -358,20 +358,20 @@
 			};
 			name = Debug;
 		};
-		92936CF22488946600068979 /* Release */ = {
+		92A9630724DBB08C00AA06CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AstronomyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				INFOPLIST_FILE = MarRoverClientTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kennedysamarakody.AstronomyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kennedysamarakody.MarRoverClientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -532,11 +532,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		92936CF32488946600068979 /* Build configuration list for PBXNativeTarget "AstronomyTests" */ = {
+		92A9630524DBB08C00AA06CE /* Build configuration list for PBXNativeTarget "MarRoverClientTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				92936CF12488946600068979 /* Debug */,
-				92936CF22488946600068979 /* Release */,
+				92A9630624DBB08C00AA06CE /* Debug */,
+				92A9630724DBB08C00AA06CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
