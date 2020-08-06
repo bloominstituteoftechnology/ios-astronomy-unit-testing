@@ -8,11 +8,15 @@
 
 import Foundation
 
-struct MockLoader: NetworkDataLoader {
+class MockLoader: NetworkDataLoader {
     
     let data: Data?
     let error: Error?
     
+    init(data: Data?, error: Error?){
+        self.data = data
+        self.error = error
+    }
     
     func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
         DispatchQueue.global().async {
