@@ -11,6 +11,7 @@
 		027C855224DB9B8B008FD2CF /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C855124DB9B8B008FD2CF /* NetworkDataLoader.swift */; };
 		027C855424DB9C67008FD2CF /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C855324DB9C67008FD2CF /* URLSession+NetworkDataLoader.swift */; };
 		027C855624DCAAE1008FD2CF /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C855524DCAAE1008FD2CF /* MockLoader.swift */; };
+		027C855824DCCA06008FD2CF /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027C855724DCCA06008FD2CF /* TestJSON.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -46,6 +47,7 @@
 		027C855124DB9B8B008FD2CF /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
 		027C855324DB9C67008FD2CF /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
 		027C855524DCAAE1008FD2CF /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
+		027C855724DCCA06008FD2CF /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		027C854824DB9A79008FD2CF /* AstronomyTests */ = {
 			isa = PBXGroup;
 			children = (
+				027C855724DCCA06008FD2CF /* TestJSON.swift */,
 				027C854924DB9A79008FD2CF /* AstronomyTests.swift */,
 				027C854B24DB9A79008FD2CF /* Info.plist */,
 				027C855524DCAAE1008FD2CF /* MockLoader.swift */,
@@ -297,6 +300,7 @@
 			files = (
 				027C855624DCAAE1008FD2CF /* MockLoader.swift in Sources */,
 				027C854A24DB9A79008FD2CF /* AstronomyTests.swift in Sources */,
+				027C855824DCCA06008FD2CF /* TestJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
