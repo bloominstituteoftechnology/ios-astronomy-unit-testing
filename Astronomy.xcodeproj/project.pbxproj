@@ -25,6 +25,7 @@
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
 		C295F40F2524FD070032DF2A /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C295F40E2524FD070032DF2A /* AstronomyTests.swift */; };
 		C295F413252516D90032DF2A /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C295F412252516D90032DF2A /* NetworkDataLoader.swift */; };
+		C295F415252518880032DF2A /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C295F414252518880032DF2A /* URLSession+NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		C295F4082524FCD90032DF2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C295F40E2524FD070032DF2A /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		C295F412252516D90032DF2A /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		C295F414252518880032DF2A /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				C295F412252516D90032DF2A /* NetworkDataLoader.swift */,
+				C295F414252518880032DF2A /* URLSession+NetworkDataLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				9DBD20232140D30F0047905E /* SolDescription.swift in Sources */,
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
 				9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */,
+				C295F415252518880032DF2A /* URLSession+NetworkDataLoader.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
