@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1A767BE72525706C0003967B /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A767BE62525706C0003967B /* AstronomyTests.swift */; };
+		1A767BEF252578B30003967B /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A767BEE252578B30003967B /* TestJSON.swift */; };
+		1A767BF125257A7F0003967B /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A767BF025257A7E0003967B /* NetworkDataLoader.swift */; };
+		1A767BF325257AF90003967B /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A767BF225257AF90003967B /* URLSession+NetworkDataLoader.swift */; };
 		9DBD20092140D1300047905E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20082140D1300047905E /* AppDelegate.swift */; };
 		9DBD20102140D1300047905E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD200F2140D1300047905E /* Assets.xcassets */; };
 		9DBD20132140D1300047905E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBD20112140D1300047905E /* LaunchScreen.storyboard */; };
@@ -40,6 +43,9 @@
 		1A767BE42525706C0003967B /* AstronomyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstronomyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A767BE62525706C0003967B /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		1A767BE82525706C0003967B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A767BEE252578B30003967B /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
+		1A767BF025257A7E0003967B /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		1A767BF225257AF90003967B /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBD20082140D1300047905E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBD200F2140D1300047905E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20312140DE100047905E /* URL+Secure.swift */,
+				1A767BF025257A7E0003967B /* NetworkDataLoader.swift */,
+				1A767BF225257AF90003967B /* URLSession+NetworkDataLoader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 				9DBD201E2140D1AE0047905E /* Main.storyboard */,
 				9DBD20112140D1300047905E /* LaunchScreen.storyboard */,
 				9DBD20142140D1300047905E /* Info.plist */,
+				1A767BEE252578B30003967B /* TestJSON.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -297,9 +306,12 @@
 			files = (
 				9DBD20382140E46E0047905E /* ConcurrentOperation.swift in Sources */,
 				9DBD20322140DE100047905E /* URL+Secure.swift in Sources */,
+				1A767BF325257AF90003967B /* URLSession+NetworkDataLoader.swift in Sources */,
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				1A767BF125257A7F0003967B /* NetworkDataLoader.swift in Sources */,
+				1A767BEF252578B30003967B /* TestJSON.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
