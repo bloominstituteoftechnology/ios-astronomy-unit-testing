@@ -10,9 +10,9 @@ import Foundation
 
 class MarsRoverClient {
     
-    let dataLoader: NetworkDataLoader
-    init(dataLoader: NetworkDataLoader = URLSession.shared) {
-        self.dataLoader = dataLoader
+    let NetworkLoader: NetworkDataLoader
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.NetworkLoader = networkLoader
     }
     
     func fetchMarsRover(named name: String, using session: URLSession = URLSession.shared, completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -55,7 +55,7 @@ class MarsRoverClient {
     private func fetch<T: Codable>(from url: URL, using session: URLSession = URLSession.shared, completion: @escaping (T?, Error?) -> Void) {
         
         // URLSESSION TODO: Modify to allow Dependecy Injection
-        session.dataTask(with: url) { (data, response, error) in
+        NetworkLoader.loadData(from: url) { (data, error) in
             if let error = error {
                 completion(nil, error)
                 return
@@ -73,8 +73,11 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
-    }
+        }
+        
+        }
+            
+    
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
     private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
