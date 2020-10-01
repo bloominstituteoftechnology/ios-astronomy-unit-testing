@@ -15,11 +15,10 @@ class MarsRoverClient {
         self.dataLoader = dataLoader
     }
     
-    func fetchMarsRover(named name: String,
-                        using session: URLSession = URLSession.shared,
-                        completion: @escaping (MarsRover?, Error?) -> Void) {
+    func fetchMarsRover(named name: String, using session: URLSession = URLSession.shared, completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
+        
         fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
 
             guard let rover = dictionary?["photo_manifest"] else {
@@ -29,6 +28,12 @@ class MarsRoverClient {
             completion(rover, nil)
         }
     }
+    
+    
+    
+    
+    
+    
     
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
@@ -47,9 +52,9 @@ class MarsRoverClient {
     
     // MARK: - Private
     
-    private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
-                           completion: @escaping (T?, Error?) -> Void) {
+    private func fetch<T: Codable>(from url: URL, using session: URLSession = URLSession.shared, completion: @escaping (T?, Error?) -> Void) {
+        
+        // URLSESSION TODO: Modify to allow Dependecy Injection
         session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 completion(nil, error)
