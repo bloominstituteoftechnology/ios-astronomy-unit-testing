@@ -10,12 +10,23 @@ import Foundation
 @testable import Astronomy
 
 class MockDataLoader: NetworkDataLoader {
+    
     var data: Data?
     var error: Error?
-    
-    func loadData(with request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        print("loadData")
+    //Make them call the completion closure asynchronously on the global background queue.
+    func loadData(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            completion(self.data, self.error)
+        }
     }
+    
+    func loadData(from url: URL, completion: @escaping (Data?, Error?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            completion(self.data, self.error)
+        }
+    }
+    
+  
     
     
    

@@ -8,17 +8,17 @@
 
 import XCTest
 
-class MarsRoverClientNetworkingTests: XCTestCase {
+class MarsRoverClientTests: XCTestCase {
 
-    func testMarsRoverClient() {
+    func testFetchMarsRover() {
         
     }
     
-    func testBadJsonDecodingReturnsError() {
+    func testFetchPhotos() {
         
     }
     
-    func test1() {
+    func testSomethingElse() {
         
     }
     
