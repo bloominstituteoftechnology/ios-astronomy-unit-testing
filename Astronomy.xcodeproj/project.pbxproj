@@ -25,6 +25,7 @@
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
 		CA4D22DE2525530700FFC0E7 /* AstronomyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D22DD2525530700FFC0E7 /* AstronomyTests.swift */; };
 		CA4D22E82525536900FFC0E7 /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D22E72525536900FFC0E7 /* NetworkDataLoader.swift */; };
+		CA4D22EC252553C900FFC0E7 /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D22EB252553C900FFC0E7 /* URLSession+NetworkDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		CA4D22DD2525530700FFC0E7 /* AstronomyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronomyTests.swift; sourceTree = "<group>"; };
 		CA4D22DF2525530700FFC0E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA4D22E72525536900FFC0E7 /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		CA4D22EB252553C900FFC0E7 /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			children = (
 				9DBD20292140D35A0047905E /* MarsRoverClient.swift */,
 				CA4D22E72525536900FFC0E7 /* NetworkDataLoader.swift */,
+				CA4D22EB252553C900FFC0E7 /* URLSession+NetworkDataLoader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				9DBD20232140D30F0047905E /* SolDescription.swift in Sources */,
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
 				9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */,
+				CA4D22EC252553C900FFC0E7 /* URLSession+NetworkDataLoader.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
