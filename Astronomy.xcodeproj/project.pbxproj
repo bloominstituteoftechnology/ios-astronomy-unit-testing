@@ -23,7 +23,22 @@
 		9DBD20382140E46E0047905E /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20362140E46E0047905E /* ConcurrentOperation.swift */; };
 		9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */; };
 		9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */; };
+		D64BBEE4232098330088D90A /* MarsRoverClient_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64BBEE3232098330088D90A /* MarsRoverClient_Tests.swift */; };
+		D64BBEEC23209AD00088D90A /* NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64BBEEB23209AD00088D90A /* NetworkDataLoader.swift */; };
+		D64BBEEE2320A0750088D90A /* URLSession+NetworkDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64BBEED2320A0750088D90A /* URLSession+NetworkDataLoader.swift */; };
+		D64BBEF02320A3FB0088D90A /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64BBEEF2320A3FB0088D90A /* MockLoader.swift */; };
+		D64BBEF22320AB230088D90A /* TestJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64BBEF12320AB230088D90A /* TestJSON.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D64BBEE6232098330088D90A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DBD1FFD2140D1300047905E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DBD20042140D1300047905E;
+			remoteInfo = Astronomy;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9DBD20052140D1300047905E /* Astronomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astronomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,10 +59,24 @@
 		9DBD20362140E46E0047905E /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		9DBD20372140E46E0047905E /* FetchPhotoOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPhotoOperation.swift; sourceTree = "<group>"; };
 		9DFE494B2145D37A0009922B /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		D64BBEE1232098330088D90A /* MarsRoverClient Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MarsRoverClient Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D64BBEE3232098330088D90A /* MarsRoverClient_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsRoverClient_Tests.swift; sourceTree = "<group>"; };
+		D64BBEE5232098330088D90A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D64BBEEB23209AD00088D90A /* NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataLoader.swift; sourceTree = "<group>"; };
+		D64BBEED2320A0750088D90A /* URLSession+NetworkDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkDataLoader.swift"; sourceTree = "<group>"; };
+		D64BBEEF2320A3FB0088D90A /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
+		D64BBEF12320AB230088D90A /* TestJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSON.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9DBD20022140D1300047905E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D64BBEDE232098330088D90A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20072140D1300047905E /* Astronomy */,
+				D64BBEE2232098330088D90A /* MarsRoverClient Tests */,
 				9DBD20062140D1300047905E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20052140D1300047905E /* Astronomy.app */,
+				D64BBEE1232098330088D90A /* MarsRoverClient Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				9DBD20312140DE100047905E /* URL+Secure.swift */,
+				D64BBEEB23209AD00088D90A /* NetworkDataLoader.swift */,
+				D64BBEED2320A0750088D90A /* URLSession+NetworkDataLoader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -153,6 +186,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D64BBEE2232098330088D90A /* MarsRoverClient Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D64BBEF12320AB230088D90A /* TestJSON.swift */,
+				D64BBEE3232098330088D90A /* MarsRoverClient_Tests.swift */,
+				D64BBEEF2320A3FB0088D90A /* MockLoader.swift */,
+				D64BBEE5232098330088D90A /* Info.plist */,
+			);
+			path = "MarsRoverClient Tests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,18 +217,41 @@
 			productReference = 9DBD20052140D1300047905E /* Astronomy.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D64BBEE0232098330088D90A /* MarsRoverClient Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D64BBEE8232098330088D90A /* Build configuration list for PBXNativeTarget "MarsRoverClient Tests" */;
+			buildPhases = (
+				D64BBEDD232098330088D90A /* Sources */,
+				D64BBEDE232098330088D90A /* Frameworks */,
+				D64BBEDF232098330088D90A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D64BBEE7232098330088D90A /* PBXTargetDependency */,
+			);
+			name = "MarsRoverClient Tests";
+			productName = "MarsRoverClient Tests";
+			productReference = D64BBEE1232098330088D90A /* MarsRoverClient Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9DBD1FFD2140D1300047905E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Lambda School";
 				TargetAttributes = {
 					9DBD20042140D1300047905E = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1030;
+					};
+					D64BBEE0232098330088D90A = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 9DBD20042140D1300047905E;
 					};
 				};
 			};
@@ -202,6 +269,7 @@
 			projectRoot = "";
 			targets = (
 				9DBD20042140D1300047905E /* Astronomy */,
+				D64BBEE0232098330088D90A /* MarsRoverClient Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -217,6 +285,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D64BBEDF232098330088D90A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -229,6 +304,7 @@
 				9DBD201C2140D19D0047905E /* ImageCollectionViewCell.swift in Sources */,
 				9DBD202D2140D38C0047905E /* Cache.swift in Sources */,
 				9DBD20342140DF1D0047905E /* PhotosCollectionViewController.swift in Sources */,
+				D64BBEEC23209AD00088D90A /* NetworkDataLoader.swift in Sources */,
 				9DFE494C2145D37A0009922B /* PhotoDetailViewController.swift in Sources */,
 				9DBD20392140E46E0047905E /* FetchPhotoOperation.swift in Sources */,
 				9DBD20252140D30F0047905E /* MarsRover.swift in Sources */,
@@ -236,11 +312,30 @@
 				9DBD20232140D30F0047905E /* SolDescription.swift in Sources */,
 				9DBD20092140D1300047905E /* AppDelegate.swift in Sources */,
 				9DBD20242140D30F0047905E /* MarsPhoto.swift in Sources */,
+				D64BBEEE2320A0750088D90A /* URLSession+NetworkDataLoader.swift in Sources */,
 				9DBD202F2140D7720047905E /* Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D64BBEDD232098330088D90A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D64BBEF02320A3FB0088D90A /* MockLoader.swift in Sources */,
+				D64BBEE4232098330088D90A /* MarsRoverClient_Tests.swift in Sources */,
+				D64BBEF22320AB230088D90A /* TestJSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D64BBEE7232098330088D90A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DBD20042140D1300047905E /* Astronomy */;
+			targetProxy = D64BBEE6232098330088D90A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9DBD20112140D1300047905E /* LaunchScreen.storyboard */ = {
@@ -373,15 +468,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
+				DEVELOPMENT_TEAM = 3XVDLP5XYQ;
 				INFOPLIST_FILE = "$(SRCROOT)/Astronomy/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.Astronomy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelstoffer.Astronomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -391,16 +486,61 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
+				DEVELOPMENT_TEAM = 3XVDLP5XYQ;
 				INFOPLIST_FILE = "$(SRCROOT)/Astronomy/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.Astronomy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelstoffer.Astronomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D64BBEE9232098330088D90A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3XVDLP5XYQ;
+				INFOPLIST_FILE = "MarsRoverClient Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.michaelstoffer.MarsRoverClient-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astronomy.app/Astronomy";
+			};
+			name = Debug;
+		};
+		D64BBEEA232098330088D90A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3XVDLP5XYQ;
+				INFOPLIST_FILE = "MarsRoverClient Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.michaelstoffer.MarsRoverClient-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astronomy.app/Astronomy";
 			};
 			name = Release;
 		};
@@ -421,6 +561,15 @@
 			buildConfigurations = (
 				9DBD20182140D1300047905E /* Debug */,
 				9DBD20192140D1300047905E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D64BBEE8232098330088D90A /* Build configuration list for PBXNativeTarget "MarsRoverClient Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D64BBEE9232098330088D90A /* Debug */,
+				D64BBEEA232098330088D90A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
