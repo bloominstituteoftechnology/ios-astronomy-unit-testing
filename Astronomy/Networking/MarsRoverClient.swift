@@ -10,12 +10,16 @@ import Foundation
 
 class MarsRoverClient {
     
-    func fetchMarsRover(named name: String,
-                        using session: URLSession = URLSession.shared,
-                        completion: @escaping (MarsRover?, Error?) -> Void) {
+    let networkLoader: NetworkDataLoader
+    
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
+    
+    func fetchMarsRover(named name: String, completion: @escaping (MarsRover?, Error?) -> Void) {
         
         let url = self.url(forInfoForRover: name)
-        fetch(from: url, using: session) { (dictionary: [String : MarsRover]?, error: Error?) in
+        fetch(from: url) { (dictionary: [String : MarsRover]?, error: Error?) in
 
             guard let rover = dictionary?["photo_manifest"] else {
                 completion(nil, error)
@@ -26,12 +30,10 @@ class MarsRoverClient {
     }
     
     func fetchPhotos(from rover: MarsRover,
-                     onSol sol: Int,
-                     using session: URLSession = URLSession.shared,
-                     completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
+                     onSol sol: Int, completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
         
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
-        fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
+        fetch(from: url) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
                 completion(nil, error)
                 return
@@ -42,10 +44,8 @@ class MarsRoverClient {
     
     // MARK: - Private
     
-    private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
-                           completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+    private func fetch<T: Codable>(from url: URL, completion: @escaping (T?, Error?) -> Void) {
+        networkLoader.loadData(from: url) { data, error in
             if let error = error {
                 completion(nil, error)
                 return
@@ -63,7 +63,7 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
+        }
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
