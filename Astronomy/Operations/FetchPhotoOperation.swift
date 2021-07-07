@@ -10,6 +10,14 @@ import UIKit
 
 class FetchPhotoOperation: ConcurrentOperation {
     
+    let photoReference: MarsPhotoReference
+    
+    private let session: URLSession
+    
+    private(set) var image: UIImage?
+    
+    private var dataTask: URLSessionDataTask?
+    
     init(photoReference: MarsPhotoReference, session: URLSession = URLSession.shared) {
         self.photoReference = photoReference
         self.session = session
@@ -40,14 +48,4 @@ class FetchPhotoOperation: ConcurrentOperation {
         dataTask?.cancel()
         super.cancel()
     }
-    
-    // MARK: Properties
-    
-    let photoReference: MarsPhotoReference
-    
-    private let session: URLSession
-    
-    private(set) var image: UIImage?
-    
-    private var dataTask: URLSessionDataTask?
 }

@@ -26,6 +26,17 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         updateViews()
     }
     
+    private var photoReferences = [MarsPhotoReference]() {
+        didSet {
+            cache.clear()
+            DispatchQueue.main.async { self.collectionView?.reloadData() }
+        }
+    }
+    
+    @IBOutlet var collectionView: UICollectionView!
+    
+    let solLabel = UILabel()
+    
     @IBAction func goToPreviousSol(_ sender: Any?) {
         guard let solDescription = solDescription else { return }
         guard let solDescriptions = roverInfo?.solDescriptions else { return }
@@ -49,7 +60,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        NSLog("num photos: \(photoReferences.count)")
+        NSLog("num photos:\(photoReferences.count)")
         return photoReferences.count
     }
     
@@ -196,14 +207,4 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
             }
         }
     }
-    
-    private var photoReferences = [MarsPhotoReference]() {
-        didSet {
-            cache.clear()
-            DispatchQueue.main.async { self.collectionView?.reloadData() }
-        }
-    }
-    
-    @IBOutlet var collectionView: UICollectionView!
-    let solLabel = UILabel()
 }
