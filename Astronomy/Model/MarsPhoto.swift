@@ -12,7 +12,7 @@ struct MarsPhotoReference: Codable {
     let id: Int
     let sol: Int
     let camera: Camera
-    let earthDate: Date
+    let earthDate: String
     
     let imageURL: URL
     
@@ -20,8 +20,8 @@ struct MarsPhotoReference: Codable {
         case id
         case sol
         case camera
-        case earthDate
-        case imageURL = "imgSrc"
+        case earthDate = "earth_date"
+        case imageURL = "img_src"
     }
 
     static let dateFormatter: DateFormatter = {

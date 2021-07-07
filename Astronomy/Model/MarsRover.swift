@@ -11,8 +11,8 @@ import Foundation
 struct MarsRover: Codable {
     let name: String
     
-    let launchDate: Date
-    let landingDate: Date
+    let launchDate: String
+    let landingDate: String
     
     enum Status: String, Codable {
         case active, complete
@@ -20,7 +20,7 @@ struct MarsRover: Codable {
     let status: Status
     
     let maxSol: Int
-    let maxDate: Date
+    let maxDate: String
     
     let numberOfPhotos: Int
     
@@ -28,12 +28,12 @@ struct MarsRover: Codable {
     
     enum CodingKeys: String, CodingKey {
         case name
-        case launchDate
-        case landingDate
+        case launchDate = "launch_date"
+        case landingDate = "landing_date"
         case status
-        case maxSol
-        case maxDate
-        case numberOfPhotos = "totalPhotos"
+        case maxSol = "max_sol"
+        case maxDate = "max_date"
+        case numberOfPhotos = "total_photos"
         case solDescriptions = "photos"
     }
     

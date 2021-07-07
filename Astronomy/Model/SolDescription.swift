@@ -10,6 +10,6 @@ import Foundation
 
 struct SolDescription: Codable, Equatable {
     let sol: Int
-    let totalPhotos: Int
+    let total_photos: Int
     let cameras: [String]
 }
