@@ -21,7 +21,7 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
             
             self.roverInfo = rover
         }
-        
+        collectionView.accessibilityIdentifier = "PhotosCollectionViewController.collectionView"
         configureTitleView()
         updateViews()
     }
