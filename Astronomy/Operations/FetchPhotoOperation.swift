@@ -10,7 +10,7 @@ import UIKit
 
 class FetchPhotoOperation: ConcurrentOperation {
     
-    init(photoReference: MarsPhotoReference, session: URLSession = URLSession.shared) {
+    init(photoReference: MarsPhotoReference, session: NetworkSession = URLSession.shared) {
         self.photoReference = photoReference
         self.session = session
         super.init()
@@ -20,7 +20,7 @@ class FetchPhotoOperation: ConcurrentOperation {
         state = .isExecuting
         let url = photoReference.imageURL.usingHTTPS!
         
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = session.networkDataTask(with: url) { (data, response, error) in
             defer { self.state = .isFinished }
             if self.isCancelled { return }
             if let error = error {
@@ -39,15 +39,16 @@ class FetchPhotoOperation: ConcurrentOperation {
     override func cancel() {
         dataTask?.cancel()
         super.cancel()
+        self.state = .isFinished
     }
     
     // MARK: Properties
     
     let photoReference: MarsPhotoReference
     
-    private let session: URLSession
+    private let session: NetworkSession
     
     private(set) var image: UIImage?
     
-    private var dataTask: URLSessionDataTask?
+    private var dataTask: NetworkSessionDataTask?
 }
