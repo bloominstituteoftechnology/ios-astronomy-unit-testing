@@ -10,6 +10,13 @@ import Foundation
 
 class MarsRoverClient {
     
+    // MARK: - Properties
+    private let networkLoader: NetworkDataLoader
+    
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
+    
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -22,9 +29,10 @@ class MarsRoverClient {
                 return
             }
             completion(rover, nil)
+            self.fetchedRover = rover
         }
     }
-    
+    var fetchedRover: MarsRover?
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
                      using session: URLSession = URLSession.shared,
@@ -37,15 +45,18 @@ class MarsRoverClient {
                 return
             }
             completion(photos, nil)
+            self.fetchedPhotos = photos
         }
     }
-    
+    var fetchedPhotos: [MarsPhotoReference]?
     // MARK: - Private
     
     private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
+                           using session: NetworkDataLoader,
                            completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+        //session.dataTask(with: url) { (data, response, error) in
+        networkLoader.loadData(from: url) { (data, error) in
+        
             if let error = error {
                 completion(nil, error)
                 return
@@ -60,10 +71,12 @@ class MarsRoverClient {
                 let jsonDecoder = MarsPhotoReference.jsonDecoder
                 let decodedObject = try jsonDecoder.decode(T.self, from: data)
                 completion(decodedObject, nil)
+               
             } catch {
                 completion(nil, error)
+                self.searchError = error
             }
-        }.resume()
+        }
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
@@ -88,4 +101,6 @@ class MarsRoverClient {
                                     URLQueryItem(name: "api_key", value: apiKey)]
         return urlComponents.url!
     }
+    
+    var searchError: Error?
 }
