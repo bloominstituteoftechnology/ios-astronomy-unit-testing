@@ -10,6 +10,14 @@ import Foundation
 
 class MarsRoverClient {
     
+    // MARK: - Network loder property
+    let networkLoader: NetworkDataLoader
+    
+    init(networkLoader: NetworkDataLoader = URLSession.shared) {
+        self.networkLoader = networkLoader
+    }
+    
+     // MARK: - Unit Test: testMarsRoverFetchDataSession created
     func fetchMarsRover(named name: String,
                         using session: URLSession = URLSession.shared,
                         completion: @escaping (MarsRover?, Error?) -> Void) {
@@ -22,16 +30,19 @@ class MarsRoverClient {
                 return
             }
             completion(rover, nil)
-        }
+        } 
     }
     
+    // MARK: - Unit Test: testPhotoFetchDataSession created
     func fetchPhotos(from rover: MarsRover,
                      onSol sol: Int,
-                     using session: URLSession = URLSession.shared,
+                      using session: URLSession = URLSession.shared,
+                   //  using networkLoader: NetworkDataLoader,
                      completion: @escaping ([MarsPhotoReference]?, Error?) -> Void) {
         
         let url = self.url(forPhotosfromRover: rover.name, on: sol)
         fetch(from: url, using: session) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
+        // fetch(from: url, using: networkLoader) { (dictionary: [String : [MarsPhotoReference]]?, error: Error?) in
             guard let photos = dictionary?["photos"] else {
                 completion(nil, error)
                 return
@@ -41,11 +52,17 @@ class MarsRoverClient {
     }
     
     // MARK: - Private
-    
+    // MARK: - Unit Test: testFetchDataSession created
+//    private func fetch<T: Codable>(from url: URL,
+//                           using session: URLSession = URLSession.shared,
+//                           completion: @escaping (T?, Error?) -> Void) {
     private func fetch<T: Codable>(from url: URL,
-                           using session: URLSession = URLSession.shared,
-                           completion: @escaping (T?, Error?) -> Void) {
-        session.dataTask(with: url) { (data, response, error) in
+                                   using networkLoader: NetworkDataLoader,
+                                   completion: @escaping (T?, Error?) -> Void) {
+        // Replace the hardcoded dataTask with the DI networkLoader
+//        session.dataTask(with: url) { (data, response, error) in
+        networkLoader.loadData(from: url) { (data, response, error) in
+            
             if let error = error {
                 completion(nil, error)
                 return
@@ -63,12 +80,13 @@ class MarsRoverClient {
             } catch {
                 completion(nil, error)
             }
-        }.resume()
+        } //.resume()
     }
     
     private let baseURL = URL(string: "https://api.nasa.gov/mars-photos/api/v1")!
     private let apiKey = "qzGsj0zsKk6CA9JZP1UjAbpQHabBfaPg2M5dGMB7"
 
+    // MARK: - Unit Test testRoverURLRequestFormat
     private func url(forInfoForRover roverName: String) -> URL {
         var url = baseURL
         url.appendPathComponent("manifests")
@@ -78,6 +96,7 @@ class MarsRoverClient {
         return urlComponents.url!
     }
     
+    // MARK: - Unit Test: testRoverPhotosULRequestFormat
     private func url(forPhotosfromRover roverName: String, on sol: Int) -> URL {
         var url = baseURL
         url.appendPathComponent("rovers")
