@@ -3,7 +3,7 @@
 //  AstronomyTests
 //
 //  Created by Andrew R Madsen on 9/17/18.
-//  Copyright © 2018 Lambda School. All rights reserved.
+//  Copyright © 2018 BloomTech. All rights reserved.
 //
 
 import Foundation
